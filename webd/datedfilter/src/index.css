@@ -1,0 +1,56 @@
+html {
+  background: url('../public/images/website\ background.png') no-repeat; 
+  background-size: cover;
+  background-attachment:fixed;
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  float: none;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: darkred;
+  float: left;
+  font-size: 400%;
+}
+
+h2 {
+  color: black;
+  font-size: 100%;
+  float: inline-end;
+}
+
+.container {
+  width: 60%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.Header {
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-top: 0px;
+  margin-right: auto;
+
+
+}
+
+nav {
+  width: 40%;
+  float: right;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.2em;
+}
+
+li {
+  float: left;
+  padding: 2%;
+  text-decoration: none;
+  list-style: none;
+}

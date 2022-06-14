@@ -1,0 +1,94 @@
+/* Base Styles */
+* {
+	font-family: "Dragon Fire";
+	color: white;
+	box-sizing: border-box;
+}
+
+body {
+	background: #AD402F;
+}
+
+h1 {
+	text-align: center;
+	font-size: 400%;
+}
+
+#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+.menubox {
+	float: left;
+	width: 32.3%;
+	border: 1px solid white;
+	text-align: justify;
+	margin-top: 10px;
+	margin-left: .5%;
+	margin-right: .5%;
+	background: #E99D38;
+	font-size: 100%;
+
+}
+
+.textbox {
+	padding: 0% 0% 0% 0%;
+	font-size: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	margin-bottom: 1%;
+	clear: both;
+}
+
+.label-container {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.label {
+	float: right;
+	margin-right: 1%;
+	margin-top: 1%;
+	margin-bottom: 10px;
+	color: gold;
+	font-size: 150%;
+	border: 1px solid white;
+	padding-left: 4%;
+	padding-right: 4%;
+	width: 30%;
+	text-align: center;
+	background: #6A100D;
+
+
+}
+
+img {
+	margin: auto;
+}
+
+/* MEDIA QUERIES */
+
+@media	(min-width: 768px) and (max-width: 991px) {
+	.menubox {
+		width: 45%;
+		margin: 2.5%;
+		margin-bottom: 4%;
+	}
+	#sushi {
+		width: 95%;
+		margin: 2.5%;
+		float: none;
+		clear: both;
+	}
+}
+
+@media (max-width: 767px) {
+	.menubox {
+		width: 95%;
+		margin: 2.5%;
+	}
+}
