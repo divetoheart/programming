@@ -10,9 +10,9 @@ if choice == "left":
         choice = input("The boat takes you across the sea to a small island with a red 'X', a blue 'X', and a yellow 'X'. Where would you like to dig? Type 'red', 'blue', or 'yellow'. \n").lower()
         if choice == "yellow":
             print(f"You strike the {choice} 'X' with your shovel and hear a loud 'thud'.")
-            print("Congratulations! You have found the hidden treasure. You win the game!")
+            input("Congratulations! You have found the hidden treasure. You win the game!")
         else:
-            print(f"You strike the {choice} 'X' with your shovel, and the ground collapses. You fall to your death. Game over.")
+            input(f"You strike the {choice} 'X' with your shovel, and the ground collapses. You fall to your death. Game over.")
     else:
         print("You attempt to swim across the sea, but become exhausted, and drown. Game over.")
 else: 
@@ -44,7 +44,7 @@ else:
                         print("You turn around, sprinting back to the crossroads.")
                         choice = input("You arrive at the ocean. You can wait for a boat, or try to swim across. Type 'wait' or 'swim'. \n").lower()
                         if choice == "wait":
-                            print("The bandits catch up and you are quickly overwhelmed. You feel a sharp pain as one's sword slides into your gut. Game over.")
+                            input("The bandits catch up and you are quickly overwhelmed. You feel a sharp pain as one's sword slides into your gut. Game over.")
                         else:
                             print("You attempt to swim across the sea, but become exhausted, and drown. Game over.")
                             input("Thanks for playing!")
@@ -55,7 +55,7 @@ else:
                 print("You turn around, sprinting back to the crossroads.")
                 choice = input("You arrive at the ocean. You can wait for a boat, or try to swim across. Type 'wait' or 'swim'. \n").lower()
                 if choice == "wait":
-                    print("The bandits catch up and you are quickly overwhelmed. You feel a sharp pain as one's sword slides into your gut. Game over.")
+                    input("The bandits catch up and you are quickly overwhelmed. You feel a sharp pain as one's sword slides into your gut. Game over.")
                 else:
                     print("You attempt to swim across the sea, but become exhausted, and drown. Game over.")
                     input("Thanks for playing!")
@@ -66,8 +66,7 @@ else:
         print("You turn around, sprinting back to the crossroads.")
         choice = input("You arrive at the ocean. You can wait for a boat, or try to swim across. Type 'wait' or 'swim'. \n").lower()
         if choice == "wait":
-            print("The bandits catch up and you are quickly overwhelmed. You feel a sharp pain as one's sword slides into your gut. Game over.")
+            input("The bandits catch up and you are quickly overwhelmed. You feel a sharp pain as one's sword slides into your gut. Game over.")
         else:
             print("You attempt to swim across the sea, but become exhausted, and drown. Game over.")
-            input("Thanks for playing!")
-        print("The bandits quickly overwhelm you. You feel a sharp pain as one's sword slides into your gut. Game over.")
+            input("Thanks for playing!")      
