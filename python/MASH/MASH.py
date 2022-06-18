@@ -16,3 +16,4 @@ homes = ["Mansion", "Apartment", "Shack", "House"]
 result = [names[random.randint(0, len(names) -1)], places[random.randint(0, len(places) -1)], jobs[random.randint(0, len(jobs) -1)], kids[random.randint(0, len(kids) -1)], cars[random.randint(0, len(cars) - 1)], homes[random.randint(0, len(homes) -1)]]
 print(f"{playerName} will be married to {result[0]}. \nThey will live in {result[1]}, in a {result[5]}, with {result[3]} kids. \n{playerName} will work as a {result[2]} and will drive a {result[4]}. \n")
 input("Thanks for playing! \n")
+
