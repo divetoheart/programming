@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>Jaydon's Game Lab</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header>
+      <div>
+        <p class="eyebrow">JAYDON'S GAME LAB</p>
+        <h1>Star Runner</h1>
+      </div>
+      <div class="stats" aria-live="polite">
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Best: <strong id="best">0</strong></span>
+      </div>
+    </header>
+
+    <section class="stage-wrap">
+      <canvas id="game" width="960" height="540" aria-label="Star Runner game"></canvas>
+      <div id="overlay" class="overlay">
+        <div class="card">
+          <h2 id="overlay-title">Star Runner</h2>
+          <p id="overlay-text">Collect the gold stars. Avoid the red enemies.</p>
+          <button id="start-button" type="button">Play</button>
+          <small>Move with WASD, arrow keys, or drag on the game.</small>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Edit <code>game.js</code> to change the rules, speed, art, and difficulty.</p>
+    </footer>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
