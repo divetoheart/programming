@@ -9,7 +9,7 @@ page.on('console', (message) => { if (message.type() === 'error') errors.push(`c
 page.on('pageerror', (error) => errors.push(`page: ${error.message}`));
 
 await page.goto('http://127.0.0.1:4174/?seed=481516', { waitUntil: 'networkidle' });
-await page.waitForSelector('[data-loading].hidden', { timeout: 30000 });
+await page.waitForFunction(() => document.querySelector('[data-loading]')?.classList.contains('hidden'), null, { timeout: 30000 });
 await page.waitForFunction(() => document.querySelectorAll('canvas.map-layer').length === 4);
 await page.screenshot({ path: 'artifacts/map-lab/focused-mobile.png', fullPage: true });
 
