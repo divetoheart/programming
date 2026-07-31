@@ -1,0 +1,54 @@
+.game-shell { position: relative; width: 100%; height: 100dvh; overflow: hidden; background: radial-gradient(circle at 50% 15%, #263329 0, #111712 42%, #090d0a 100%); }
+.game-header { position: absolute; z-index: 30; inset: 0 0 auto; min-height: calc(var(--header-h) + var(--safe-top)); padding: calc(8px + var(--safe-top)) 10px 8px; background: linear-gradient(180deg, rgba(8, 12, 9, .98), rgba(13, 19, 15, .92) 76%, rgba(13, 19, 15, 0)); pointer-events: none; }
+.header-row { display: flex; align-items: center; gap: 9px; pointer-events: auto; }
+.kingdom-mark { width: 42px; height: 48px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid var(--gold); border-radius: 8px 8px 16px 16px; background: var(--kingdom-color, #315e9d); color: white; font-family: var(--font-display); font-weight: 800; box-shadow: var(--shadow); }
+.turn-block { min-width: 0; margin-right: auto; }
+.turn-block strong { display: block; font-family: var(--font-display); font-size: 15px; letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.turn-block span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.resource-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; pointer-events: auto; }
+.resource-pill { min-width: 0; padding: 7px 8px; border: 1px solid rgba(255,255,255,.07); border-radius: 12px; background: rgba(25, 35, 29, .86); box-shadow: 0 5px 15px rgba(0,0,0,.2); }
+.resource-pill b { display: block; font-size: 13px; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.resource-pill small { color: var(--muted); font-size: 9px; text-transform: uppercase; }
+.header-button { width: 40px; height: 40px; border-radius: 50%; background: rgba(25,35,29,.95); color: var(--gold-2); border: 1px solid var(--border); }
+.map-viewport { position: absolute; inset: 0; touch-action: none; overflow: hidden; background: #18221b; }
+.world-svg { width: 100%; height: 100%; display: block; user-select: none; -webkit-user-select: none; }
+.map-backdrop { fill: #1b281f; }
+.map-vignette { pointer-events: none; }
+.map-edge { stroke: rgba(226, 220, 190, .36); stroke-width: 5; fill: none; stroke-linecap: round; }
+.map-edge.internal { stroke: rgba(236, 226, 193, .46); stroke-width: 4; }
+.map-edge.sea { stroke: #5a83a2; stroke-dasharray: 12 10; }
+.region-boundary { stroke-width: 5; fill-opacity: .48; transition: opacity .2s, stroke-width .2s; }
+.region-boundary.secure { fill-opacity: .54; }
+.region-boundary.contested, .region-boundary.occupied { stroke-dasharray: 12 8; animation: borderMarch 1.6s linear infinite; }
+.region-boundary.selected { stroke-width: 9; filter: drop-shadow(0 0 10px rgba(241,214,143,.5)); }
+.region-label { font: 700 22px var(--font-display); fill: #fff5dc; stroke: rgba(0,0,0,.7); stroke-width: 5px; paint-order: stroke; text-anchor: middle; pointer-events: none; }
+.region-subtitle { display: none; font: 600 12px var(--font-ui); fill: #c9cfca; stroke: rgba(0,0,0,.75); stroke-width: 4px; paint-order: stroke; text-anchor: middle; text-transform: uppercase; letter-spacing: 1.5px; pointer-events: none; }
+.slot-node { cursor: pointer; touch-action: none; }
+.slot-base { fill: #263129; stroke: #9b9478; stroke-width: 4; transition: transform .15s, filter .15s; }
+.slot-node.selected .slot-base { stroke: var(--gold-2); stroke-width: 7; filter: drop-shadow(0 0 10px rgba(244,210,125,.8)); }
+.slot-node.reachable .slot-base { stroke: #8ed08c; stroke-width: 7; animation: pulseReach 1.15s ease-in-out infinite; }
+.slot-node.hostile-target .slot-base { stroke: #df7766; stroke-width: 7; animation: pulseHostile 1.15s ease-in-out infinite; }
+.slot-node.empty .slot-base { fill: rgba(28,37,31,.75); stroke-dasharray: 9 8; }
+.building-glyph { font: 800 31px var(--font-display); fill: #fff4d7; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.building-label { font: 700 12px var(--font-ui); fill: #f4ecd8; text-anchor: middle; stroke: #111; stroke-width: 3px; paint-order: stroke; pointer-events: none; }
+.slot-index { font: 800 11px var(--font-ui); fill: #181d19; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.slot-index-bg { fill: #e1bd6a; stroke: #161b17; stroke-width: 2; }
+.garrison-badge { fill: rgba(10,14,11,.92); stroke: rgba(255,255,255,.25); stroke-width: 2; }
+.garrison-text { font: 700 11px var(--font-ui); fill: white; text-anchor: middle; dominant-baseline: middle; }
+.army-token { cursor: grab; touch-action: none; filter: drop-shadow(0 5px 5px rgba(0,0,0,.5)); }
+.army-token:active { cursor: grabbing; }
+.army-disc { stroke: #f1d88c; stroke-width: 4; }
+.army-banner { fill: rgba(10, 14, 11, .9); stroke: rgba(255,255,255,.25); stroke-width: 2; }
+.army-count { font: 800 12px var(--font-ui); fill: white; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.army-selected .army-disc { stroke-width: 7; filter: drop-shadow(0 0 8px rgba(245,214,132,.8)); }
+.map-fab-stack { position: absolute; z-index: 20; right: 12px; bottom: calc(var(--dock-h) + var(--sheet-peek) + var(--safe-bottom) + 16px); display: grid; gap: 9px; }
+.map-fab { width: 43px; height: 43px; border-radius: 50%; background: rgba(13,20,16,.9); color: var(--gold-2); border: 1px solid var(--border); box-shadow: var(--shadow); }
+.game-dock { position: absolute; z-index: 40; inset: auto 0 0; height: calc(var(--dock-h) + var(--safe-bottom)); padding: 7px 8px calc(7px + var(--safe-bottom)); display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; background: linear-gradient(180deg, rgba(12,17,13,.94), #090d0a); border-top: 1px solid var(--border); }
+.dock-button { position: relative; display: grid; place-items: center; align-content: center; gap: 3px; min-width: 0; border-radius: 12px; background: transparent; color: var(--muted); }
+.dock-button.active { color: var(--gold-2); background: rgba(212,173,92,.1); }
+.dock-button.end-turn { color: #fff0c1; background: linear-gradient(180deg, #7c5b26, #4b3618); border: 1px solid #c39a4e; }
+.dock-icon { font-size: 19px; line-height: 1; }
+.dock-label { font-size: 9px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+@keyframes borderMarch { to { stroke-dashoffset: -40; } }
+@keyframes pulseReach { 50% { stroke-width: 10; opacity: .72; } }
+@keyframes pulseHostile { 50% { stroke-width: 10; opacity: .72; } }
