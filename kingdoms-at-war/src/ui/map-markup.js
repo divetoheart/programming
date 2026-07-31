@@ -81,13 +81,14 @@ const armyMarkup = (state, army, slot, index, selectedArmyId, focused) => {
       <path class="army-shield" d="M0 -15 L13 -9 L11 7 Q0 17 -11 7 L-13 -9 Z" fill="${color}"/><path class="army-spears" d="M-6 8 L7 -12 M2 10 L-8 -11"/><text class="army-count" y="23">${count}</text>
     </g>`;
   }
-  const offsetX = 48 + (index % 2) * 25;
-  const offsetY = -34 + Math.floor(index / 2) * 34;
+  const side = slot.index === 1 ? -1 : 1;
+  const offsetX = side * (48 + (index % 2) * 18);
+  const offsetY = (slot.index === 0 ? 24 : 0) + Math.floor(index / 2) * 29;
   return `<g class="army-token ${army.id === selectedArmyId ? 'army-selected' : ''}" data-army-id="${army.id}" transform="translate(${slot.x + offsetX} ${slot.y + offsetY})">
-    <path class="army-shield" d="M0 -24 L20 -15 L17 10 Q0 27 -17 10 L-20 -15 Z" fill="${color}"/>
-    <path class="army-spears" d="M-10 13 L12 -23 M4 17 L-12 -20"/>
-    <text class="army-emblem" y="-5">${emblemGlyph(state.kingdoms[army.ownerId]?.emblem)}</text>
-    <rect class="army-banner" x="-23" y="20" width="46" height="20" rx="9"/><text class="army-count" y="30">${count}</text>
+    <path class="army-shield" d="M0 -19 L15 -12 L13 8 Q0 21 -13 8 L-15 -12 Z" fill="${color}"/>
+    <path class="army-spears" d="M-8 10 L9 -18 M3 13 L-9 -16"/>
+    <text class="army-emblem" y="-4">${emblemGlyph(state.kingdoms[army.ownerId]?.emblem)}</text>
+    <rect class="army-banner" x="-18" y="15" width="36" height="18" rx="8"/><text class="army-count" y="24">${count}</text>
   </g>`;
 };
 
