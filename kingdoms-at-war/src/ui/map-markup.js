@@ -63,13 +63,13 @@ const focusedSlotMarkup = (state, slot, selection, reachable, selectedArmyId) =>
   const art = building ? buildingIllustration(building.type, color) : emptySlotIllustration(slot.terrain);
   return `<g class="${classes}" data-slot-id="${slot.id}" transform="translate(${slot.x} ${slot.y})">
     <circle class="slot-reach-ring" r="48" />
-    <path class="slot-card" d="M-39 -34 Q-39 -43 -30 -43 H30 Q39 -43 39 -34 V31 Q39 40 30 40 H-30 Q-39 40 -39 31 Z" stroke="${color}" />
-    <circle class="slot-number-disc" cx="-34" cy="-37" r="11"/><text class="slot-index" x="-34" y="-37">${slot.index + 1}</text>
+    <path class="slot-card" d="M-34 -34 Q-34 -42 -26 -42 H26 Q34 -42 34 -34 V31 Q34 39 26 39 H-26 Q-34 39 -34 31 Z" stroke="${color}" />
+    <circle class="slot-number-disc" cx="-30" cy="-36" r="10"/><text class="slot-index" x="-30" y="-36">${slot.index + 1}</text>
     ${art}
-    <rect class="slot-caption" x="-43" y="31" width="86" height="24" rx="10"/>
+    <rect class="slot-caption" x="-37" y="31" width="74" height="23" rx="10"/>
     <text class="building-label" y="43">${escapeHtml(buildingLabel(building?.type))}</text>
-    ${building ? `<g class="garrison-chip" transform="translate(30 -31)"><circle r="12"/><path d="M-4 -1 a4 4 0 1 1 8 0 a4 4 0 1 1 -8 0 M-7 8 q7 -7 14 0"/><text x="16" y="2">${garrison}</text></g>
-      <g class="slot-supply" transform="translate(-29 61)"><rect width="58" height="5" rx="3"/><rect width="${58 * supplyPercent / 100}" height="5" rx="3"/></g>` : ''}
+    ${building ? `<g class="garrison-chip" transform="translate(26 -30)"><circle r="12"/><path d="M-4 -1 a4 4 0 1 1 8 0 a4 4 0 1 1 -8 0 M-7 8 q7 -7 14 0"/><text x="16" y="2">${garrison}</text></g>
+      <g class="slot-supply" transform="translate(-25 59)"><rect width="50" height="5" rx="3"/><rect width="${50 * supplyPercent / 100}" height="5" rx="3"/></g>` : ''}
   </g>`;
 };
 
