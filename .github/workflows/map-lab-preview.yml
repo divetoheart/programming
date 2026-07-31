@@ -15,7 +15,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,8 +24,8 @@ jobs:
       - name: Run generator tests
         working-directory: kingdoms-at-war/map-lab
         run: npm test
-      - name: Install browser
-        run: npm install --no-save playwright@1.55.0 && npx playwright install --with-deps chromium
+      - name: Install Playwright client
+        run: npm install --no-save playwright@1.55.0
       - name: Start Map Lab
         run: python3 -m http.server 4174 --directory kingdoms-at-war/map-lab > /tmp/map-lab-server.log 2>&1 &
       - name: Verify mobile render
