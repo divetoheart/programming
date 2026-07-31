@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#0b1110">
+  <title>Crown & Conquest — Map Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23131d19'/%3E%3Cpath d='M17 17h30v8H17zm5 8h20v20h6v7H16v-7h6zm6 5h8v15h-8z' fill='%23d7b563'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app" data-app>
+    <section class="map-root" data-map-root aria-label="Procedural political terrain map"></section>
+    <div class="map-grain" aria-hidden="true"></div>
+
+    <header class="toolbar">
+      <div class="brand">
+        <span class="brand-crest">♜</span>
+        <span><strong>Map Lab</strong><small>Crown & Conquest</small></span>
+      </div>
+      <div class="toolbar-actions">
+        <button data-mode="terrain" data-mode>Terrain</button>
+        <button data-world>World</button>
+        <button data-focus>Focus</button>
+      </div>
+    </header>
+
+    <aside class="seed-panel">
+      <label>Seed <input inputmode="numeric" data-seed></label>
+      <button class="generate-button" data-generate>Regenerate</button>
+      <small data-map-stats>Generating map…</small>
+    </aside>
+
+    <section class="inspector">
+      <div class="inspector-heading">
+        <div><small data-region-meta>Region</small><h1 data-region-name>—</h1></div>
+        <div class="terrain-chip"><span data-selected-terrain>—</span></div>
+      </div>
+      <p class="selected-tile">Selected tile: <strong data-selected-tile>—</strong></p>
+      <div class="tile-list" data-tile-list></div>
+      <p class="lab-note">Each card is one independent land tile. The three connected tiles form the highlighted region.</p>
+    </section>
+
+    <div class="loading" data-loading><div class="spinner"></div><strong>Forging terrain…</strong><small>Generating coast, elevation, rivers, biomes and political tiles</small></div>
+    <div class="error hidden" data-error></div>
+  </main>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
