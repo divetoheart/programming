@@ -1,0 +1,9 @@
+import { BUILDING_TYPES } from '../config/buildings.js';
+import { UNIT_TYPES } from '../config/units.js';
+import { resourceCost } from './format.js';
+
+export const buildModalBody = (_state, regionId, slotId) => `<div class="panel-section"><div class="support-item">Construction is instant, but only when every mobile army has left a secure region and all prerequisites are met.</div></div><div class="unit-list">${Object.values(BUILDING_TYPES).map((building) => `<button class="unit-row action-button" data-build-type="${building.id}" data-region-id="${regionId}" data-slot-id="${slotId}"><div class="unit-icon">${building.icon}</div><div><b>${building.name}</b><small>${resourceCost(building.cost)}</small></div><strong>Build</strong></button>`).join('')}</div>`;
+
+export const recruitModalBody = (slotId) => `<div class="unit-list">${Object.values(UNIT_TYPES).map((unit) => `<button class="unit-row action-button" data-recruit-type="${unit.id}" data-slot-id="${slotId}"><div class="unit-icon">${unit.icon}</div><div><b>${unit.name}</b><small>${resourceCost(unit.cost)} · ${unit.population} Pop</small></div><strong>+1</strong></button>`).join('')}</div>`;
+
+export const transferModalBody = (sourceUnits, command, label) => `<form data-transfer-form data-transfer-command="${command}"><div class="unit-list">${Object.entries(sourceUnits).filter(([, count]) => count > 0).map(([id, count]) => `<div class="unit-row"><div class="unit-icon">${UNIT_TYPES[id].icon}</div><div><b>${UNIT_TYPES[id].name}</b><small>Available ${count}</small></div><div class="stepper"><button type="button" data-step="-1" data-unit="${id}">−</button><strong data-quantity="${id}">0</strong><button type="button" data-step="1" data-unit="${id}" data-max="${count}">+</button></div></div>`).join('')}</div><button class="large-button" type="submit">${label}</button></form>`;

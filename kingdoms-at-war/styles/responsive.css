@@ -1,0 +1,19 @@
+@media (min-width: 700px) {
+  :root { --header-h: 84px; --dock-h: 68px; --sheet-peek: 76px; }
+  .region-subtitle { display: block; }
+  .game-header { padding-left: max(18px, calc((100vw - 980px)/2)); padding-right: max(18px, calc((100vw - 980px)/2)); }
+  .resource-strip { position: absolute; top: calc(8px + var(--safe-top)); left: 50%; transform: translateX(-50%); width: 360px; margin: 0; }
+  .bottom-sheet { left: auto; right: 14px; width: 390px; bottom: calc(var(--dock-h) + var(--safe-bottom) + 10px); border-radius: 22px; transform: translateX(calc(100% + 30px)); }
+  .bottom-sheet.half, .bottom-sheet.expanded { transform: translateX(0); }
+  .game-dock { left: 50%; right: auto; width: min(560px, 100%); transform: translateX(-50%); border: 1px solid var(--border); border-bottom: 0; border-radius: 18px 18px 0 0; }
+  .map-fab-stack { right: 420px; bottom: calc(var(--dock-h) + 22px); }
+  .modal-layer { place-items: center; }
+}
+@media (max-height: 650px) {
+  :root { --header-h: 98px; --dock-h: 64px; --sheet-peek: 74px; }
+  .resource-pill { padding: 5px 7px; }
+  .dock-label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
