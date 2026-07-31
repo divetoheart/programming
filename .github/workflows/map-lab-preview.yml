@@ -1,0 +1,39 @@
+name: Map Lab Preview
+
+on:
+  push:
+    branches:
+      - agent/crown-map-lab
+  pull_request:
+    paths:
+      - 'kingdoms-at-war/map-lab/**'
+      - '.github/workflows/map-lab-preview.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run generator tests
+        working-directory: kingdoms-at-war/map-lab
+        run: npm test
+      - name: Install browser
+        run: npm install --no-save playwright@1.55.0 && npx playwright install --with-deps chromium
+      - name: Start Map Lab
+        run: python3 -m http.server 4174 --directory kingdoms-at-war/map-lab > /tmp/map-lab-server.log 2>&1 &
+      - name: Verify mobile render
+        run: node kingdoms-at-war/map-lab/tests/browser-preview.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: map-lab-mobile-preview
+          path: artifacts/map-lab
+          if-no-files-found: warn
