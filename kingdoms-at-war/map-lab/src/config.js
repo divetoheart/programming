@@ -4,8 +4,8 @@ export const MAP = Object.freeze({
   regionCount: 20,
   tilesPerRegion: 3,
   tileCount: 60,
-  terrainWidth: 600,
-  terrainHeight: 420,
+  terrainWidth: 900,
+  terrainHeight: 630,
   hydrologyWidth: 180,
   hydrologyHeight: 126,
 });
