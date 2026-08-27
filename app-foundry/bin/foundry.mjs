@@ -39,13 +39,20 @@ function run(commandName, commandArgs, cwd = process.cwd()) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
+const ignoredDirs = new Set(['node_modules', '.git', '.expo']);
+const textExtensions = new Set(['.json', '.js', '.mjs', '.ts', '.tsx', '.md', '.txt', '.yml', '.yaml', '.example']);
+const textNames = new Set(['.env.example', '.gitignore']);
+
 function replaceTokens(targetDir, tokens) {
   for (const entry of fs.readdirSync(targetDir, { withFileTypes: true })) {
+    if (entry.isDirectory() && ignoredDirs.has(entry.name)) continue;
     const full = path.join(targetDir, entry.name);
     if (entry.isDirectory()) {
       replaceTokens(full, tokens);
       continue;
     }
+    if (!textNames.has(entry.name) && !textExtensions.has(path.extname(entry.name))) continue;
+
     const raw = fs.readFileSync(full, 'utf8');
     let next = raw;
     for (const [token, replacement] of Object.entries(tokens)) {
