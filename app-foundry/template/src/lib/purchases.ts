@@ -1,10 +1,14 @@
 import { Platform } from 'react-native';
-import Purchases from 'react-native-purchases';
 
 const entitlement = process.env.EXPO_PUBLIC_REVENUECAT_ENTITLEMENT || 'pro';
 const mode = process.env.EXPO_PUBLIC_PURCHASES_MODE || 'mock';
 let configured = false;
 let mockPro = false;
+
+async function purchasesSdk() {
+  const module = await import('react-native-purchases');
+  return module.default;
+}
 
 function apiKey() {
   return Platform.select({
@@ -22,6 +26,7 @@ export async function initializePurchases() {
     throw new Error('RevenueCat store mode is enabled but the public SDK key is missing.');
   }
 
+  const Purchases = await purchasesSdk();
   Purchases.configure({ apiKey: key });
   configured = true;
 }
@@ -29,6 +34,7 @@ export async function initializePurchases() {
 export async function getProStatus() {
   if (mode !== 'store') return mockPro;
   await initializePurchases();
+  const Purchases = await purchasesSdk();
   const info = await Purchases.getCustomerInfo();
   return Boolean(info.entitlements.active[entitlement]);
 }
@@ -40,6 +46,7 @@ export async function openPaywall() {
   }
 
   await initializePurchases();
+  const Purchases = await purchasesSdk();
   const offerings = await Purchases.getOfferings();
   const pkg = offerings.current?.availablePackages[0];
 
@@ -53,6 +60,7 @@ export async function openPaywall() {
 export async function restorePurchases() {
   if (mode !== 'store') return mockPro;
   await initializePurchases();
+  const Purchases = await purchasesSdk();
   const info = await Purchases.restorePurchases();
   return Boolean(info.entitlements.active[entitlement]);
 }
