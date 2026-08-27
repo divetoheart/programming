@@ -1,0 +1,16 @@
+{
+  "name": "app-foundry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "foundry": "./bin/foundry.mjs"
+  },
+  "scripts": {
+    "new": "node ./bin/foundry.mjs new",
+    "help": "node ./bin/foundry.mjs help"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
