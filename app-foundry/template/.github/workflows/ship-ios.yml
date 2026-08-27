@@ -1,0 +1,36 @@
+name: Ship iOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ship:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v9
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          packager: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Doctor
+        run: npm run doctor
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build and submit
+        run: eas build --platform ios --profile production --auto-submit --non-interactive
