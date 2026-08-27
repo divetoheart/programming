@@ -19,10 +19,18 @@ Idea -> vibe code -> test -> monetize -> EAS build -> TestFlight/App Store -> it
 
 ```bash
 cd app-foundry
-npm run new -- my-app --name "My App" --bundle com.yourname.myapp --out ../my-app
+npm run new -- my-app
 cd ../my-app
 cp .env.example .env
 npm run ios
+```
+
+That is the normal path. App name is derived from the slug and the bundle/package ID defaults to `com.divetoheart.<slug-without-hyphens>`.
+
+Override only when needed:
+
+```bash
+npm run new -- my-app --name "My App" --bundle com.company.myapp --out ../my-app
 ```
 
 The generator creates the Expo project, installs the standard native dependencies, adds Foundry's overlay, and runs the preflight doctor automatically.
