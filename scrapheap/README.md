@@ -1,23 +1,24 @@
 # SCRAPHEAP
 
-Early-access browser combat prototype.
+An asset-light third-person arena brawler vertical slice built for the browser. Nine scavengers enter a procedural junkyard while a crusher field closes around them. Defeated opponents become both scrap and recoverable fictional crafting components.
 
-## Current vertical slice
-- 3D third-person arena rendered with Three.js
-- 9 AI brawlers with pursuit/combat behavior
-- melee combat, health, deaths, respawns and kill rewards
-- physics-flavored knockback/ragdoll death presentation
-- detachable/scavengeable bones, arms, legs and skulls
-- junk inventory and free-component crafting discounts
-- weapon progression: fists → bone club → scrap axe → chainsaw → rattle rifle
-- desktop mouse/WASD controls and basic coarse-pointer controls
-- procedural scrapyard arena, fog, lighting, debris and HUD
+## Vertical slice
+
+- Responsive shoulder camera, mouse aim, sprint, stamina and an invulnerable dodge window
+- Eight-agent free-for-all AI with threat selection, spacing, strafing, retreat and bot-on-bot combat
+- High-impact combat with knockback, camera shake, pooled debris and procedural audio
+- Segment-based ragdoll deaths, detachable limbs and recoverable parts
+- Kill-to-scrap economy and discounted fictional tool crafting at the field bench
+- Closing-ring match structure, win/fail screens and local best-run persistence
+- Authored procedural arena with collision, landmarks, cover, fog and adaptive resolution
+- Landscape touch interface with safe-area support
+- Vite project structure ready for Vercel
 
 ## Run
-Serve this directory with any static HTTP server. `index.html` imports Three.js as a pinned browser ESM dependency.
 
-## Vercel
-Deploy with `scrapheap` as the project Root Directory. No build command is required for this static prototype.
+```sh
+npm install
+npm run dev
+```
 
-## Next production milestones
-Authoritative multiplayer/networking, actual rigid-body ragdolls, animation/audio pass, richer modular weapon assembly, multiple arenas, match flow/safe-zone system, persistence and matchmaking.
+For a dependency-free smoke test, serve the directory as static files; the import map pins Three.js from jsDelivr.
