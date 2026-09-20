@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAuthorized } from "../../../lib/auth";
 import { loadCampaign, repoSyncConfigured, saveCampaign } from "../../../lib/github-store";
 import type { CampaignState } from "../../../lib/types";
 
@@ -6,11 +7,13 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  if (!(await isAuthorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const state = await loadCampaign();
   return NextResponse.json({ state, repoSync: repoSyncConfigured() });
 }
 
 export async function POST(request: Request) {
+  if (!(await isAuthorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await request.json();
   const state = body?.state as CampaignState | undefined;
   if (!state || state.campaignId !== "mournreach-main" || !state.character?.name) {
