@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d1115"/><stop offset="1" stop-color="#201a1d"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#6e8a66" stop-opacity=".42"/><stop offset="1" stop-color="#6e8a66" stop-opacity="0"/></radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="url(#bg)"/>
+<circle cx="864" cy="192" r="224" fill="url(#glow)" filter="url(#soft)"/>
+
+<text x="48" y="80" fill="#c9bda7" font-size="25" font-family="Georgia,serif">Blackwood · an offended forest remembers</text>
+<path d="M0 610 Q180 535 330 590 T650 560 T980 600 T1200 545 V800 H0Z" fill="#11161a"/>
+
+  <g stroke="#394a35" stroke-width="34" stroke-linecap="round"><path d="M170 640 L210 215"/><path d="M400 650 L380 150"/><path d="M650 640 L700 180"/><path d="M930 650 L900 220"/></g>
+  <g stroke="#6e8a66" stroke-width="13"><path d="M210 300 l-80-95M210 330 l95-120M380 260 l-110-90M380 300 l120-130M700 290 l-100-110M700 315 l110-120M900 330 l-105-100M900 350 l120-120"/></g>
+  <path d="M510 570 q90-170 180 0 q-90 90-180 0z" fill="#121814" stroke="#a5b58b" stroke-width="6"/>
+  <path d="M555 525 l-60-80 M645 525 l65-85" stroke="#a5b58b" stroke-width="8"/>
+
+
+<rect x="22" y="22" width="1156" height="756" rx="18" fill="none" stroke="#6e8a66" stroke-opacity=".38" stroke-width="2"/>
+<text x="48" y="736" fill="#e7dfcf" font-size="36" font-family="Georgia,serif" letter-spacing="2">OLD HART</text>
+</svg>

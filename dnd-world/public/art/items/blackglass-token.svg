@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d1115"/><stop offset="1" stop-color="#201a1d"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#8c6d9b" stop-opacity=".42"/><stop offset="1" stop-color="#8c6d9b" stop-opacity="0"/></radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="url(#bg)"/>
+<circle cx="720" cy="168" r="196" fill="url(#glow)" filter="url(#soft)"/>
+
+<text x="48" y="76" fill="#c9bda7" font-size="24" font-family="Georgia,serif">warm glass · murdered courier's final sight</text>
+<ellipse cx="500" cy="585" rx="300" ry="38" fill="#000" opacity=".36"/>
+
+  <polygon points="500,150 650,280 590,500 410,500 350,280" fill="#101014" stroke="#8c6d9b" stroke-width="9"/>
+  <polygon points="500,205 595,295 550,445 450,445 405,295" fill="#4d3b59" opacity=".55"/>
+  <path d="M430 350 l70-95 70 95-70 95z" fill="none" stroke="#c3a9cd" stroke-width="8"/>
+  <path d="M455 350 h90 M500 300 v100" stroke="#c3a9cd" stroke-width="5"/>
+
+
+<rect x="22" y="22" width="956" height="656" rx="18" fill="none" stroke="#8c6d9b" stroke-opacity=".38" stroke-width="2"/>
+<text x="48" y="636" fill="#e7dfcf" font-size="32" font-family="Georgia,serif" letter-spacing="2">BLACKGLASS MEMORY TOKEN</text>
+</svg>

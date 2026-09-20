@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d1115"/><stop offset="1" stop-color="#201a1d"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#877d71" stop-opacity=".42"/><stop offset="1" stop-color="#877d71" stop-opacity="0"/></radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="url(#bg)"/>
+<circle cx="720" cy="168" r="196" fill="url(#glow)" filter="url(#soft)"/>
+
+<text x="48" y="76" fill="#c9bda7" font-size="24" font-family="Georgia,serif">Armor 2 · rainproof enough</text>
+<ellipse cx="500" cy="585" rx="300" ry="38" fill="#000" opacity=".36"/>
+
+  <path d="M390 170 L470 125 H530 L610 170 L700 540 L590 575 L540 335 L535 590 H465 L460 335 L410 575 L300 540Z" fill="#2a2826" stroke="#877d71" stroke-width="8"/>
+  <path d="M500 145 v430 M420 250 h160" stroke="#5f584f" stroke-width="6"/>
+  <circle cx="500" cy="245" r="7" fill="#b79661"/><circle cx="500" cy="315" r="7" fill="#b79661"/><circle cx="500" cy="385" r="7" fill="#b79661"/>
+
+
+<rect x="22" y="22" width="956" height="656" rx="18" fill="none" stroke="#877d71" stroke-opacity=".38" stroke-width="2"/>
+<text x="48" y="636" fill="#e7dfcf" font-size="32" font-family="Georgia,serif" letter-spacing="2">WAXED ROAD COAT</text>
+</svg>

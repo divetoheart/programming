@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d1115"/><stop offset="1" stop-color="#201a1d"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#77927a" stop-opacity=".42"/><stop offset="1" stop-color="#77927a" stop-opacity="0"/></radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="100%" height="100%" fill="url(#bg)"/>
+<circle cx="864" cy="192" r="224" fill="url(#glow)" filter="url(#soft)"/>
+
+<text x="48" y="80" fill="#c9bda7" font-size="25" font-family="Georgia,serif">Weeping Fen · market town on seven generations of stilts</text>
+<path d="M0 610 Q180 535 330 590 T650 560 T980 600 T1200 545 V800 H0Z" fill="#11161a"/>
+
+  <path d="M0 615 Q200 570 400 605 T800 595 T1200 610 V800 H0Z" fill="#111915"/>
+  <g fill="#1b241d" stroke="#77927a" stroke-width="4">
+    <rect x="170" y="390" width="190" height="120"/><rect x="455" y="345" width="220" height="145"/><rect x="780" y="410" width="165" height="100"/>
+  </g>
+  <g stroke="#667d69" stroke-width="12"><path d="M210 510v130M320 510v140M500 490v165M630 490v155M820 510v145M915 510v150"/></g>
+  <g fill="#d5c46e" opacity=".65"><circle cx="220" cy="430" r="8"/><circle cx="505" cy="395" r="8"/><circle cx="835" cy="445" r="8"/></g>
+
+
+<rect x="22" y="22" width="1156" height="756" rx="18" fill="none" stroke="#77927a" stroke-opacity=".38" stroke-width="2"/>
+<text x="48" y="736" fill="#e7dfcf" font-size="36" font-family="Georgia,serif" letter-spacing="2">MIRECROSS</text>
+</svg>

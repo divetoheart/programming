@@ -1,0 +1,25 @@
+{
+  "map": "/art/map/mournreach.svg",
+  "people": {
+    "rook-vale": "/art/portraits/rook-vale.svg",
+    "ysra-venn": "/art/portraits/ysra-venn.svg",
+    "undertaker-pell": "/art/portraits/orren-pell.svg",
+    "mara-silt": "/art/portraits/mara-silt.svg"
+  },
+  "locations": {
+    "gallowspire": "/art/locations/gallowspire.svg",
+    "greywake": "/art/locations/greywake.svg",
+    "mirecross": "/art/locations/mirecross.svg",
+    "ninth-cloister": "/art/locations/ninth-cloister.svg",
+    "ashmarket": "/art/locations/ashmarket.svg",
+    "old-hart": "/art/locations/old-hart.svg"
+  },
+  "items": {
+    "iron-sabre": "/art/items/iron-sabre.svg",
+    "hooded-lantern": "/art/items/hooded-lantern.svg",
+    "waxed-coat": "/art/items/waxed-coat.svg",
+    "blackglass-token": "/art/items/blackglass-token.svg",
+    "salt-packets": "/art/items/boundary-salt.svg",
+    "field-ration": "/art/items/field-ration.svg"
+  }
+}
