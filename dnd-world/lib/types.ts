@@ -225,6 +225,25 @@ export type CampaignState = {
   lastRoll?: RollResult;
 };
 
+
+export type WorldEffect =
+  | { type: "resource"; hpDelta?: number; staminaDelta?: number; resolveDelta?: number; hungerDelta?: number; crownsDelta?: number }
+  | { type: "npc"; id: string; trustDelta?: number; fearDelta?: number; relationship?: NpcState["relationship"]; location?: string; status?: NpcState["status"]; memory?: string }
+  | { type: "faction"; id: string; reputationDelta?: number; stance?: FactionState["stance"]; knownSecret?: string }
+  | { type: "quest"; questId: string; currentStage?: string; questStatus?: Quest["status"]; stageId?: string; stageStatus?: QuestStage["status"] }
+  | { type: "location"; id: string; discovered?: boolean; visited?: boolean; movePlayer?: boolean; state?: string }
+  | { type: "flag"; key: string; value: string | number | boolean }
+  | { type: "inventory_add"; item: InventoryItem }
+  | { type: "inventory_remove"; itemId: string; quantity: number }
+  | { type: "milestone"; id: string; progressDelta?: number; status?: Milestone["status"] }
+  | { type: "language"; id: string; fluencyDelta: number }
+  | { type: "objective"; text: string };
+
+export type AppliedEffect = {
+  type: WorldEffect["type"];
+  summary: string;
+};
+
 export type ActionRequest = {
   action: string;
   state: CampaignState;
