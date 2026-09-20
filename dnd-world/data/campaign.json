@@ -82,7 +82,8 @@
       "offHand": "hooded-lantern",
       "armor": "waxed-coat",
       "accessory1": "blackglass-token"
-    }
+    },
+    "image": "/art/portraits/rook-vale.svg"
   },
   "inventory": [
     {
@@ -99,7 +100,8 @@
         "iron",
         "blade",
         "spirit-ward"
-      ]
+      ],
+      "image": "/art/items/iron-sabre.svg"
     },
     {
       "id": "hooded-lantern",
@@ -115,7 +117,8 @@
         "light",
         "salt",
         "ritual"
-      ]
+      ],
+      "image": "/art/items/hooded-lantern.svg"
     },
     {
       "id": "waxed-coat",
@@ -130,7 +133,8 @@
       "tags": [
         "armor",
         "travel"
-      ]
+      ],
+      "image": "/art/items/waxed-coat.svg"
     },
     {
       "id": "blackglass-token",
@@ -146,7 +150,8 @@
         "blackglass",
         "memory",
         "evidence"
-      ]
+      ],
+      "image": "/art/items/blackglass-token.svg"
     },
     {
       "id": "salt-packets",
@@ -161,7 +166,8 @@
       "tags": [
         "salt",
         "ward"
-      ]
+      ],
+      "image": "/art/items/boundary-salt.svg"
     },
     {
       "id": "field-ration",
@@ -175,7 +181,8 @@
       "details": "One day's ration if you do not think too hard about the eel.",
       "tags": [
         "food"
-      ]
+      ],
+      "image": "/art/items/field-ration.svg"
     }
   ],
   "quests": [
@@ -325,7 +332,8 @@
       "memory": [
         "Hired Rook discreetly.",
         "Withheld at least one detail about the first corpse."
-      ]
+      ],
+      "image": "/art/portraits/ysra-venn.svg"
     },
     {
       "id": "undertaker-pell",
@@ -340,7 +348,8 @@
       "lastSeenTurn": 0,
       "memory": [
         "Reportedly remembers all three erased names."
-      ]
+      ],
+      "image": "/art/portraits/orren-pell.svg"
     },
     {
       "id": "mara-silt",
@@ -355,7 +364,8 @@
       "lastSeenTurn": 0,
       "memory": [
         "Rook once returned a memory bead without opening it."
-      ]
+      ],
+      "image": "/art/portraits/mara-silt.svg"
     }
   ],
   "factions": [
@@ -407,7 +417,7 @@
       "visited": true,
       "danger": 2,
       "state": "Rain-locked port city under Synod curfew.",
-      "image": "/art/gloam-coast.svg"
+      "image": "/art/locations/gallowspire.svg"
     },
     {
       "id": "greywake",
@@ -419,7 +429,7 @@
       "visited": false,
       "danger": 2,
       "state": "Ferry village and Salt Witch crossing.",
-      "image": "/art/gloam-coast.svg"
+      "image": "/art/locations/greywake.svg"
     },
     {
       "id": "mirecross",
@@ -431,7 +441,7 @@
       "visited": false,
       "danger": 3,
       "state": "Market town built on seven generations of stilts.",
-      "image": "/art/weeping-fen.svg"
+      "image": "/art/locations/mirecross.svg"
     },
     {
       "id": "ninth-cloister",
@@ -443,7 +453,7 @@
       "visited": false,
       "danger": 4,
       "state": "Unknown.",
-      "image": "/art/saints-teeth.svg"
+      "image": "/art/locations/ninth-cloister.svg"
     },
     {
       "id": "ashmarket",
@@ -455,7 +465,7 @@
       "visited": false,
       "danger": 3,
       "state": "Salvage city around an exposed imperial forum.",
-      "image": "/art/cinder-march.svg"
+      "image": "/art/locations/ashmarket.svg"
     },
     {
       "id": "old-hart",
@@ -467,7 +477,7 @@
       "visited": false,
       "danger": 4,
       "state": "Unknown.",
-      "image": "/art/blackwood.svg"
+      "image": "/art/locations/old-hart.svg"
     }
   ],
   "rumors": [
@@ -510,5 +520,6 @@
       "image": "/art/gloam-coast.svg",
       "createdAt": "2026-09-20T03:26:00.000Z"
     }
-  ]
+  ],
+  "mapImage": "/art/map/mournreach.svg"
 }
