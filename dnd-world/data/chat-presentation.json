@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "rule": "visual-narrative-staggered",
+  "sequence": [
+    "location_or_setting_image",
+    "very_brief_location_title_and_description",
+    "narration_content",
+    "contextual_character_portrait_or_item_image",
+    "very_brief_entity_title_and_description",
+    "continued_content"
+  ],
+  "notes": [
+    "Use location/setting art especially when the location changes.",
+    "Use the character portrait or item image that is most relevant to the current narration.",
+    "Keep titles/descriptions extremely brief.",
+    "Do not front-load a dashboard or dump multiple images unless the scene specifically calls for it.",
+    "Mechanical rolls/status changes may appear inline only when triggered by play."
+  ]
+}
