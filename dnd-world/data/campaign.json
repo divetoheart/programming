@@ -507,7 +507,8 @@
     "venn-lied": true,
     "undertaker-knows-names": true,
     "token-unopened": false,
-    "bell-heard": false
+    "bell-heard": false,
+    "visual-codex-required": true
   },
   "logs": [
     {
