@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "format": [
+    "setting image",
+    "very brief setting title/description",
+    "narration",
+    "contextual NPC portrait or item image",
+    "very brief entity title/description",
+    "continued narration"
+  ],
+  "rules": [
+    "Setting/location art is strongly preferred when the setting changes or first becomes relevant.",
+    "Use one contextual person/item image at the narration beat where it matters; do not front-load galleries.",
+    "Titles and descriptions stay extremely brief.",
+    "Mechanical UI appears inline only when triggered: checks, combat, damage, resources, inventory, quest/milestone or relationship change.",
+    "First meaningful relevance creates canonical art if no dedicated asset exists.",
+    "Canonical art is reused. New variants require a meaningful state change such as injury, age, corruption, equipment overhaul, season, destruction, or transformation.",
+    "Future per-entity art should contain no embedded labels or prose; chat supplies title/description beneath it."
+  ]
+}

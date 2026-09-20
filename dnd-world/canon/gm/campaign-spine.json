@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "campaign": "The Bell Below",
+  "gmOnly": true,
+  "promise": "Authored dark-fantasy campaign with fixed revelations and convergences, but no fixed player solution. Every mandatory beat has fail-forward routes.",
+  "centralTruth": {
+    "publicMystery": "Names are vanishing from the dead, then from records, then from living memory.",
+    "hiddenTruth": "The Bell Beneath the World did not simply end the Siege of Orison. The Last Concord used millions of witnessed names as a metaphysical boundary, forcing the dead to remain on one side of reality. The boundary has been eroding for three centuries.",
+    "paleCourt": "The Pale Court are identity-counterfeits formed when Bell-work preserves a pattern of a person after the original continuity is lost. Some know what they are; many do not.",
+    "rook": "Rook is unusually resistant to name-erasure because an old Synod experiment deliberately left him partly unregistered in the Bell's memory lattice. He is not secretly a saint or chosen by blood. His importance comes from being an engineered blind spot who survived.",
+    "antagonistConflict": "Hierophant Marlek Thorn wants to repair and centralize the Bell's control even if it requires a new mass tithe of memories. The White Widow wants the boundary to collapse so preserved identities can become fully real. Neither position is consequence-free."
+  },
+  "acts": [
+    {
+      "id": "act-1-black-tithe",
+      "title": "The Black Tithe",
+      "region": "Gallowspire",
+      "mandatory": [
+        {
+          "id": "BT-01",
+          "beat": "Rook reaches Saint Orra's undercroft; the impossible subterranean bell is heard and the blackglass token reacts.",
+          "failForward": "If Rook avoids the morgue, a fourth erasure reaches someone nearby and forces the phenomenon into public view."
+        },
+        {
+          "id": "BT-02",
+          "beat": "Orren Pell proves he remembers the three erased names and shows physical records where ink remains but readers slide past the names.",
+          "reveal": "Erasure is perceptual/metaphysical, not ordinary document tampering."
+        },
+        {
+          "id": "BT-03",
+          "beat": "One corpse carries evidence of a name-transfer ritual and a reference to the Mourning Ledger.",
+          "reveal": "Someone is collecting names rather than merely destroying them."
+        },
+        {
+          "id": "BT-04",
+          "beat": "Ysra Venn's withheld fact becomes discoverable: the first corpse was a Synod memory auditor, not a random citizen."
+        },
+        {
+          "id": "BT-05",
+          "beat": "A path opens toward the murdered courier's blackglass memory and the wider conspiracy.",
+          "transitionTo": "act-2-drowned-memory"
+        }
+      ]
+    },
+    {
+      "id": "act-2-drowned-memory",
+      "title": "The Drowned Memory",
+      "region": "Gloam Coast / flooded Gallowspire",
+      "mandatory": [
+        {
+          "id": "DM-01",
+          "beat": "The blackglass token's last sight is decoded with help from Nereza Quill, Caedmon Voss, or an earned alternative.",
+          "reveal": "The courier saw a Pale Court transfer at a hidden archive."
+        },
+        {
+          "id": "DM-02",
+          "beat": "Rook reaches the flooded archive and encounters evidence that several living officials have memory-perfect duplicate histories."
+        },
+        {
+          "id": "DM-03",
+          "beat": "The White Widow becomes directly relevant but does not need to be fought.",
+          "reveal": "A counterfeit can sincerely believe it is the original."
+        },
+        {
+          "id": "DM-04",
+          "beat": "The Mourning Ledger is recovered, copied, stolen, destroyed-but-reconstructed, or otherwise made mechanically available.",
+          "reveal": "The ledger tracks names paid into a system older than the Synod."
+        },
+        {
+          "id": "DM-05",
+          "beat": "Evidence points simultaneously toward Greywake's old ferry compact and the Ninth Cloister's forbidden calendars.",
+          "transitionTo": "act-3-road-of-salt"
+        }
+      ]
+    },
+    {
+      "id": "act-3-road-of-salt",
+      "title": "The Road of Salt",
+      "region": "Greywake / Weeping Fen",
+      "mandatory": [
+        {
+          "id": "RS-01",
+          "beat": "Mara Silt confronts Rook with an old boundary bargain connected to the Bell."
+        },
+        {
+          "id": "RS-02",
+          "beat": "A crossing requires a real cost or clever alternative; travel mechanics, salt, weather and memory magic matter."
+        },
+        {
+          "id": "RS-03",
+          "beat": "Rook learns the Bell's influence follows old Caldran infrastructure and burial routes, not political borders."
+        },
+        {
+          "id": "RS-04",
+          "beat": "A preserved memory reveals that the Nine Saint-Kings disagreed about the Last Concord even before it was rung.",
+          "transitionTo": "act-4-ninth-cloister"
+        }
+      ]
+    },
+    {
+      "id": "act-4-ninth-cloister",
+      "title": "The Ninth Cloister",
+      "region": "Saint's Teeth",
+      "mandatory": [
+        {
+          "id": "NC-01",
+          "beat": "Rook reaches the rope-less bells and forbidden calendar archives."
+        },
+        {
+          "id": "NC-02",
+          "beat": "Caedmon Voss or a successor source decodes the Last Concord as a containment mechanism."
+        },
+        {
+          "id": "NC-03",
+          "beat": "Bell-Keeper Edda Sol demonstrates that different bells carry different pieces of the same metaphysical command.",
+          "reveal": "Destroying one bell cannot simply end the system."
+        },
+        {
+          "id": "NC-04",
+          "beat": "Rook discovers his own Bell-registration is deliberately incomplete.",
+          "reveal": "The Synod once created blind spots to test whether people could survive outside the Bell's full memory lattice."
+        },
+        {
+          "id": "NC-05",
+          "beat": "Marlek Thorn's program becomes explicit: stabilize the system by collecting a controlled new tithe.",
+          "transitionTo": "act-5-ashes-of-empire"
+        }
+      ]
+    },
+    {
+      "id": "act-5-ashes-of-empire",
+      "title": "Ashes of Empire",
+      "region": "Cinder March / Ashmarket",
+      "mandatory": [
+        {
+          "id": "AE-01",
+          "beat": "House Morcant's buried imperial road and Carrion Compact salvage converge around a functioning Bellshard Key."
+        },
+        {
+          "id": "AE-02",
+          "beat": "Captain Iven Ash and broker Jorek Vey make competing offers around access, salvage and survival."
+        },
+        {
+          "id": "AE-03",
+          "beat": "At least one saint-era device is activated, proving the Bell network can still rewrite what people perceive as identity continuity."
+        },
+        {
+          "id": "AE-04",
+          "beat": "A saint-crown or equivalent command credential becomes obtainable but dangerous to use.",
+          "transitionTo": "act-6-roots-remember"
+        }
+      ]
+    },
+    {
+      "id": "act-6-roots-remember",
+      "title": "Roots That Remember",
+      "region": "Blackwood",
+      "mandatory": [
+        {
+          "id": "RR-01",
+          "beat": "The Old Hart/Blackwood presents a memory system independent of the Bell: living place-memory."
+        },
+        {
+          "id": "RR-02",
+          "beat": "Warden Halv Thornroot forces a choice between extracting a useful memory and preserving the grove's autonomy."
+        },
+        {
+          "id": "RR-03",
+          "beat": "The Pale Court's origin is confirmed as continuity artifacts, not ordinary undead."
+        },
+        {
+          "id": "RR-04",
+          "beat": "Rook gains enough truth to understand that repair, destruction and release each create distinct casualties.",
+          "transitionTo": "act-7-bell-below"
+        }
+      ]
+    },
+    {
+      "id": "act-7-bell-below",
+      "title": "The Bell Below",
+      "region": "Gallowspire / Bell Vault",
+      "mandatory": [
+        {
+          "id": "BB-01",
+          "beat": "The Bell Vault opens and all surviving interested powers converge through plausible routes."
+        },
+        {
+          "id": "BB-02",
+          "beat": "The cost of Thorn's repair plan is made concrete: a new tithe would stabilize death but erase immense living memory."
+        },
+        {
+          "id": "BB-03",
+          "beat": "The cost of the Widow's collapse plan is made concrete: preserved identities gain possibility at the risk of dissolving the boundary between death and memory."
+        },
+        {
+          "id": "BB-04",
+          "beat": "Rook's incomplete registration lets him interact with the Bell in a way fully registered people cannot."
+        },
+        {
+          "id": "BB-05",
+          "beat": "Final resolution must be earned from accumulated tools, allies, knowledge and sacrifices. Valid families include repair, destroy, release, rewrite, or an emergent fourth solution supported by campaign state."
+        },
+        {
+          "id": "BB-06",
+          "beat": "Epilogue simulates surviving NPCs/factions/regions from actual final state rather than a fixed ending."
+        }
+      ]
+    }
+  ],
+  "sideQuestlines": [
+    {
+      "id": "couriers-last-sight",
+      "title": "A Courier's Last Sight",
+      "hook": "Decode the murdered courier's final blackglass memory.",
+      "beats": [
+        "Find a safe reader of Threnody",
+        "Identify the flooded alley/archive",
+        "Learn what the courier was trying to deliver",
+        "Choose what to do with the recovered truth"
+      ],
+      "reward": "Unique memory ability plus evidence that can alter DM-02/DM-03."
+    },
+    {
+      "id": "salt-debt-greywake",
+      "title": "Salt Debt of Greywake",
+      "hook": "Mara Silt inherited a ferry bargain whose original debtor has been dead for a century.",
+      "beats": [
+        "Hear the debt terms",
+        "Cross to the drowned shrine",
+        "Identify who or what still claims payment",
+        "Settle, transfer, exploit, or break the bargain"
+      ],
+      "reward": "Mara relationship, ferry network access, boundary ritual knowledge."
+    },
+    {
+      "id": "ashmarket-debts",
+      "title": "Ashmarket Debts",
+      "hook": "Jorek Vey needs a stolen salvage charter before it is stripped and resold.",
+      "beats": [
+        "Find the buyers",
+        "Trace the charter into the salvage pits",
+        "Decide ownership of the recovered imperial claim",
+        "Survive the commercial/faction fallout"
+      ],
+      "reward": "Salvage rights, rare materials, Jorek/Carrion reputation and alternate route to AE-01."
+    },
+    {
+      "id": "nine-names-dead",
+      "title": "Nine Names for the Dead",
+      "hook": "Orren Pell asks Rook to preserve names that are beginning to slip from him.",
+      "beats": [
+        "Create redundant name records",
+        "Discover one name is deliberately false",
+        "Trace the false name to a living person",
+        "Choose which identity the burial record will protect"
+      ],
+      "reward": "Orren bond, funerary access, Name-Cage Reliquary path."
+    },
+    {
+      "id": "antler-debt",
+      "title": "The Antler Debt",
+      "hook": "Blackwood remembers a killing no human witness survived.",
+      "beats": [
+        "Earn Halv's permission",
+        "Follow place-memory without treating it as infallible",
+        "Confront descendants/faction beneficiaries",
+        "Resolve whether inherited debt is legitimate"
+      ],
+      "reward": "Blackwood passage, living-memory technique, RR-02 leverage."
+    }
+  ]
+}

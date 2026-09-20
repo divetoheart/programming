@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "storage": {
+    "canonicalMetadata": "GitHub main:dnd-world/canon/assets.json",
+    "rasterLibraryRoot": "/Mournreach Art",
+    "repoFallbackRoot": "dnd-world/public/art",
+    "note": "Generated raster masters and individual crops are persisted in ChatGPT Library for exact chat reuse. Existing SVG fallbacks remain in GitHub. The GitHub connector available in chat has no direct binary-file handoff, so this manifest is the canonical bridge."
+  },
+  "generationPolicy": [
+    "When an entity becomes meaningfully relevant for the first time and lacks dedicated art, generate canonical art immediately before/with its first visual presentation.",
+    "Persist the image, assign a stable assetId, and add it to this manifest before reusing.",
+    "Never regenerate a canonical entity just because it reappears.",
+    "Version art only for durable visible state changes: age, major injury/scar, corruption, transformation, destroyed/rebuilt location, equipment overhaul, strong seasonal state.",
+    "Unnamed low-importance entities may use an archetype asset. If promoted to recurring/named/consequential, generate dedicated art and retire the archetype association for that NPC."
+  ],
+  "styleLock": "Grounded dark fantasy, painterly realism, wet stone/salt/blackglass, worn textiles and iron, cinematic natural light, human faces with individual imperfections, no modern objects. Future entity images should not contain embedded titles/captions.",
+  "named": {
+    "npcs": {
+      "rook-vale": "/Mournreach Art/NPCs/rook-vale.jpg",
+      "ysra-venn": "/Mournreach Art/NPCs/ysra-venn.jpg",
+      "orren-pell": "/Mournreach Art/NPCs/orren-pell.jpg",
+      "mara-silt": "/Mournreach Art/NPCs/mara-silt.jpg",
+      "edda-sol": "/Mournreach Art/NPCs/edda-sol.jpg",
+      "caedmon-voss": "/Mournreach Art/NPCs/caedmon-voss.jpg",
+      "marlek-thorn": "/Mournreach Art/NPCs/marlek-thorn.jpg",
+      "iven-ash": "/Mournreach Art/NPCs/iven-ash.jpg",
+      "nereza-quill": "/Mournreach Art/NPCs/nereza-quill.jpg",
+      "jorek-vey": "/Mournreach Art/NPCs/jorek-vey.jpg",
+      "halv-thornroot": "/Mournreach Art/NPCs/halv-thornroot.jpg",
+      "white-widow": "/Mournreach Art/NPCs/white-widow.jpg"
+    },
+    "locations": {
+      "gallowspire": "/Mournreach Art/Locations/gallowspire.jpg",
+      "saint-orra-undercroft": "/Mournreach Art/Locations/saint-orra-undercroft.jpg",
+      "greywake": "/Mournreach Art/Locations/greywake.jpg",
+      "mirecross": "/Mournreach Art/Locations/mirecross.jpg",
+      "ninth-cloister": "/Mournreach Art/Locations/ninth-cloister.jpg",
+      "ashmarket": "/Mournreach Art/Locations/ashmarket.jpg",
+      "old-hart": "/Mournreach Art/Locations/old-hart.jpg",
+      "bell-vault": "/Mournreach Art/Locations/bell-vault.jpg"
+    },
+    "items": {
+      "morcant-iron-sabre": "/Mournreach Art/Items/morcant-iron-sabre.jpg",
+      "hooded-salt-lantern": "/Mournreach Art/Items/hooded-salt-lantern.jpg",
+      "waxed-road-coat": "/Mournreach Art/Items/waxed-road-coat.jpg",
+      "blackglass-memory-token": "/Mournreach Art/Items/blackglass-memory-token.jpg",
+      "boundary-salt-packets": "/Mournreach Art/Items/boundary-salt-packets.jpg",
+      "hardbread-smoked-eel": "/Mournreach Art/Items/hardbread-smoked-eel.jpg",
+      "mourning-ledger": "/Mournreach Art/Items/mourning-ledger.jpg",
+      "bellshard-key": "/Mournreach Art/Items/bellshard-key.jpg",
+      "ferryman-bone-hook": "/Mournreach Art/Items/ferryman-bone-hook.jpg",
+      "name-cage-reliquary": "/Mournreach Art/Items/name-cage-reliquary.jpg"
+    },
+    "threats": {
+      "drowned-revenant": "/Mournreach Art/Threats/drowned-revenant.jpg",
+      "mire-leech": "/Mournreach Art/Threats/mire-leech.jpg",
+      "grave-hound": "/Mournreach Art/Threats/grave-hound.jpg",
+      "bell-wraith": "/Mournreach Art/Threats/bell-wraith.jpg",
+      "ash-scavenger": "/Mournreach Art/Threats/ash-scavenger.jpg",
+      "blackwood-stag": "/Mournreach Art/Threats/blackwood-stag.jpg",
+      "salt-husk": "/Mournreach Art/Threats/salt-husk.jpg",
+      "cloister-shade": "/Mournreach Art/Threats/cloister-shade.jpg",
+      "ragpicker-ghoul": "/Mournreach Art/Threats/ragpicker-ghoul.jpg",
+      "pale-moth-swarm": "/Mournreach Art/Threats/pale-moth-swarm.jpg"
+    },
+    "sidequests": {
+      "couriers-last-sight": "/Mournreach Art/Sidequests/couriers-last-sight.jpg",
+      "salt-debt-greywake": "/Mournreach Art/Sidequests/salt-debt-greywake.jpg",
+      "ashmarket-debts": "/Mournreach Art/Sidequests/ashmarket-debts.jpg"
+    },
+    "worldMap": "/Mournreach Art/Masters/world-map.jpg"
+  },
+  "generalPurpose": {
+    "npcArchetypes": {
+      "dockhand": "/Mournreach Art/Generic NPCs/dockhand.jpg",
+      "synod-acolyte": "/Mournreach Art/Generic NPCs/synod-acolyte.jpg",
+      "grave-guard": "/Mournreach Art/Generic NPCs/grave-guard.jpg",
+      "ferrier": "/Mournreach Art/Generic NPCs/ferrier.jpg",
+      "fen-herbalist": "/Mournreach Art/Generic NPCs/fen-herbalist.jpg",
+      "cloister-scribe": "/Mournreach Art/Generic NPCs/cloister-scribe.jpg",
+      "ash-salvager": "/Mournreach Art/Generic NPCs/ash-salvager.jpg",
+      "forest-outrider": "/Mournreach Art/Generic NPCs/forest-outrider.jpg",
+      "noble-envoy": "/Mournreach Art/Generic NPCs/noble-envoy.jpg",
+      "mercenary": "/Mournreach Art/Generic NPCs/mercenary.jpg",
+      "street-urchin": "/Mournreach Art/Generic NPCs/street-urchin.jpg",
+      "tavern-keeper": "/Mournreach Art/Generic NPCs/tavern-keeper.jpg"
+    },
+    "itemArchetypes": {
+      "grave-key": "/Mournreach Art/Generic Items/grave-key.jpg",
+      "coin-pouch": "/Mournreach Art/Generic Items/tarnished-coin-pouch.jpg",
+      "prayer-candle": "/Mournreach Art/Generic Items/prayer-candle.jpg",
+      "ferry-lantern": "/Mournreach Art/Generic Items/ferry-lantern.jpg",
+      "iron-nails": "/Mournreach Art/Generic Items/iron-nails.jpg",
+      "sealed-letter": "/Mournreach Art/Generic Items/sealed-letter.jpg",
+      "bone-charm": "/Mournreach Art/Generic Items/bone-charm.jpg",
+      "field-journal": "/Mournreach Art/Generic Items/field-journal.jpg",
+      "rope-grapnel": "/Mournreach Art/Generic Items/rope-grapnel.jpg",
+      "medicine-kit": "/Mournreach Art/Generic Items/medicine-kit.jpg"
+    },
+    "sceneInserts": {
+      "chapel-door": "/Mournreach Art/Generic Scenes/chapel-door.jpg",
+      "crypt-arch": "/Mournreach Art/Generic Scenes/crypt-arch.jpg",
+      "market-stall": "/Mournreach Art/Generic Scenes/market-stall.jpg",
+      "dock-alley": "/Mournreach Art/Generic Scenes/dock-alley.jpg",
+      "roadside-shrine": "/Mournreach Art/Generic Scenes/roadside-shrine.jpg"
+    }
+  }
+}

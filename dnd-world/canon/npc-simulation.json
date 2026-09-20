@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 2,
+  "coreRule": "Every NPC that exists in canon has a mechanical sheet. Named/recurring NPCs receive dedicated sheets immediately. Incidental NPCs instantiate from a complete archetype sheet and become permanently unique the moment they acquire a name, consequential memory, relationship, quest role, or recurring relevance.",
+  "levelSystem": {
+    "cumulativeXpThreshold": "100 * level * (level + 1) / 2",
+    "examples": {
+      "level1": 100,
+      "level2": 300,
+      "level3": 600,
+      "level4": 1000,
+      "level5": 1500,
+      "level6": 2100,
+      "level7": 2800,
+      "level8": 3600
+    },
+    "rules": [
+      "NPCs gain XP for meaningful goals advanced, dangerous encounters survived, significant discoveries, training, social victories, sacrifices and consequential failures.",
+      "Never rubber-band NPC level to the player.",
+      "Off-screen accomplishments can award XP when supported by plan, ability, time and opportunity.",
+      "Level-up choices follow demonstrated behavior and growthWeights, not optimal-build omniscience.",
+      "Level-ups may improve max resources, one attribute at milestone levels, relevant skills, a trait, spell/ritual access, equipment competence or social/faction capability."
+    ]
+  },
+  "alignmentModel": {
+    "axes": {
+      "order": "-100 anarchic/impulsive to +100 lawful/structured",
+      "mercy": "-100 ruthless to +100 merciful",
+      "duty": "-100 self-serving to +100 duty/community",
+      "taboo": "-100 transgressive/profane to +100 orthodox/sacred"
+    },
+    "note": "Labels such as pragmatic good or lawful zealot are shorthand only. Decisions use the numeric axes plus goals and memories."
+  },
+  "requiredSheetFields": [
+    "id",
+    "name",
+    "title",
+    "portraitAssetId",
+    "ancestry",
+    "calling",
+    "level",
+    "xp",
+    "hp",
+    "maxHp",
+    "stamina",
+    "maxStamina",
+    "resolve",
+    "maxResolve",
+    "armor",
+    "evasion",
+    "speed",
+    "attributes",
+    "skills",
+    "languages",
+    "conditions",
+    "wounds",
+    "equipment",
+    "inventory",
+    "alignment",
+    "personality",
+    "goals",
+    "fears",
+    "bonds",
+    "secrets",
+    "knowledge",
+    "memoryLedger",
+    "relationships",
+    "faction",
+    "location",
+    "schedule",
+    "currentPlan",
+    "resources",
+    "growthWeights",
+    "offscreen",
+    "status"
+  ],
+  "memoryModel": {
+    "required": [
+      "id",
+      "turn",
+      "summary",
+      "participants",
+      "tags",
+      "valence",
+      "intensity",
+      "confidence",
+      "behaviorHooks"
+    ],
+    "valence": "-100 hostile/painful to +100 affectionate/grateful",
+    "intensity": "1-5; 4-5 memories rarely decay and strongly influence decisions",
+    "confidence": "0-100; supports mistaken, manipulated or uncertain memories without making NPC omniscient",
+    "rules": [
+      "NPCs remember mercy, humiliation, debts, promises, lies, public reputation, theft, wounds, rescue, abandonment and witnessed competence.",
+      "A memory must affect future behavior when one of its behaviorHooks is relevant.",
+      "NPC knowledge and NPC memory are separate: remembering that Rook lied does not reveal what the truth was.",
+      "High-intensity identity, betrayal, death and true-name memories do not silently expire.",
+      "Memories may be falsified only through an explicit world effect or established memory magic."
+    ]
+  },
+  "decisionModel": {
+    "factors": [
+      "goal urgency",
+      "alignment fit",
+      "memory salience",
+      "relationship/trust/fear",
+      "knowledge",
+      "personality",
+      "risk tolerance",
+      "faction pressure",
+      "resources",
+      "injury/stress",
+      "opportunity cost"
+    ],
+    "hardRules": [
+      "NPCs cannot act on information absent from their knowledge ledger.",
+      "NPCs can refuse Rook, lie, leave, betray, bargain, flee, attack, change allegiance or pursue goals off-screen.",
+      "NPC behavior must remain mechanically plausible given travel time, resources and injuries.",
+      "Consequential choices write a memory and usually alter at least one relationship/goal/plan field."
+    ]
+  },
+  "offscreenSimulation": {
+    "triggers": [
+      "4+ in-world hours elapse",
+      "rest/long travel",
+      "regional event",
+      "major quest beat",
+      "NPC scheduled plan becomes due",
+      "direct faction event"
+    ],
+    "resultLimit": "Resolve only actors materially affected by the trigger. Do not simulate the whole population.",
+    "output": [
+      "plan progress",
+      "location/status changes",
+      "XP if earned",
+      "inventory/resource changes",
+      "new knowledge",
+      "memories",
+      "relationship/faction changes",
+      "rumors/world effects if public"
+    ]
+  }
+}

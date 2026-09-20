@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Authoritative read contract for chat-first Mournreach play. Optimize persistence without rereading the entire campaign.",
+  "authorityOrder": [
+    "live campaign state",
+    "immutable mechanical rules",
+    "active entity sheets and their memory/knowledge ledgers",
+    "active quest and campaign-beat constraints",
+    "world bible",
+    "narrative embellishment"
+  ],
+  "everyTurn": [
+    {
+      "ref": "campaign-data:dnd-world/data/campaign.json",
+      "why": "compact authoritative world/player/quest state"
+    },
+    {
+      "ref": "campaign-data:dnd-world/data/runtime-index.json",
+      "why": "active beat, scene entities, due off-screen simulations, and exact files to hydrate"
+    }
+  ],
+  "hydrateWhenRelevant": [
+    {
+      "ref": "campaign-data:dnd-world/data/npcs/<id>.json",
+      "trigger": "NPC is present, directly acted upon, making an off-screen move, or its memory/knowledge can change outcome"
+    },
+    {
+      "ref": "main:dnd-world/canon/gm/campaign-spine.json",
+      "trigger": "major quest progression, reveal gating, act transition, or fail-forward routing"
+    },
+    {
+      "ref": "main:dnd-world/lib/world.ts",
+      "trigger": "location/region changes, lore is tested, travel is resolved, or world-law interaction occurs"
+    },
+    {
+      "ref": "main:dnd-world/canon/assets.json",
+      "trigger": "first relevance or visual needs rendering"
+    },
+    {
+      "ref": "main:dnd-world/canon/npc-simulation.json",
+      "trigger": "NPC level-up, decision, memory write, relationship shift, or off-screen tick"
+    }
+  ],
+  "doNotDo": [
+    "Do not scan the full repository every turn.",
+    "Do not load every NPC sheet when only one or two can affect the scene.",
+    "Do not reread the full hidden campaign spine for ordinary dialogue or movement.",
+    "Do not let narration invent a durable fact without writing it to authoritative state.",
+    "Do not let an image override text canon; images are visual references, not rules text."
+  ],
+  "turnProtocol": [
+    "Load campaign.json and runtime-index.json.",
+    "Hydrate only IDs listed as active/relevant/due.",
+    "Resolve mechanics before prose.",
+    "Apply validated consequences to player, entities, clock, quests, inventory, factions and memories.",
+    "Run due off-screen NPC ticks only when world time/event cadence requires them.",
+    "Write journal/log/memory changes.",
+    "Update runtime-index for next turn.",
+    "Persist changed files to campaign-data before presenting the completed turn."
+  ],
+  "performanceRules": {
+    "npcSheetCache": "Reuse already-read sheet in the same response; refetch on later turns only when active or due.",
+    "storySpine": "Use beat IDs from runtime-index. Hydrate full spine only around progression/reveal checks.",
+    "worldBible": "Hydrate on location/lore/world-law triggers, not routine scene dialogue.",
+    "visuals": "Resolve via assets.json; generate new art only on first relevance or a canonical visual-state change.",
+    "offscreenCadence": "Tick inactive NPCs on meaningful elapsed time, milestones, regional events, or scheduled plans—not every conversational turn."
+  }
+}
