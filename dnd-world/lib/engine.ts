@@ -1,10 +1,12 @@
 import type {
+  AppliedEffect,
   AttributeKey,
   CampaignState,
   JournalEntry,
   Memory,
   RollResult,
   SkillKey,
+  WorldEffect,
 } from "./types";
 
 type CheckProfile = {
@@ -213,6 +215,251 @@ export function applyMechanicalTurn(
   };
 
   return { state: next, mechanicalSummary: summary };
+}
+
+
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function safeDelta(value: unknown, limit: number) {
+  return typeof value === "number" && Number.isFinite(value)
+    ? clamp(Math.trunc(value), -limit, limit)
+    : 0;
+}
+
+export function applyWorldEffects(
+  state: CampaignState,
+  proposed: unknown,
+): { state: CampaignState; applied: AppliedEffect[] } {
+  if (!Array.isArray(proposed)) return { state, applied: [] };
+
+  let next: CampaignState = {
+    ...state,
+    character: { ...state.character, languages: { ...state.character.languages } },
+    inventory: state.inventory.map((item) => ({ ...item, tags: [...item.tags] })),
+    quests: state.quests.map((quest) => ({ ...quest, stages: quest.stages.map((stage) => ({ ...stage })) })),
+    npcs: state.npcs.map((npc) => ({ ...npc, memory: [...npc.memory] })),
+    factions: state.factions.map((faction) => ({ ...faction })),
+    locations: state.locations.map((location) => ({ ...location })),
+    milestones: state.milestones.map((milestone) => ({ ...milestone })),
+    flags: { ...state.flags },
+  };
+  const applied: AppliedEffect[] = [];
+
+  for (const candidate of proposed.slice(0, 12)) {
+    if (!candidate || typeof candidate !== "object") continue;
+    const effect = candidate as Partial<WorldEffect> & Record<string, unknown>;
+    const type = effect.type;
+
+    if (type === "resource") {
+      const hpDelta = safeDelta(effect.hpDelta, 20);
+      const staminaDelta = safeDelta(effect.staminaDelta, 20);
+      const resolveDelta = safeDelta(effect.resolveDelta, 10);
+      const hungerDelta = safeDelta(effect.hungerDelta, 40);
+      const crownsDelta = safeDelta(effect.crownsDelta, 200);
+      next.character = {
+        ...next.character,
+        hp: clamp(next.character.hp + hpDelta, 0, next.character.maxHp),
+        stamina: clamp(next.character.stamina + staminaDelta, 0, next.character.maxStamina),
+        resolve: clamp(next.character.resolve + resolveDelta, 0, next.character.maxResolve),
+        hunger: clamp(next.character.hunger + hungerDelta, 0, 100),
+        crowns: Math.max(0, next.character.crowns + crownsDelta),
+      };
+      const bits = [
+        hpDelta ? (hpDelta > 0 ? "+" : "") + hpDelta + " HP" : "",
+        staminaDelta ? (staminaDelta > 0 ? "+" : "") + staminaDelta + " stamina" : "",
+        resolveDelta ? (resolveDelta > 0 ? "+" : "") + resolveDelta + " resolve" : "",
+        hungerDelta ? (hungerDelta > 0 ? "+" : "") + hungerDelta + " hunger" : "",
+        crownsDelta ? (crownsDelta > 0 ? "+" : "") + crownsDelta + " crowns" : "",
+      ].filter(Boolean);
+      if (bits.length) applied.push({ type, summary: bits.join(", ") });
+      continue;
+    }
+
+    if (type === "npc" && typeof effect.id === "string") {
+      const index = next.npcs.findIndex((npc) => npc.id === effect.id);
+      if (index < 0) continue;
+      const npc = next.npcs[index];
+      const trustDelta = safeDelta(effect.trustDelta, 25);
+      const fearDelta = safeDelta(effect.fearDelta, 25);
+      const relationships = ["hostile", "wary", "neutral", "friendly", "devoted"];
+      const statuses = ["alive", "dead", "missing", "unknown"];
+      const relationship = typeof effect.relationship === "string" && relationships.includes(effect.relationship)
+        ? effect.relationship as typeof npc.relationship
+        : npc.relationship;
+      const status = typeof effect.status === "string" && statuses.includes(effect.status)
+        ? effect.status as typeof npc.status
+        : npc.status;
+      const memory = typeof effect.memory === "string" ? effect.memory.trim().slice(0, 400) : "";
+      const location = typeof effect.location === "string" && effect.location.trim()
+        ? effect.location.trim().slice(0, 100)
+        : npc.location;
+      next.npcs[index] = {
+        ...npc,
+        trust: clamp(npc.trust + trustDelta, -100, 100),
+        fear: clamp(npc.fear + fearDelta, 0, 100),
+        relationship,
+        status,
+        location,
+        lastSeenTurn: next.turn,
+        memory: memory ? [memory, ...npc.memory].slice(0, 40) : npc.memory,
+      };
+      applied.push({ type, summary: npc.name + " state updated" });
+      continue;
+    }
+
+    if (type === "faction" && typeof effect.id === "string") {
+      const index = next.factions.findIndex((faction) => faction.id === effect.id);
+      if (index < 0) continue;
+      const faction = next.factions[index];
+      const stances = ["hostile", "unfriendly", "neutral", "friendly", "allied"];
+      const stance = typeof effect.stance === "string" && stances.includes(effect.stance)
+        ? effect.stance as typeof faction.stance
+        : faction.stance;
+      const knownSecret = typeof effect.knownSecret === "string" && effect.knownSecret.trim()
+        ? effect.knownSecret.trim().slice(0, 500)
+        : faction.knownSecret;
+      next.factions[index] = {
+        ...faction,
+        reputation: clamp(faction.reputation + safeDelta(effect.reputationDelta, 20), -100, 100),
+        stance,
+        knownSecret,
+      };
+      applied.push({ type, summary: faction.name + " reputation/state updated" });
+      continue;
+    }
+
+    if (type === "quest" && typeof effect.questId === "string") {
+      const index = next.quests.findIndex((quest) => quest.id === effect.questId);
+      if (index < 0) continue;
+      const quest = next.quests[index];
+      const questStatuses = ["active", "complete", "failed"];
+      const stageStatuses = ["locked", "active", "complete", "failed"];
+      const questStatus = typeof effect.questStatus === "string" && questStatuses.includes(effect.questStatus)
+        ? effect.questStatus as typeof quest.status
+        : quest.status;
+      const stages = quest.stages.map((stage) => {
+        if (stage.id !== effect.stageId) return stage;
+        const stageStatus = typeof effect.stageStatus === "string" && stageStatuses.includes(effect.stageStatus)
+          ? effect.stageStatus as typeof stage.status
+          : stage.status;
+        return { ...stage, status: stageStatus };
+      });
+      const requestedStage = typeof effect.currentStage === "string" ? effect.currentStage : "";
+      const currentStage = stages.some((stage) => stage.id === requestedStage) ? requestedStage : quest.currentStage;
+      next.quests[index] = { ...quest, status: questStatus, stages, currentStage };
+      applied.push({ type, summary: quest.title + " progressed" });
+      continue;
+    }
+
+    if (type === "location" && typeof effect.id === "string") {
+      const index = next.locations.findIndex((location) => location.id === effect.id);
+      if (index < 0) continue;
+      const location = next.locations[index];
+      const discovered = effect.discovered === true ? true : location.discovered;
+      const visited = effect.visited === true ? true : location.visited;
+      const locationState = typeof effect.state === "string" && effect.state.trim()
+        ? effect.state.trim().slice(0, 500)
+        : location.state;
+      next.locations[index] = { ...location, discovered, visited, state: locationState };
+      if (effect.movePlayer === true && discovered) {
+        next.world = {
+          ...next.world,
+          location: location.name,
+          region: location.region,
+          danger: location.danger,
+          position: { x: location.x, y: location.y },
+        };
+        next.locations[index] = { ...next.locations[index], visited: true };
+      }
+      applied.push({ type, summary: effect.movePlayer === true ? "Moved to " + location.name : location.name + " updated" });
+      continue;
+    }
+
+    if (type === "flag" && typeof effect.key === "string" && effect.key.length <= 80) {
+      if (["string", "number", "boolean"].includes(typeof effect.value)) {
+        next.flags[effect.key] = effect.value as string | number | boolean;
+        applied.push({ type, summary: "World flag " + effect.key + " updated" });
+      }
+      continue;
+    }
+
+    if (type === "inventory_remove" && typeof effect.itemId === "string") {
+      const index = next.inventory.findIndex((item) => item.id === effect.itemId);
+      if (index < 0) continue;
+      const quantity = clamp(Math.trunc(Number(effect.quantity) || 0), 1, 20);
+      const item = next.inventory[index];
+      const removed = Math.min(quantity, item.quantity);
+      next.inventory[index] = { ...item, quantity: item.quantity - removed };
+      next.inventory = next.inventory.filter((entry) => entry.quantity > 0);
+      applied.push({ type, summary: "-" + removed + " " + item.name });
+      continue;
+    }
+
+    if (type === "inventory_add" && effect.item && typeof effect.item === "object") {
+      const raw = effect.item as Record<string, unknown>;
+      const categories = ["weapon", "armor", "tool", "consumable", "quest", "material", "currency", "other"];
+      if (typeof raw.id !== "string" || typeof raw.name !== "string" || !categories.includes(String(raw.category))) continue;
+      const quantity = clamp(Math.trunc(Number(raw.quantity) || 1), 1, 20);
+      const existing = next.inventory.findIndex((item) => item.id === raw.id);
+      if (existing >= 0) {
+        const itemName = next.inventory[existing].name;
+        next.inventory[existing] = { ...next.inventory[existing], quantity: next.inventory[existing].quantity + quantity };
+        applied.push({ type, summary: "+" + quantity + " " + itemName });
+        continue;
+      }
+      const item: CampaignState["inventory"][number] = {
+        id: raw.id.slice(0, 80),
+        name: raw.name.slice(0, 120),
+        category: raw.category as CampaignState["inventory"][number]["category"],
+        quantity,
+        weight: clamp(Number(raw.weight) || 0, 0, 200),
+        condition: clamp(Math.trunc(Number(raw.condition) || 100), 0, 100),
+        maxCondition: 100,
+        value: clamp(Math.trunc(Number(raw.value) || 0), 0, 100000),
+        details: typeof raw.details === "string" ? raw.details.slice(0, 500) : "",
+        tags: Array.isArray(raw.tags)
+          ? raw.tags.filter((tag): tag is string => typeof tag === "string").slice(0, 12)
+          : [],
+      };
+      next.inventory.push(item);
+      applied.push({ type, summary: "+" + quantity + " " + item.name });
+      continue;
+    }
+
+    if (type === "milestone" && typeof effect.id === "string") {
+      const index = next.milestones.findIndex((milestone) => milestone.id === effect.id);
+      if (index < 0) continue;
+      const milestone = next.milestones[index];
+      const statuses = ["hidden", "active", "complete", "failed"];
+      const progress = clamp(milestone.progress + safeDelta(effect.progressDelta, milestone.target), 0, milestone.target);
+      const status = progress >= milestone.target
+        ? "complete"
+        : (typeof effect.status === "string" && statuses.includes(effect.status)
+          ? effect.status as typeof milestone.status
+          : milestone.status);
+      next.milestones[index] = { ...milestone, progress, status };
+      applied.push({ type, summary: milestone.title + ": " + progress + "/" + milestone.target });
+      continue;
+    }
+
+    if (type === "language" && typeof effect.id === "string" && effect.id in next.character.languages) {
+      const current = next.character.languages[effect.id];
+      const fluency = clamp(current + safeDelta(effect.fluencyDelta, 1), 0, 5);
+      next.character.languages[effect.id] = fluency;
+      applied.push({ type, summary: effect.id + " fluency " + fluency + "/5" });
+      continue;
+    }
+
+    if (type === "objective" && typeof effect.text === "string" && effect.text.trim()) {
+      next.objective = effect.text.trim().slice(0, 240);
+      applied.push({ type, summary: "Objective updated" });
+    }
+  }
+
+  next.updatedAt = new Date().toISOString();
+  return { state: next, applied };
 }
 
 export function addNarrativeState(
