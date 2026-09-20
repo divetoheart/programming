@@ -23,7 +23,9 @@
     "contextualAssetIds": [
       "blackglass-memory-token",
       "orren-pell"
-    ]
+    ],
+    "lastEventId": "log-opening-bell",
+    "control": "player"
   },
   "hydration": {
     "everyTurn": [
@@ -61,5 +63,6 @@
   "rules": [
     "Do not surface undiscovered NPC names/roles solely because sheets exist.",
     "Update this index after every turn before finishing the response."
-  ]
+  ],
+  "openingEventCommitted": true
 }
