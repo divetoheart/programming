@@ -1,0 +1,30 @@
+# verification pass 2
+name: DND World Build
+
+on:
+  push:
+    branches:
+      - living-campaign-engine
+      - main
+    paths:
+      - "dnd-world/**"
+      - ".github/workflows/dnd-world-build.yml"
+  pull_request:
+    paths:
+      - "dnd-world/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dnd-world
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: dnd-world/package.json
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
