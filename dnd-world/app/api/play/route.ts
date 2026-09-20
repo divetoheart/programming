@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAuthorized } from "../../../lib/auth";
 import { addNarrativeState, applyMechanicalTurn, rollAction } from "../../../lib/engine";
 import { loadCampaign, repoSyncConfigured, saveCampaign } from "../../../lib/github-store";
 import { narrateTurn } from "../../../lib/narrator";
@@ -9,6 +10,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if (!(await isAuthorized())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await request.json();
   const action = String(body?.action || "").trim();
 
@@ -26,7 +28,6 @@ export async function POST(request: Request) {
   const mechanical = applyMechanicalTurn(current, action, roll, profile);
   const narration = await narrateTurn(mechanical.state, action, roll);
   const next = addNarrativeState(mechanical.state, narration);
-
   const save = await saveCampaign(next);
 
   return NextResponse.json({
