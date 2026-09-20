@@ -25,6 +25,8 @@ This is not a chat transcript wearing an RPG skin. The mechanical engine owns th
 - d20 checks with transparent attribute + skill math and DCs
 - Action classification for combat, stealth, travel, investigation, medicine, occult work, lore, social checks, lockwork, and athletics
 - Mechanical consequences are resolved before narration
+- Narrator-proposed world changes pass through a strict whitelist/validator before they can mutate canonical state
+- Validated turn effects are displayed in the UI and then committed with the full save
 
 ### Long-term continuity
 - Canonical memory bank with importance and last-referenced turn
@@ -143,6 +145,6 @@ Then add the environment variables from `.env.example`.
 
 ## Turn pipeline
 
-`player action → canonical state load → mechanical inference → d20 resolution → validated resource/time changes → full-context narration → journal/memory update → GitHub commit → UI refresh`
+`player action → canonical state load → mechanical inference → d20 resolution → resource/time changes → full-context narration → validated world-effect application → journal/memory update → GitHub commit → UI refresh`
 
 That order is deliberate. Story follows state, not the other way around.
