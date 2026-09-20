@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { addNarrativeState, applyMechanicalTurn, rollAction } from "../../../lib/engine";
 import { loadCampaign, repoSyncConfigured, saveCampaign } from "../../../lib/github-store";
 import { narrateTurn } from "../../../lib/narrator";
+import { createSeedCampaign } from "../../../lib/seed";
+import type { CampaignState } from "../../../lib/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,7 +16,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Action must be between 1 and 1200 characters." }, { status: 400 });
   }
 
-  const current = await loadCampaign();
+  const connected = repoSyncConfigured();
+  const clientState = body?.state as CampaignState | undefined;
+  const current = connected
+    ? await loadCampaign()
+    : (clientState?.campaignId === "mournreach-main" ? clientState : createSeedCampaign());
+
   const { roll, profile } = rollAction(current, action);
   const mechanical = applyMechanicalTurn(current, action, roll, profile);
   const narration = await narrateTurn(mechanical.state, action, roll);
@@ -29,7 +36,7 @@ export async function POST(request: Request) {
     title: narration.title,
     image: narration.image,
     mechanicalSummary: mechanical.mechanicalSummary,
-    repoSync: repoSyncConfigured(),
+    repoSync: connected,
     persisted: save.persisted,
   });
 }
