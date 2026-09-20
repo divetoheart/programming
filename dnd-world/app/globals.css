@@ -679,3 +679,33 @@ h1, h2, h3 {
   font-weight: 850;
 }
 .lock-card small { color: var(--ash); }
+
+.effect-strip {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(196, 155, 91, .055);
+}
+.effect-strip > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--brass);
+  font-size: .62rem;
+  font-weight: 850;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.effect-strip > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.effect-strip strong {
+  padding: 5px 8px;
+  border: 1px solid var(--line-hot);
+  border-radius: 999px;
+  color: var(--paper-dim);
+  font-size: .68rem;
+  font-weight: 650;
+}
