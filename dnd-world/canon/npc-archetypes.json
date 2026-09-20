@@ -1,0 +1,560 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Complete mechanical baselines for incidental NPCs. Instantiation copies a template, rolls/chooses identity traits within bounded ranges, assigns a unique id, and immediately creates a valid memory/knowledge/relationship ledger.",
+  "instantiationRules": [
+    "Every on-screen NPC must exist as a sheet before they make a consequential roll or decision.",
+    "Select the closest archetype; never create a statless narrative-only NPC.",
+    "Vary level by at most +/-1 from template unless fiction clearly requires otherwise.",
+    "Vary each attribute by at most +/-2 and each relevant trained skill by at most +/-1.",
+    "Assign one immediate goal, one fear, one personality emphasis, a schedule/current plan, and knowledge limited to role/location.",
+    "Create relationship entry to Rook on first direct interaction.",
+    "Create memory entries for consequential interactions immediately.",
+    "If named, recurring, quest-relevant, emotionally consequential, or seen again after a major interaction, promote to a dedicated NPC file and dedicated portrait."
+  ],
+  "templates": {
+    "dockhand": {
+      "assetId": "dockhand",
+      "level": 1,
+      "hp": 18,
+      "stamina": 17,
+      "resolve": 9,
+      "armor": 1,
+      "evasion": 11,
+      "alignment": {
+        "order": -10,
+        "mercy": 15,
+        "duty": 35,
+        "taboo": 0
+      },
+      "attributes": {
+        "might": 14,
+        "finesse": 11,
+        "vigor": 14,
+        "intellect": 9,
+        "will": 10,
+        "presence": 9
+      },
+      "skills": {
+        "athletics": 2,
+        "survival": 1,
+        "brawling": 1,
+        "insight": 1
+      },
+      "goalSeeds": [
+        "Finish the shift",
+        "Protect crew",
+        "Make extra crowns"
+      ],
+      "fearSeeds": [
+        "Drowning",
+        "Dock gangs",
+        "Losing work"
+      ],
+      "knowledgeTags": [
+        "docks",
+        "ships",
+        "local-rumors"
+      ]
+    },
+    "synod-acolyte": {
+      "assetId": "synod-acolyte",
+      "level": 2,
+      "hp": 17,
+      "stamina": 12,
+      "resolve": 15,
+      "armor": 1,
+      "evasion": 11,
+      "alignment": {
+        "order": 65,
+        "mercy": 35,
+        "duty": 60,
+        "taboo": 70
+      },
+      "attributes": {
+        "might": 8,
+        "finesse": 10,
+        "vigor": 10,
+        "intellect": 13,
+        "will": 15,
+        "presence": 11
+      },
+      "skills": {
+        "lore": 2,
+        "medicine": 2,
+        "occult": 2,
+        "insight": 1,
+        "persuasion": 1
+      },
+      "goalSeeds": [
+        "Perform rites correctly",
+        "Earn ordination",
+        "Protect a superior"
+      ],
+      "fearSeeds": [
+        "Ritual failure",
+        "Doctrinal censure",
+        "The unquiet dead"
+      ],
+      "knowledgeTags": [
+        "synod",
+        "burial-rites",
+        "local-clergy"
+      ]
+    },
+    "grave-guard": {
+      "assetId": "grave-guard",
+      "level": 2,
+      "hp": 25,
+      "stamina": 18,
+      "resolve": 13,
+      "armor": 4,
+      "evasion": 11,
+      "alignment": {
+        "order": 70,
+        "mercy": 5,
+        "duty": 70,
+        "taboo": 65
+      },
+      "attributes": {
+        "might": 14,
+        "finesse": 11,
+        "vigor": 15,
+        "intellect": 9,
+        "will": 13,
+        "presence": 10
+      },
+      "skills": {
+        "blades": 2,
+        "athletics": 2,
+        "intimidation": 2,
+        "insight": 1
+      },
+      "goalSeeds": [
+        "Keep the burial ground secure",
+        "Follow the watch captain's orders"
+      ],
+      "fearSeeds": [
+        "Grave breach",
+        "Spirit possession",
+        "Public disorder"
+      ],
+      "knowledgeTags": [
+        "graveyard",
+        "watch",
+        "burial-security"
+      ]
+    },
+    "ferrier": {
+      "assetId": "ferrier",
+      "level": 2,
+      "hp": 22,
+      "stamina": 19,
+      "resolve": 12,
+      "armor": 1,
+      "evasion": 12,
+      "alignment": {
+        "order": 5,
+        "mercy": 35,
+        "duty": 50,
+        "taboo": -5
+      },
+      "attributes": {
+        "might": 13,
+        "finesse": 13,
+        "vigor": 14,
+        "intellect": 10,
+        "will": 12,
+        "presence": 11
+      },
+      "skills": {
+        "survival": 3,
+        "athletics": 2,
+        "insight": 1,
+        "medicine": 1
+      },
+      "goalSeeds": [
+        "Make the crossing",
+        "Protect passengers",
+        "Collect the fare"
+      ],
+      "fearSeeds": [
+        "Bad water",
+        "Broken bargains",
+        "Losing the boat"
+      ],
+      "knowledgeTags": [
+        "waterways",
+        "weather",
+        "crossings",
+        "ferry-rumors"
+      ]
+    },
+    "fen-herbalist": {
+      "assetId": "fen-herbalist",
+      "level": 2,
+      "hp": 16,
+      "stamina": 13,
+      "resolve": 15,
+      "armor": 0,
+      "evasion": 12,
+      "alignment": {
+        "order": -15,
+        "mercy": 65,
+        "duty": 45,
+        "taboo": -15
+      },
+      "attributes": {
+        "might": 8,
+        "finesse": 12,
+        "vigor": 11,
+        "intellect": 15,
+        "will": 15,
+        "presence": 10
+      },
+      "skills": {
+        "medicine": 3,
+        "survival": 3,
+        "lore": 2,
+        "occult": 1,
+        "insight": 2
+      },
+      "goalSeeds": [
+        "Gather medicine",
+        "Treat a patient",
+        "Protect a rare patch"
+      ],
+      "fearSeeds": [
+        "Poisoning someone",
+        "Fen fire",
+        "Synod confiscation"
+      ],
+      "knowledgeTags": [
+        "herbs",
+        "fen",
+        "medicine",
+        "local-superstition"
+      ]
+    },
+    "cloister-scribe": {
+      "assetId": "cloister-scribe",
+      "level": 2,
+      "hp": 15,
+      "stamina": 10,
+      "resolve": 16,
+      "armor": 0,
+      "evasion": 10,
+      "alignment": {
+        "order": 55,
+        "mercy": 30,
+        "duty": 55,
+        "taboo": 45
+      },
+      "attributes": {
+        "might": 7,
+        "finesse": 11,
+        "vigor": 9,
+        "intellect": 17,
+        "will": 14,
+        "presence": 9
+      },
+      "skills": {
+        "lore": 3,
+        "investigation": 2,
+        "lockwork": 1,
+        "occult": 2,
+        "deception": 1
+      },
+      "goalSeeds": [
+        "Complete a copy",
+        "Protect an archive",
+        "Find a missing citation"
+      ],
+      "fearSeeds": [
+        "Book fire",
+        "Censure",
+        "Forgetting text"
+      ],
+      "knowledgeTags": [
+        "archives",
+        "old-caldran",
+        "cloister"
+      ]
+    },
+    "ash-salvager": {
+      "assetId": "ash-salvager",
+      "level": 2,
+      "hp": 23,
+      "stamina": 18,
+      "resolve": 11,
+      "armor": 2,
+      "evasion": 13,
+      "alignment": {
+        "order": -25,
+        "mercy": 0,
+        "duty": 10,
+        "taboo": -20
+      },
+      "attributes": {
+        "might": 13,
+        "finesse": 14,
+        "vigor": 14,
+        "intellect": 11,
+        "will": 11,
+        "presence": 9
+      },
+      "skills": {
+        "survival": 2,
+        "crafting": 2,
+        "lockwork": 2,
+        "athletics": 2,
+        "investigation": 1
+      },
+      "goalSeeds": [
+        "Find valuable salvage",
+        "Beat rivals to a ruin",
+        "Get home alive"
+      ],
+      "fearSeeds": [
+        "Glass storms",
+        "Collapse",
+        "Claim jumpers"
+      ],
+      "knowledgeTags": [
+        "ruins",
+        "salvage",
+        "ashmarket",
+        "imperial-scrap"
+      ]
+    },
+    "forest-outrider": {
+      "assetId": "forest-outrider",
+      "level": 3,
+      "hp": 28,
+      "stamina": 22,
+      "resolve": 15,
+      "armor": 2,
+      "evasion": 14,
+      "alignment": {
+        "order": 40,
+        "mercy": 35,
+        "duty": 75,
+        "taboo": -10
+      },
+      "attributes": {
+        "might": 13,
+        "finesse": 16,
+        "vigor": 15,
+        "intellect": 11,
+        "will": 14,
+        "presence": 9
+      },
+      "skills": {
+        "survival": 4,
+        "marksmanship": 3,
+        "stealth": 3,
+        "athletics": 2,
+        "insight": 2
+      },
+      "goalSeeds": [
+        "Patrol the boundary",
+        "Track intruders",
+        "Protect a grove"
+      ],
+      "fearSeeds": [
+        "Forest anger",
+        "Poachers",
+        "Fire"
+      ],
+      "knowledgeTags": [
+        "blackwood",
+        "tracking",
+        "local-paths",
+        "warden-signs"
+      ]
+    },
+    "noble-envoy": {
+      "assetId": "noble-envoy",
+      "level": 3,
+      "hp": 19,
+      "stamina": 12,
+      "resolve": 17,
+      "armor": 1,
+      "evasion": 12,
+      "alignment": {
+        "order": 55,
+        "mercy": 0,
+        "duty": -10,
+        "taboo": 20
+      },
+      "attributes": {
+        "might": 8,
+        "finesse": 12,
+        "vigor": 10,
+        "intellect": 15,
+        "will": 13,
+        "presence": 17
+      },
+      "skills": {
+        "persuasion": 4,
+        "deception": 3,
+        "insight": 3,
+        "lore": 2,
+        "intimidation": 1
+      },
+      "goalSeeds": [
+        "Secure terms",
+        "Protect reputation",
+        "Deliver a private message"
+      ],
+      "fearSeeds": [
+        "Humiliation",
+        "Diplomatic failure",
+        "Being searched"
+      ],
+      "knowledgeTags": [
+        "nobility",
+        "trade",
+        "politics",
+        "court-rumors"
+      ]
+    },
+    "mercenary": {
+      "assetId": "mercenary",
+      "level": 3,
+      "hp": 32,
+      "stamina": 22,
+      "resolve": 13,
+      "armor": 4,
+      "evasion": 13,
+      "alignment": {
+        "order": 0,
+        "mercy": -10,
+        "duty": 10,
+        "taboo": -10
+      },
+      "attributes": {
+        "might": 16,
+        "finesse": 14,
+        "vigor": 16,
+        "intellect": 9,
+        "will": 12,
+        "presence": 10
+      },
+      "skills": {
+        "blades": 3,
+        "marksmanship": 2,
+        "athletics": 3,
+        "brawling": 2,
+        "intimidation": 2,
+        "survival": 2
+      },
+      "goalSeeds": [
+        "Get paid",
+        "Keep squad alive",
+        "Finish contract"
+      ],
+      "fearSeeds": [
+        "Bad employer",
+        "Unpaid wounds",
+        "Occult threats"
+      ],
+      "knowledgeTags": [
+        "contracts",
+        "combat",
+        "roads",
+        "mercenary-rumors"
+      ]
+    },
+    "street-urchin": {
+      "assetId": "street-urchin",
+      "level": 1,
+      "hp": 12,
+      "stamina": 15,
+      "resolve": 10,
+      "armor": 0,
+      "evasion": 14,
+      "alignment": {
+        "order": -55,
+        "mercy": 25,
+        "duty": -5,
+        "taboo": -35
+      },
+      "attributes": {
+        "might": 7,
+        "finesse": 16,
+        "vigor": 10,
+        "intellect": 12,
+        "will": 11,
+        "presence": 12
+      },
+      "skills": {
+        "stealth": 3,
+        "deception": 2,
+        "lockwork": 2,
+        "insight": 2,
+        "athletics": 1
+      },
+      "goalSeeds": [
+        "Eat tonight",
+        "Avoid the watch",
+        "Find something worth selling"
+      ],
+      "fearSeeds": [
+        "Watch cells",
+        "Older thieves",
+        "Cold"
+      ],
+      "knowledgeTags": [
+        "alleys",
+        "street-rumors",
+        "hidden-routes"
+      ]
+    },
+    "tavern-keeper": {
+      "assetId": "tavern-keeper",
+      "level": 2,
+      "hp": 21,
+      "stamina": 15,
+      "resolve": 14,
+      "armor": 0,
+      "evasion": 10,
+      "alignment": {
+        "order": 25,
+        "mercy": 35,
+        "duty": 35,
+        "taboo": 5
+      },
+      "attributes": {
+        "might": 11,
+        "finesse": 9,
+        "vigor": 13,
+        "intellect": 12,
+        "will": 14,
+        "presence": 16
+      },
+      "skills": {
+        "persuasion": 3,
+        "insight": 3,
+        "deception": 2,
+        "brawling": 1,
+        "medicine": 1
+      },
+      "goalSeeds": [
+        "Keep the room calm",
+        "Collect tabs",
+        "Protect regulars"
+      ],
+      "fearSeeds": [
+        "Brawl turning lethal",
+        "Fire",
+        "Authority shutting the place"
+      ],
+      "knowledgeTags": [
+        "local-rumors",
+        "travelers",
+        "food",
+        "lodging"
+      ]
+    }
+  }
+}
