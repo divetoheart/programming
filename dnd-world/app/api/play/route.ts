@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAuthorized } from "../../../lib/auth";
-import { addNarrativeState, applyMechanicalTurn, rollAction } from "../../../lib/engine";
+import { addNarrativeState, applyMechanicalTurn, applyWorldEffects, rollAction } from "../../../lib/engine";
 import { loadCampaign, repoSyncConfigured, saveCampaign } from "../../../lib/github-store";
 import { narrateTurn } from "../../../lib/narrator";
 import { createSeedCampaign } from "../../../lib/seed";
@@ -27,7 +27,8 @@ export async function POST(request: Request) {
   const { roll, profile } = rollAction(current, action);
   const mechanical = applyMechanicalTurn(current, action, roll, profile);
   const narration = await narrateTurn(mechanical.state, action, roll);
-  const next = addNarrativeState(mechanical.state, narration);
+  const world = applyWorldEffects(mechanical.state, narration.effects);
+  const next = addNarrativeState(world.state, narration);
   const save = await saveCampaign(next);
 
   return NextResponse.json({
@@ -36,7 +37,8 @@ export async function POST(request: Request) {
     narrative: narration.narrative,
     title: narration.title,
     image: narration.image,
-    mechanicalSummary: mechanical.mechanicalSummary,
+    mechanicalSummary: [...mechanical.mechanicalSummary, ...world.applied.map((effect) => effect.summary)],
+    appliedEffects: world.applied,
     repoSync: connected,
     persisted: save.persisted,
   });
