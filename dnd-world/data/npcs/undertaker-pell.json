@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "id": "undertaker-pell",
+  "name": "Orren Pell",
+  "title": "Undertaker of Saint Orra",
+  "portraitAssetId": "orren-pell",
+  "ancestry": "Human",
+  "calling": "Undertaker",
+  "level": 3,
+  "xp": 710,
+  "hp": 29,
+  "maxHp": 29,
+  "stamina": 16,
+  "maxStamina": 16,
+  "resolve": 19,
+  "maxResolve": 19,
+  "armor": 1,
+  "evasion": 10,
+  "speed": 30,
+  "attributes": {
+    "might": 12,
+    "finesse": 9,
+    "vigor": 15,
+    "intellect": 14,
+    "will": 16,
+    "presence": 10
+  },
+  "skills": {
+    "athletics": 1,
+    "blades": 0,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 0,
+    "survival": 0,
+    "investigation": 3,
+    "medicine": 4,
+    "occult": 3,
+    "lore": 3,
+    "insight": 2,
+    "persuasion": 0,
+    "deception": 0,
+    "intimidation": 0,
+    "crafting": 2,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "asteri-cant": 3,
+    "nhalic": 4,
+    "old-caldran": 1
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Grim neutral caretaker",
+    "order": 55,
+    "mercy": 68,
+    "duty": 82,
+    "taboo": 35
+  },
+  "personality": {
+    "traits": [
+      "plainspoken",
+      "patient",
+      "morbidly funny"
+    ],
+    "riskTolerance": 45,
+    "stress": 31
+  },
+  "goals": [
+    {
+      "id": "keep-names",
+      "priority": 100,
+      "text": "Keep the identities of Saint Orra's dead from being erased."
+    },
+    {
+      "id": "protect-undercroft",
+      "priority": 75,
+      "text": "Prevent panic and desecration in the morgue."
+    }
+  ],
+  "fears": [
+    "Forgetting a corpse entrusted to him",
+    "The dead being used as resources"
+  ],
+  "bonds": [
+    "Saint Orra's undercroft",
+    "The families whose dead he prepares"
+  ],
+  "secrets": [
+    "He has started carving the three names into his own workbench because spoken repetition is becoming less reliable."
+  ],
+  "knowledge": [
+    "Remembers all three erased names.",
+    "Heard the subterranean bell twice before tonight.",
+    "Noticed salt blackening around one corpse."
+  ],
+  "memoryLedger": [
+    {
+      "id": "pell-rook-unmet",
+      "turn": 0,
+      "summary": "Has been told by Venn that a discreet blackglass courier named Rook is coming.",
+      "participants": [
+        "ysra-venn"
+      ],
+      "tags": [
+        "expectation"
+      ],
+      "valence": 0,
+      "intensity": 2,
+      "confidence": 100,
+      "behaviorHooks": [
+        "judge-rook-by-treatment-of-dead"
+      ]
+    }
+  ],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 8,
+      "affection": 0,
+      "debt": 0,
+      "status": "expected"
+    }
+  },
+  "faction": "independent",
+  "location": "Saint Orra's Undercroft",
+  "schedule": [],
+  "currentPlan": "Show Rook the bodies before another bell sounds, then make redundant records of each name.",
+  "resources": {
+    "crowns": 34,
+    "contacts": 3,
+    "influence": 1
+  },
+  "growthWeights": {
+    "medicine": 3,
+    "lore": 2,
+    "occult": 3,
+    "investigation": 2,
+    "will": 3
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

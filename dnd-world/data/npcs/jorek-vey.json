@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "id": "jorek-vey",
+  "name": "Jorek Vey",
+  "title": "Salvage Broker of Ashmarket",
+  "portraitAssetId": "jorek-vey",
+  "ancestry": "Human",
+  "calling": "Salvage Broker",
+  "level": 4,
+  "xp": 1210,
+  "hp": 28,
+  "maxHp": 28,
+  "stamina": 15,
+  "maxStamina": 15,
+  "resolve": 17,
+  "maxResolve": 17,
+  "armor": 2,
+  "evasion": 11,
+  "speed": 30,
+  "attributes": {
+    "might": 11,
+    "finesse": 10,
+    "vigor": 13,
+    "intellect": 15,
+    "will": 12,
+    "presence": 17
+  },
+  "skills": {
+    "athletics": 0,
+    "blades": 0,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 0,
+    "survival": 0,
+    "investigation": 3,
+    "medicine": 0,
+    "occult": 0,
+    "lore": 2,
+    "insight": 3,
+    "persuasion": 4,
+    "deception": 4,
+    "intimidation": 2,
+    "crafting": 2,
+    "lockwork": 2
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 2
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Greedy chaotic neutral",
+    "order": -35,
+    "mercy": -15,
+    "duty": -52,
+    "taboo": -20
+  },
+  "personality": {
+    "traits": [
+      "charming",
+      "greedy",
+      "hard to shame"
+    ],
+    "riskTolerance": 64,
+    "stress": 14
+  },
+  "goals": [
+    {
+      "id": "monopolize-relics",
+      "priority": 90,
+      "text": "Control the profitable flow of imperial relics through Ashmarket."
+    }
+  ],
+  "fears": [
+    "Being cut out of a deal",
+    "Owning something too dangerous to sell"
+  ],
+  "bonds": [
+    "His auction runners"
+  ],
+  "secrets": [
+    "He fenced a Bellshard fragment without knowing what it was and now wants it back."
+  ],
+  "knowledge": [
+    "Knows salvage buyers, counterfeiters and pit routes."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "carrion-compact",
+  "location": "Ashmarket",
+  "schedule": [],
+  "currentPlan": "Recover a stolen salvage charter before rival brokers learn its true value.",
+  "resources": {
+    "crowns": 620,
+    "contacts": 10,
+    "influence": 5
+  },
+  "growthWeights": {
+    "persuasion": 3,
+    "deception": 3,
+    "insight": 2,
+    "investigation": 2,
+    "presence": 3
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

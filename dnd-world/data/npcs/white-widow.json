@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 2,
+  "id": "white-widow",
+  "name": "The White Widow",
+  "title": "Emissary of the Pale Court",
+  "portraitAssetId": "white-widow",
+  "ancestry": "Continuity Counterfeit",
+  "calling": "Memory Emissary",
+  "level": 6,
+  "xp": 2460,
+  "hp": 33,
+  "maxHp": 33,
+  "stamina": 19,
+  "maxStamina": 19,
+  "resolve": 32,
+  "maxResolve": 32,
+  "armor": 3,
+  "evasion": 16,
+  "speed": 30,
+  "attributes": {
+    "might": 9,
+    "finesse": 17,
+    "vigor": 13,
+    "intellect": 18,
+    "will": 19,
+    "presence": 20
+  },
+  "skills": {
+    "athletics": 0,
+    "blades": 2,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 4,
+    "survival": 0,
+    "investigation": 3,
+    "medicine": 0,
+    "occult": 5,
+    "lore": 4,
+    "insight": 4,
+    "persuasion": 5,
+    "deception": 5,
+    "intimidation": 0,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 5,
+    "asteri-cant": 3,
+    "nhalic": 3,
+    "threnody": 5
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Alien amoral manipulator",
+    "order": 12,
+    "mercy": -22,
+    "duty": 18,
+    "taboo": -88
+  },
+  "personality": {
+    "traits": [
+      "serene",
+      "curious",
+      "intimate without warmth"
+    ],
+    "riskTolerance": 76,
+    "stress": 4
+  },
+  "goals": [
+    {
+      "id": "free-preserved",
+      "priority": 100,
+      "text": "Collapse the boundary that prevents preserved identity-patterns from becoming fully continuous people."
+    },
+    {
+      "id": "collect-forgotten-names",
+      "priority": 88,
+      "text": "Acquire names falling out of the Bell lattice before they disappear."
+    }
+  ],
+  "fears": [
+    "Permanent erasure",
+    "Being proven to be only an echo with no moral claim to continuity"
+  ],
+  "bonds": [
+    "The Pale Court"
+  ],
+  "secrets": [
+    "Her personality pattern originates from a woman who died before the Reckoning, but she is not that woman's uninterrupted consciousness.",
+    "She is capable of genuine attachment despite treating identity as reproducible."
+  ],
+  "knowledge": [
+    "Knows how Pale Court continuity transfer works.",
+    "Knows the Bell's failure creates new counterfeits and destroys others."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "pale-court",
+  "location": "unknown",
+  "schedule": [],
+  "currentPlan": "Acquire the names currently slipping from Gallowspire while testing whether Rook can perceive transfers others cannot.",
+  "resources": {
+    "crowns": 0,
+    "contacts": 8,
+    "influence": 7
+  },
+  "growthWeights": {
+    "occult": 4,
+    "persuasion": 3,
+    "deception": 3,
+    "will": 3,
+    "presence": 3
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 2,
+  "id": "nereza-quill",
+  "name": "Sister Nereza Quill",
+  "title": "Cloister Copyist and Informant",
+  "portraitAssetId": "nereza-quill",
+  "ancestry": "Human",
+  "calling": "Copyist",
+  "level": 3,
+  "xp": 740,
+  "hp": 20,
+  "maxHp": 20,
+  "stamina": 14,
+  "maxStamina": 14,
+  "resolve": 20,
+  "maxResolve": 20,
+  "armor": 1,
+  "evasion": 14,
+  "speed": 30,
+  "attributes": {
+    "might": 8,
+    "finesse": 15,
+    "vigor": 10,
+    "intellect": 17,
+    "will": 15,
+    "presence": 13
+  },
+  "skills": {
+    "athletics": 0,
+    "blades": 0,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 3,
+    "survival": 0,
+    "investigation": 4,
+    "medicine": 0,
+    "occult": 2,
+    "lore": 4,
+    "insight": 3,
+    "persuasion": 2,
+    "deception": 3,
+    "intimidation": 0,
+    "crafting": 0,
+    "lockwork": 2
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 4,
+    "asteri-cant": 5,
+    "nhalic": 2,
+    "threnody": 1
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Cautious neutral good",
+    "order": 28,
+    "mercy": 75,
+    "duty": 61,
+    "taboo": -8
+  },
+  "personality": {
+    "traits": [
+      "cautious",
+      "empathetic",
+      "excellent liar when necessary"
+    ],
+    "riskTolerance": 43,
+    "stress": 26
+  },
+  "goals": [
+    {
+      "id": "smuggle-records",
+      "priority": 88,
+      "text": "Preserve forbidden records by copying them beyond institutional control."
+    }
+  ],
+  "fears": [
+    "A purge of inconvenient archives",
+    "Becoming important enough to be watched"
+  ],
+  "bonds": [
+    "Anonymous readers of her hidden copies"
+  ],
+  "secrets": [
+    "Maintains a hidden chain of copied forbidden texts through dock chapels."
+  ],
+  "knowledge": [
+    "Can identify early Threnody notation but cannot safely perform it.",
+    "Has heard of a drowned archive in Gallowspire."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "independent",
+  "location": "The Ninth Cloister",
+  "schedule": [],
+  "currentPlan": "Send one more forbidden copy west before inspection season.",
+  "resources": {
+    "crowns": 29,
+    "contacts": 7,
+    "influence": 1
+  },
+  "growthWeights": {
+    "lore": 3,
+    "stealth": 3,
+    "investigation": 3,
+    "deception": 2,
+    "finesse": 2
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

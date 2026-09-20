@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 2,
+  "id": "ysra-venn",
+  "name": "Ysra Venn",
+  "title": "Prelate of the Seventh Lantern",
+  "portraitAssetId": "ysra-venn",
+  "ancestry": "Human",
+  "calling": "Synod Prelate",
+  "level": 4,
+  "xp": 1160,
+  "hp": 26,
+  "maxHp": 26,
+  "stamina": 14,
+  "maxStamina": 14,
+  "resolve": 22,
+  "maxResolve": 22,
+  "armor": 2,
+  "evasion": 12,
+  "speed": 30,
+  "attributes": {
+    "might": 9,
+    "finesse": 11,
+    "vigor": 12,
+    "intellect": 16,
+    "will": 17,
+    "presence": 15
+  },
+  "skills": {
+    "athletics": 0,
+    "blades": 0,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 0,
+    "survival": 0,
+    "investigation": 3,
+    "medicine": 2,
+    "occult": 4,
+    "lore": 4,
+    "insight": 4,
+    "persuasion": 4,
+    "deception": 3,
+    "intimidation": 0,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 3,
+    "asteri-cant": 5,
+    "nhalic": 2
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Secretive lawful opportunist",
+    "order": 78,
+    "mercy": 22,
+    "duty": 54,
+    "taboo": 70
+  },
+  "personality": {
+    "traits": [
+      "controlled",
+      "politically alert",
+      "guilt-prone"
+    ],
+    "riskTolerance": 32,
+    "stress": 42
+  },
+  "goals": [
+    {
+      "id": "contain-scandal",
+      "priority": 95,
+      "text": "Contain the nameless-dead crisis before senior Synod leadership controls the response."
+    },
+    {
+      "id": "preserve-city",
+      "priority": 80,
+      "text": "Keep Gallowspire from panic and uncontrolled miracle-work."
+    }
+  ],
+  "fears": [
+    "Public collapse of burial trust",
+    "Hierophant Thorn learning she lost control",
+    "Becoming unable to remember the people she buried"
+  ],
+  "bonds": [
+    "The Seventh Lantern staff",
+    "Gallowspire's burial wards"
+  ],
+  "secrets": [
+    "The first nameless corpse was Synod memory auditor Serren Vale.",
+    "She destroyed one duplicate intake report before hiring Rook."
+  ],
+  "knowledge": [
+    "Knows the three erasures are related.",
+    "Knows Pell still remembers the names.",
+    "Knows senior Synod doctrine does not explain the event."
+  ],
+  "memoryLedger": [
+    {
+      "id": "ysra-hired-rook",
+      "turn": 1,
+      "summary": "Hired Rook discreetly; he listened without exposing her fear.",
+      "participants": [
+        "rook-vale"
+      ],
+      "tags": [
+        "rook",
+        "contract"
+      ],
+      "valence": 15,
+      "intensity": 3,
+      "confidence": 100,
+      "behaviorHooks": [
+        "cooperate-if-discreet",
+        "test-his-loyalty"
+      ]
+    }
+  ],
+  "relationships": {
+    "rook-vale": {
+      "trust": 12,
+      "fear": 35,
+      "affection": 0,
+      "debt": 10,
+      "status": "employer"
+    }
+  },
+  "faction": "lantern-synod",
+  "location": "Gallowspire",
+  "schedule": [
+    "Dawn burial office",
+    "Midday Synod administration",
+    "Evening private crisis work"
+  ],
+  "currentPlan": "Keep the case compartmentalized while sending no written report to senior clergy.",
+  "resources": {
+    "crowns": 180,
+    "contacts": 6,
+    "influence": 5
+  },
+  "growthWeights": {
+    "lore": 3,
+    "occult": 3,
+    "insight": 2,
+    "persuasion": 2,
+    "deception": 2
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "id": "caedmon-voss",
+  "name": "Caedmon Voss",
+  "title": "Archivist of the Ninth Cloister",
+  "portraitAssetId": "caedmon-voss",
+  "ancestry": "Human",
+  "calling": "Archivist",
+  "level": 5,
+  "xp": 1850,
+  "hp": 22,
+  "maxHp": 22,
+  "stamina": 13,
+  "maxStamina": 13,
+  "resolve": 25,
+  "maxResolve": 25,
+  "armor": 1,
+  "evasion": 11,
+  "speed": 30,
+  "attributes": {
+    "might": 7,
+    "finesse": 10,
+    "vigor": 10,
+    "intellect": 20,
+    "will": 17,
+    "presence": 11
+  },
+  "skills": {
+    "athletics": 0,
+    "blades": 0,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 0,
+    "survival": 0,
+    "investigation": 5,
+    "medicine": 0,
+    "occult": 4,
+    "lore": 5,
+    "insight": 3,
+    "persuasion": 0,
+    "deception": 2,
+    "intimidation": 0,
+    "crafting": 2,
+    "lockwork": 3
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 5,
+    "asteri-cant": 5,
+    "nhalic": 3,
+    "varkesh": 2,
+    "threnody": 2
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Obsessive lawful seeker",
+    "order": 70,
+    "mercy": 20,
+    "duty": 50,
+    "taboo": -15
+  },
+  "personality": {
+    "traits": [
+      "brilliant",
+      "vain",
+      "compulsively thorough"
+    ],
+    "riskTolerance": 51,
+    "stress": 35
+  },
+  "goals": [
+    {
+      "id": "decode-bell-records",
+      "priority": 100,
+      "text": "Reconstruct the complete Last Concord command sequence."
+    }
+  ],
+  "fears": [
+    "Dying before finishing the reconstruction",
+    "Someone simplifying his work into doctrine"
+  ],
+  "bonds": [
+    "The forbidden archive"
+  ],
+  "secrets": [
+    "Has concealed three contradictory Last Concord fragments from the Synod."
+  ],
+  "knowledge": [
+    "Knows the official Synod history is internally inconsistent.",
+    "Can decode advanced Old Caldran witness grammar."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "independent",
+  "location": "The Ninth Cloister",
+  "schedule": [],
+  "currentPlan": "Cross-reference blackglass-era catalog marks against the forbidden calendar.",
+  "resources": {
+    "crowns": 61,
+    "contacts": 4,
+    "influence": 2
+  },
+  "growthWeights": {
+    "lore": 5,
+    "investigation": 4,
+    "occult": 3,
+    "lockwork": 2,
+    "intellect": 4
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

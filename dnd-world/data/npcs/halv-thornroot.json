@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "id": "halv-thornroot",
+  "name": "Halv Thornroot",
+  "title": "Warden of the Old Hart",
+  "portraitAssetId": "halv-thornroot",
+  "ancestry": "Human",
+  "calling": "Blackwood Warden",
+  "level": 4,
+  "xp": 1310,
+  "hp": 37,
+  "maxHp": 37,
+  "stamina": 24,
+  "maxStamina": 24,
+  "resolve": 21,
+  "maxResolve": 21,
+  "armor": 3,
+  "evasion": 14,
+  "speed": 30,
+  "attributes": {
+    "might": 15,
+    "finesse": 14,
+    "vigor": 16,
+    "intellect": 12,
+    "will": 16,
+    "presence": 11
+  },
+  "skills": {
+    "athletics": 3,
+    "blades": 2,
+    "brawling": 0,
+    "marksmanship": 4,
+    "stealth": 3,
+    "survival": 5,
+    "investigation": 0,
+    "medicine": 2,
+    "occult": 0,
+    "lore": 2,
+    "insight": 3,
+    "persuasion": 0,
+    "deception": 0,
+    "intimidation": 0,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 4,
+    "varkesh": 4,
+    "nhalic": 2
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Stern lawful good",
+    "order": 58,
+    "mercy": 55,
+    "duty": 90,
+    "taboo": -5
+  },
+  "personality": {
+    "traits": [
+      "stern",
+      "slow to trust",
+      "literal about stewardship"
+    ],
+    "riskTolerance": 57,
+    "stress": 16
+  },
+  "goals": [
+    {
+      "id": "protect-place-memory",
+      "priority": 100,
+      "text": "Prevent outsiders from stripping Blackwood's memories as extractable resources."
+    }
+  ],
+  "fears": [
+    "The forest becoming an archive people mine",
+    "Inherited debt being used to justify new cruelty"
+  ],
+  "bonds": [
+    "Old Hart",
+    "Blackwood outriders"
+  ],
+  "secrets": [
+    "The Old Hart has remembered Rook's silhouette before Rook ever entered Blackwood."
+  ],
+  "knowledge": [
+    "Knows place-memory can contradict human testimony without being omniscient."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "independent",
+  "location": "Old Hart",
+  "schedule": [],
+  "currentPlan": "Close two trails after outsiders harvested bark from a memory tree.",
+  "resources": {
+    "crowns": 18,
+    "contacts": 4,
+    "influence": 4
+  },
+  "growthWeights": {
+    "survival": 4,
+    "marksmanship": 3,
+    "insight": 2,
+    "will": 3,
+    "vigor": 2
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

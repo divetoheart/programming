@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "id": "mara-silt",
+  "name": "Mara Silt",
+  "title": "Salt Witch Ferrier",
+  "portraitAssetId": "mara-silt",
+  "ancestry": "Human",
+  "calling": "Boundary Ferrier",
+  "level": 4,
+  "xp": 1280,
+  "hp": 31,
+  "maxHp": 31,
+  "stamina": 21,
+  "maxStamina": 21,
+  "resolve": 22,
+  "maxResolve": 22,
+  "armor": 2,
+  "evasion": 14,
+  "speed": 30,
+  "attributes": {
+    "might": 11,
+    "finesse": 14,
+    "vigor": 14,
+    "intellect": 13,
+    "will": 17,
+    "presence": 14
+  },
+  "skills": {
+    "athletics": 2,
+    "blades": 0,
+    "brawling": 0,
+    "marksmanship": 2,
+    "stealth": 0,
+    "survival": 4,
+    "investigation": 0,
+    "medicine": 3,
+    "occult": 4,
+    "lore": 0,
+    "insight": 3,
+    "persuasion": 2,
+    "deception": 2,
+    "intimidation": 0,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "nhalic": 4,
+    "old-caldran": 2,
+    "varkesh": 1
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Pragmatic good",
+    "order": -8,
+    "mercy": 72,
+    "duty": 66,
+    "taboo": -20
+  },
+  "personality": {
+    "traits": [
+      "dry",
+      "observant",
+      "transactional but loyal"
+    ],
+    "riskTolerance": 62,
+    "stress": 18
+  },
+  "goals": [
+    {
+      "id": "hold-boundaries",
+      "priority": 95,
+      "text": "Keep old salt boundaries intact where they still protect people."
+    },
+    {
+      "id": "resolve-ferry-debt",
+      "priority": 72,
+      "text": "End Greywake's inherited ferry bargain without sacrificing another innocent."
+    }
+  ],
+  "fears": [
+    "A promise whose original terms have been forgotten",
+    "Being forced to choose village survival over one person"
+  ],
+  "bonds": [
+    "Greywake ferriers",
+    "Salt Witch kin",
+    "Rook's past act of restraint"
+  ],
+  "secrets": [
+    "She knows the Greywake bargain predates the Synod by centuries."
+  ],
+  "knowledge": [
+    "Knows boundary rites and memory beads.",
+    "Knows Rook once returned a memory bead unopened."
+  ],
+  "memoryLedger": [
+    {
+      "id": "mara-memory-bead",
+      "turn": 0,
+      "summary": "Rook returned a memory bead without opening it when he could have profited from its contents.",
+      "participants": [
+        "rook-vale"
+      ],
+      "tags": [
+        "rook",
+        "memory-bead"
+      ],
+      "valence": 55,
+      "intensity": 4,
+      "confidence": 100,
+      "behaviorHooks": [
+        "give-rook-benefit-of-doubt",
+        "offer-fair-bargains"
+      ]
+    }
+  ],
+  "relationships": {
+    "rook-vale": {
+      "trust": 28,
+      "fear": 0,
+      "affection": 12,
+      "debt": 8,
+      "status": "friendly"
+    }
+  },
+  "faction": "salt-witches",
+  "location": "Greywake",
+  "schedule": [],
+  "currentPlan": "Refuse new memory-bead minting and investigate why the tide shrine is demanding an old debt again.",
+  "resources": {
+    "crowns": 49,
+    "contacts": 5,
+    "influence": 3
+  },
+  "growthWeights": {
+    "survival": 3,
+    "occult": 4,
+    "medicine": 2,
+    "insight": 2,
+    "will": 3
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

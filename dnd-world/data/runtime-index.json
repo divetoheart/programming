@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "canonCommit": "48d60e7eb0f321cfc240099c38702963ad58da41",
+  "turn": 1,
+  "currentActId": "act-1-black-tithe",
+  "activeBeatId": "BT-01",
+  "beatStatus": "active",
+  "scene": {
+    "region": "The Gloam Coast",
+    "locationId": "gallowspire",
+    "subLocationId": "saint-orra-hospital-stair",
+    "presentNpcIds": [],
+    "immediatelyRelevantNpcIds": [
+      "undertaker-pell"
+    ],
+    "immediatelyRelevantItemIds": [
+      "blackglass-token"
+    ],
+    "lastSeenNpcIds": [
+      "ysra-venn"
+    ],
+    "settingAssetId": "gallowspire",
+    "contextualAssetIds": [
+      "blackglass-memory-token",
+      "orren-pell"
+    ]
+  },
+  "hydration": {
+    "everyTurn": [
+      "campaign.json",
+      "runtime-index.json"
+    ],
+    "npcSheets": [
+      "undertaker-pell"
+    ],
+    "loadStorySpine": false,
+    "loadWorldBible": false,
+    "loadAssetManifest": true,
+    "reasons": [
+      "Current scene is still BT-01; Pell is directly below and the token has reacted."
+    ]
+  },
+  "offscreen": {
+    "lastWorldTick": {
+      "day": 17,
+      "time": "18:40"
+    },
+    "dueNpcIds": [],
+    "nextCheck": "after 4 in-world hours, rest/travel, major beat, or direct event"
+  },
+  "undiscoveredNpcSheetIds": [
+    "edda-sol",
+    "caedmon-voss",
+    "marlek-thorn",
+    "iven-ash",
+    "nereza-quill",
+    "jorek-vey",
+    "halv-thornroot",
+    "white-widow"
+  ],
+  "rules": [
+    "Do not surface undiscovered NPC names/roles solely because sheets exist.",
+    "Update this index after every turn before finishing the response."
+  ]
+}

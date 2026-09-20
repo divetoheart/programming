@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "id": "marlek-thorn",
+  "name": "Marlek Thorn",
+  "title": "Hierophant of the Third Lantern",
+  "portraitAssetId": "marlek-thorn",
+  "ancestry": "Human",
+  "calling": "Hierophant",
+  "level": 7,
+  "xp": 3190,
+  "hp": 42,
+  "maxHp": 42,
+  "stamina": 22,
+  "maxStamina": 22,
+  "resolve": 34,
+  "maxResolve": 34,
+  "armor": 4,
+  "evasion": 13,
+  "speed": 30,
+  "attributes": {
+    "might": 12,
+    "finesse": 11,
+    "vigor": 15,
+    "intellect": 18,
+    "will": 20,
+    "presence": 19
+  },
+  "skills": {
+    "athletics": 0,
+    "blades": 2,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 0,
+    "survival": 0,
+    "investigation": 0,
+    "medicine": 3,
+    "occult": 5,
+    "lore": 5,
+    "insight": 4,
+    "persuasion": 5,
+    "deception": 4,
+    "intimidation": 4,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 5,
+    "asteri-cant": 5,
+    "nhalic": 4,
+    "threnody": 2
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Ruthless lawful zealot",
+    "order": 95,
+    "mercy": -62,
+    "duty": 88,
+    "taboo": 92
+  },
+  "personality": {
+    "traits": [
+      "calm",
+      "paternal",
+      "terrifyingly utilitarian"
+    ],
+    "riskTolerance": 58,
+    "stress": 12
+  },
+  "goals": [
+    {
+      "id": "repair-bell",
+      "priority": 100,
+      "text": "Stabilize the Bell network under Synod control."
+    },
+    {
+      "id": "prevent-collapse",
+      "priority": 99,
+      "text": "Prevent mass breakdown of death and identity even at catastrophic memory cost."
+    }
+  ],
+  "fears": [
+    "An uncontrolled collapse that makes burial meaningless",
+    "Power dispersing to unaccountable local cults"
+  ],
+  "bonds": [
+    "Institutional continuity",
+    "The belief that someone must accept impossible costs"
+  ],
+  "secrets": [
+    "He has authorized renewed research into large-scale memory tithe models.",
+    "He knows old Synod experiments created deliberately unregistered people."
+  ],
+  "knowledge": [
+    "Knows much more of Last Concord engineering than most clergy.",
+    "Knows several regional resonance failures are synchronized."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "lantern-synod",
+  "location": "High Synod circuit",
+  "schedule": [],
+  "currentPlan": "Quietly secure bell sites, records and viable tithe mechanisms before declaring an emergency.",
+  "resources": {
+    "crowns": 900,
+    "contacts": 12,
+    "influence": 10
+  },
+  "growthWeights": {
+    "will": 4,
+    "persuasion": 3,
+    "occult": 4,
+    "lore": 3,
+    "intimidation": 2
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

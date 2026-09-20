@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "id": "edda-sol",
+  "name": "Edda Sol",
+  "title": "Bell-Keeper of the Ninth Cloister",
+  "portraitAssetId": "edda-sol",
+  "ancestry": "Human",
+  "calling": "Bell-Keeper",
+  "level": 5,
+  "xp": 1780,
+  "hp": 34,
+  "maxHp": 34,
+  "stamina": 20,
+  "maxStamina": 20,
+  "resolve": 27,
+  "maxResolve": 27,
+  "armor": 3,
+  "evasion": 12,
+  "speed": 30,
+  "attributes": {
+    "might": 12,
+    "finesse": 10,
+    "vigor": 14,
+    "intellect": 16,
+    "will": 19,
+    "presence": 13
+  },
+  "skills": {
+    "athletics": 2,
+    "blades": 1,
+    "brawling": 0,
+    "marksmanship": 0,
+    "stealth": 0,
+    "survival": 0,
+    "investigation": 3,
+    "medicine": 2,
+    "occult": 5,
+    "lore": 5,
+    "insight": 4,
+    "persuasion": 0,
+    "deception": 0,
+    "intimidation": 0,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 5,
+    "asteri-cant": 5,
+    "nhalic": 3,
+    "threnody": 1
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Haunted neutral custodian",
+    "order": 35,
+    "mercy": 48,
+    "duty": 92,
+    "taboo": 10
+  },
+  "personality": {
+    "traits": [
+      "severe",
+      "quiet",
+      "ritualistic"
+    ],
+    "riskTolerance": 38,
+    "stress": 47
+  },
+  "goals": [
+    {
+      "id": "prevent-wrong-bell",
+      "priority": 100,
+      "text": "Prevent any bell from ringing with an incomplete command."
+    }
+  ],
+  "fears": [
+    "A well-intended partial solution",
+    "Hearing a rope-less bell answer her own name"
+  ],
+  "bonds": [
+    "The bells of the Ninth Cloister"
+  ],
+  "secrets": [
+    "She has heard one bell speak in the voice of a dead former keeper."
+  ],
+  "knowledge": [
+    "Knows bell commands are distributed across multiple sites.",
+    "Knows several bells have begun resonating out of sequence."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "lantern-synod",
+  "location": "The Ninth Cloister",
+  "schedule": [],
+  "currentPlan": "Keep the western bells silent while comparing resonance against forbidden calendars.",
+  "resources": {
+    "crowns": 22,
+    "contacts": 3,
+    "influence": 4
+  },
+  "growthWeights": {
+    "occult": 4,
+    "lore": 4,
+    "will": 4,
+    "insight": 2
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}

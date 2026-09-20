@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "id": "iven-ash",
+  "name": "Iven Ash",
+  "title": "Captain of the Red Mercy Company",
+  "portraitAssetId": "iven-ash",
+  "ancestry": "Human",
+  "calling": "Mercenary Captain",
+  "level": 4,
+  "xp": 1290,
+  "hp": 39,
+  "maxHp": 39,
+  "stamina": 25,
+  "maxStamina": 25,
+  "resolve": 16,
+  "maxResolve": 16,
+  "armor": 5,
+  "evasion": 14,
+  "speed": 30,
+  "attributes": {
+    "might": 16,
+    "finesse": 15,
+    "vigor": 17,
+    "intellect": 11,
+    "will": 12,
+    "presence": 13
+  },
+  "skills": {
+    "athletics": 4,
+    "blades": 4,
+    "brawling": 2,
+    "marksmanship": 3,
+    "stealth": 0,
+    "survival": 3,
+    "investigation": 0,
+    "medicine": 0,
+    "occult": 0,
+    "lore": 0,
+    "insight": 2,
+    "persuasion": 0,
+    "deception": 0,
+    "intimidation": 3,
+    "crafting": 0,
+    "lockwork": 0
+  },
+  "languages": {
+    "low-veyric": 5,
+    "old-caldran": 1
+  },
+  "conditions": [],
+  "wounds": [],
+  "equipment": {},
+  "inventory": [],
+  "alignment": {
+    "label": "Hardbitten neutral",
+    "order": 5,
+    "mercy": -8,
+    "duty": 18,
+    "taboo": -5
+  },
+  "personality": {
+    "traits": [
+      "professional",
+      "cynical",
+      "protective of crew"
+    ],
+    "riskTolerance": 70,
+    "stress": 20
+  },
+  "goals": [
+    {
+      "id": "paid-survival",
+      "priority": 90,
+      "text": "Keep the company alive and solvent."
+    },
+    {
+      "id": "clean-exit",
+      "priority": 65,
+      "text": "Avoid being trapped in someone else's holy war."
+    }
+  ],
+  "fears": [
+    "Unpayable loyalty",
+    "Losing crew to occult causes he cannot fight normally"
+  ],
+  "bonds": [
+    "Red Mercy Company"
+  ],
+  "secrets": [
+    "He has already accepted one Morcant retainer tied to an imperial road dig."
+  ],
+  "knowledge": [
+    "Knows Ashmarket salvage routes and armed factions."
+  ],
+  "memoryLedger": [],
+  "relationships": {
+    "rook-vale": {
+      "trust": 0,
+      "fear": 0,
+      "affection": 0,
+      "debt": 0,
+      "status": "unmet"
+    }
+  },
+  "faction": "carrion-compact",
+  "location": "Ashmarket",
+  "schedule": [],
+  "currentPlan": "Guard a salvage claim until the next payment clears, then renegotiate.",
+  "resources": {
+    "crowns": 260,
+    "contacts": 5,
+    "influence": 3
+  },
+  "growthWeights": {
+    "blades": 3,
+    "athletics": 3,
+    "marksmanship": 2,
+    "survival": 2,
+    "vigor": 3
+  },
+  "offscreen": {
+    "enabled": true,
+    "nextDue": "event-or-4h",
+    "lastTickTurn": 0
+  },
+  "status": "alive"
+}
