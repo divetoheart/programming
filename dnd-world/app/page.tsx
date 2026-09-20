@@ -86,14 +86,25 @@ export default function CampaignPage() {
   const [ready, setReady] = useState(false);
   const [repoSync, setRepoSync] = useState(false);
   const [status, setStatus] = useState("Opening the ledger…");
-  const [selectedLocation, setSelectedLocation] = useState<LocationState | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<LocationState | null>(null);\n  const [authorized, setAuthorized] = useState<boolean | null>(null);\n  const [passcode, setPasscode] = useState("");
 
   useEffect(() => {
     let cancelled = false;
     async function boot() {
       try {
+        const authResponse = await fetch("/api/auth", { cache: "no-store" });
+        const authPayload = await authResponse.json();
+        if (cancelled) return;
+        if (!authPayload.authorized) {
+          setAuthorized(false);
+          setStatus("Campaign locked");
+          return;
+        }
+        setAuthorized(true);
+
         const response = await fetch("/api/state", { cache: "no-store" });
         const payload = await response.json();
+        if (!response.ok || !payload.state) throw new Error(payload.error || "State unavailable");
         if (cancelled) return;
         const serverState = payload.state as CampaignState;
         const local = window.localStorage.getItem(LOCAL_KEY);
@@ -133,6 +144,35 @@ export default function CampaignPage() {
   const activeMilestones = state.milestones.filter((m) => m.status === "active");
   const knownLanguages = WORLD_BIBLE.languages.filter((language) => (state.character.languages[language.id] || 0) > 0);
 
+  async function unlock(event: FormEvent) {
+    event.preventDefault();
+    setBusy(true);
+    setStatus("Checking passcode…");
+    try {
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Wrong passcode");
+      setAuthorized(true);
+      setPasscode("");
+      const stateResponse = await fetch("/api/state", { cache: "no-store" });
+      const statePayload = await stateResponse.json();
+      if (stateResponse.ok && statePayload.state) {
+        setState(statePayload.state);
+        setRepoSync(Boolean(statePayload.repoSync));
+      }
+      setStatus(statePayload.repoSync ? "GitHub ledger connected" : "Local backup mode");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Wrong passcode");
+    } finally {
+      setBusy(false);
+      setReady(true);
+    }
+  }
+
   async function play(event: FormEvent) {
     event.preventDefault();
     const command = action.trim();
@@ -146,6 +186,10 @@ export default function CampaignPage() {
         body: JSON.stringify({ action: command, state }),
       });
       const payload = await response.json();
+      if (response.status === 401) {
+        setAuthorized(false);
+        throw new Error("Campaign locked");
+      }
       if (!response.ok) throw new Error(payload.error || "Turn failed");
       setState(payload.state);
       setRepoSync(Boolean(payload.repoSync));
@@ -156,6 +200,27 @@ export default function CampaignPage() {
     } finally {
       setBusy(false);
     }
+  }
+
+  if (authorized === false) {
+    return (
+      <main className="lock-shell">
+        <section className="lock-card">
+          <p className="kicker">Private campaign</p>
+          <h1>The Bell Below</h1>
+          <p>Mournreach is sealed. Enter your campaign passcode.</p>
+          <form onSubmit={unlock}>
+            <input type="password" value={passcode} onChange={(event) => setPasscode(event.target.value)} placeholder="Passcode" autoFocus />
+            <button type="submit" disabled={busy || !passcode}>{busy ? "Opening…" : "Enter Mournreach"}</button>
+          </form>
+          <small>{status}</small>
+        </section>
+      </main>
+    );
+  }
+
+  if (authorized === null && !ready) {
+    return <main className="lock-shell"><section className="lock-card"><p className="kicker">Mournreach</p><h1>Opening the ledger…</h1></section></main>;
   }
 
   return (
@@ -361,7 +426,7 @@ export default function CampaignPage() {
         <section className="panel">
           <div className="section-heading"><div><p className="kicker">Canonical memory bank</p><h2>Memories</h2></div><span>Referenced by the GM every turn</span></div>
           <div className="memory-grid">
-            {state.memories.sort((a, b) => b.importance - a.importance).map((memory) => (
+            {[...state.memories].sort((a, b) => b.importance - a.importance).map((memory) => (
               <article key={memory.id}>
                 <div className="importance">{"◆".repeat(memory.importance)}{"◇".repeat(5 - memory.importance)}</div>
                 <p>{memory.summary}</p>
