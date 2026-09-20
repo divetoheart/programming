@@ -89,6 +89,7 @@ export default function CampaignPage() {
   const [selectedLocation, setSelectedLocation] = useState<LocationState | null>(null);
   const [authorized, setAuthorized] = useState<boolean | null>(null);
   const [passcode, setPasscode] = useState("");
+  const [lastEffects, setLastEffects] = useState<string[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -194,6 +195,7 @@ export default function CampaignPage() {
       }
       if (!response.ok) throw new Error(payload.error || "Turn failed");
       setState(payload.state);
+      setLastEffects(Array.isArray(payload.mechanicalSummary) ? payload.mechanicalSummary : []);
       setRepoSync(Boolean(payload.repoSync));
       setAction("");
       setStatus(payload.persisted ? "Turn committed to GitHub" : "Turn saved locally");
@@ -283,6 +285,13 @@ export default function CampaignPage() {
                     <span>DC {state.lastRoll.dc}</span>
                     <strong>{titleCase(state.lastRoll.outcome)}</strong>
                   </div>
+                </div>
+              ) : null}
+
+              {lastEffects.length ? (
+                <div className="effect-strip">
+                  <span>Persistent changes</span>
+                  <div>{lastEffects.map((effect, index) => <strong key={effect + index}>{effect}</strong>)}</div>
                 </div>
               ) : null}
 
