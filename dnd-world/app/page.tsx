@@ -86,7 +86,9 @@ export default function CampaignPage() {
   const [ready, setReady] = useState(false);
   const [repoSync, setRepoSync] = useState(false);
   const [status, setStatus] = useState("Opening the ledger…");
-  const [selectedLocation, setSelectedLocation] = useState<LocationState | null>(null);\n  const [authorized, setAuthorized] = useState<boolean | null>(null);\n  const [passcode, setPasscode] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState<LocationState | null>(null);
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
+  const [passcode, setPasscode] = useState("");
 
   useEffect(() => {
     let cancelled = false;
