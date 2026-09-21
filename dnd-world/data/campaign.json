@@ -2,334 +2,30 @@
   "schemaVersion": 3,
   "campaignId": "mournreach-main",
   "campaignName": "The Bell Below",
-  "chapter": "I — The Black Tithe",
-  "objective": "Find why Gallowspire's dead have begun losing their names.",
-  "turn": 1,
-  "updatedAt": "2026-09-20T07:01:00.000Z",
+  "chapter": "Prologue — The Unwritten Name",
+  "objective": "Create your character.",
+  "turn": 0,
+  "updatedAt": "2026-09-21T00:32:00.000Z",
   "world": {
     "day": 17,
     "time": "18:40",
     "season": "Blackrain",
     "weather": "Cold rain under a bruised violet sky",
     "moon": "The Crooked Lantern — waning",
-    "region": "The Gloam Coast",
-    "location": "Gallowspire",
+    "region": "Unassigned",
+    "location": "Unassigned",
     "danger": 2,
     "position": {
-      "x": 18,
-      "y": 63
+      "x": 0,
+      "y": 0
     }
   },
-  "character": {
-    "name": "Rook Vale",
-    "epithet": "the Unremembered",
-    "ancestry": "Human",
-    "calling": "Wayfarer",
-    "background": "Blackglass courier",
-    "level": 2,
-    "xp": 310,
-    "hp": 23,
-    "maxHp": 23,
-    "stamina": 16,
-    "maxStamina": 16,
-    "resolve": 12,
-    "maxResolve": 12,
-    "hunger": 18,
-    "armor": 2,
-    "evasion": 13,
-    "speed": 30,
-    "carryWeight": 17.4,
-    "carryMax": 42,
-    "crowns": 31,
-    "attributes": {
-      "might": 11,
-      "finesse": 15,
-      "vigor": 13,
-      "intellect": 14,
-      "will": 12,
-      "presence": 10
-    },
-    "skills": {
-      "athletics": 1,
-      "blades": 2,
-      "brawling": 0,
-      "marksmanship": 3,
-      "stealth": 3,
-      "survival": 3,
-      "investigation": 2,
-      "medicine": 1,
-      "occult": 1,
-      "lore": 2,
-      "insight": 1,
-      "persuasion": 0,
-      "deception": 1,
-      "intimidation": 0,
-      "crafting": 1,
-      "lockwork": 2
-    },
-    "languages": {
-      "low-veyric": 5,
-      "old-caldran": 2,
-      "nhalic": 1,
-      "varkesh": 0,
-      "asteri-cant": 1,
-      "threnody": 0
-    },
-    "conditions": [],
-    "wounds": [],
-    "equipment": {
-      "mainHand": "iron-sabre",
-      "offHand": "hooded-lantern",
-      "armor": "waxed-coat",
-      "accessory1": "blackglass-token"
-    },
-    "image": "/art/portraits/rook-vale.svg"
-  },
-  "inventory": [
-    {
-      "id": "iron-sabre",
-      "name": "Morcant Iron Sabre",
-      "category": "weapon",
-      "quantity": 1,
-      "weight": 3.1,
-      "condition": 84,
-      "maxCondition": 100,
-      "value": 22,
-      "details": "1d8 cutting. Iron edge interferes with manifested spirits.",
-      "tags": [
-        "iron",
-        "blade",
-        "spirit-ward"
-      ],
-      "image": "/art/items/iron-sabre.svg"
-    },
-    {
-      "id": "hooded-lantern",
-      "name": "Hooded Salt Lantern",
-      "category": "tool",
-      "quantity": 1,
-      "weight": 2.4,
-      "condition": 73,
-      "maxCondition": 100,
-      "value": 18,
-      "details": "Burns whale oil through a salt-treated wick. Reveals some boundary marks.",
-      "tags": [
-        "light",
-        "salt",
-        "ritual"
-      ],
-      "image": "/art/items/hooded-lantern.svg"
-    },
-    {
-      "id": "waxed-coat",
-      "name": "Waxed Road Coat",
-      "category": "armor",
-      "quantity": 1,
-      "weight": 6.8,
-      "condition": 67,
-      "maxCondition": 100,
-      "value": 14,
-      "details": "Armor 2. Rainproof enough to make the coast merely miserable.",
-      "tags": [
-        "armor",
-        "travel"
-      ],
-      "image": "/art/items/waxed-coat.svg"
-    },
-    {
-      "id": "blackglass-token",
-      "name": "Blackglass Memory Token",
-      "category": "quest",
-      "quantity": 1,
-      "weight": 0.2,
-      "condition": 100,
-      "maxCondition": 100,
-      "value": 0,
-      "details": "Warm when held. Contains the last visual memory of a murdered courier.",
-      "tags": [
-        "blackglass",
-        "memory",
-        "evidence"
-      ],
-      "image": "/art/items/blackglass-token.svg"
-    },
-    {
-      "id": "salt-packets",
-      "name": "Boundary Salt",
-      "category": "consumable",
-      "quantity": 3,
-      "weight": 0.5,
-      "condition": 100,
-      "maxCondition": 100,
-      "value": 3,
-      "details": "Enough for one doorway, a small grave, or a very optimistic campsite.",
-      "tags": [
-        "salt",
-        "ward"
-      ],
-      "image": "/art/items/boundary-salt.svg"
-    },
-    {
-      "id": "field-ration",
-      "name": "Hardbread & Smoked Eel",
-      "category": "consumable",
-      "quantity": 2,
-      "weight": 1,
-      "condition": 100,
-      "maxCondition": 100,
-      "value": 2,
-      "details": "One day's ration if you do not think too hard about the eel.",
-      "tags": [
-        "food"
-      ],
-      "image": "/art/items/field-ration.svg"
-    }
-  ],
-  "quests": [
-    {
-      "id": "black-tithe",
-      "title": "The Black Tithe",
-      "giver": "Prelate Ysra Venn",
-      "summary": "Three corpses in Gallowspire have become impossible for their families to remember by name.",
-      "status": "active",
-      "currentStage": "morgue",
-      "stages": [
-        {
-          "id": "morgue",
-          "title": "Examine the nameless dead",
-          "description": "Meet Undertaker Pell beneath Saint Orra's hospital.",
-          "status": "active"
-        },
-        {
-          "id": "records",
-          "title": "Compare the death rolls",
-          "description": "Find who altered the Synod burial ledger.",
-          "status": "locked"
-        },
-        {
-          "id": "bell",
-          "title": "Follow the bell",
-          "description": "Unknown.",
-          "status": "locked"
-        }
-      ],
-      "rewards": [
-        "40 crowns",
-        "Synod burial writ",
-        "Unknown favor"
-      ]
-    },
-    {
-      "id": "couriers-last-sight",
-      "title": "A Courier's Last Sight",
-      "giver": "Personal",
-      "summary": "Identify the place trapped inside the blackglass token.",
-      "status": "active",
-      "currentStage": "decode",
-      "stages": [
-        {
-          "id": "decode",
-          "title": "Decode the reflected sigil",
-          "description": "Find someone who can read Threnody without touching the token.",
-          "status": "active"
-        },
-        {
-          "id": "site",
-          "title": "Find the murder site",
-          "description": "Locked.",
-          "status": "locked"
-        }
-      ],
-      "rewards": [
-        "Truth about the dead courier",
-        "Possible Threnody knowledge"
-      ]
-    }
-  ],
-  "journal": [
-    {
-      "id": "j-1",
-      "turn": 1,
-      "day": 17,
-      "time": "18:40",
-      "title": "Rain over Gallowspire",
-      "body": "Prelate Venn paid half in advance and lied twice before I finished the tea. Three families remember burying someone, but not who. The undertaker still knows the names. For now.",
-      "location": "Gallowspire",
-      "tags": [
-        "black-tithe",
-        "prelate-venn",
-        "names"
-      ]
-    }
-  ],
-  "memories": [
-    {
-      "id": "mem-venn-contract",
-      "summary": "Prelate Ysra Venn hired Rook to investigate three nameless corpses and is frightened of Synod superiors learning how serious the problem is.",
-      "importance": 5,
-      "tags": [
-        "ysra-venn",
-        "black-tithe",
-        "synod"
-      ],
-      "createdTurn": 1,
-      "lastReferencedTurn": 1
-    },
-    {
-      "id": "mem-token",
-      "summary": "Rook carries a blackglass token containing a murdered courier's last visual memory. A mirrored Threnody sigil appears inside it.",
-      "importance": 5,
-      "tags": [
-        "blackglass",
-        "threnody",
-        "courier"
-      ],
-      "createdTurn": 1,
-      "lastReferencedTurn": 1
-    },
-    {
-      "id": "mem-opening-bell",
-      "summary": "At Saint Orra's hospital stair, Rook heard an impossible deep bell beneath the city. His blackglass token turned hot and a voice below whispered in Low Veyric: 'Kel va mor' — keep your name.",
-      "importance": 5,
-      "tags": [
-        "saint-orra",
-        "bell",
-        "blackglass-token",
-        "low-veyric"
-      ],
-      "createdTurn": 1,
-      "lastReferencedTurn": 1
-    }
-  ],
-  "milestones": [
-    {
-      "id": "first-true-name",
-      "title": "A Name Kept",
-      "description": "Preserve a person's true name when the world tries to erase it.",
-      "status": "active",
-      "progress": 0,
-      "target": 1,
-      "reward": "+1 permanent Resolve and a unique memory trait"
-    },
-    {
-      "id": "roads-remember",
-      "title": "The Road Remembers",
-      "description": "Visit five distinct regions of Mournreach.",
-      "status": "active",
-      "progress": 1,
-      "target": 5,
-      "reward": "Wayfarer's instinct: advantage on the first travel check in a region"
-    },
-    {
-      "id": "speak-the-dead-tongue",
-      "title": "Tongue of Graves",
-      "description": "Reach Nhalic fluency 3.",
-      "status": "hidden",
-      "progress": 1,
-      "target": 3,
-      "reward": "Speak directly to certain echoes without a ritual intermediary"
-    }
-  ],
+  "character": null,
+  "inventory": [],
+  "quests": [],
+  "journal": [],
+  "memories": [],
+  "milestones": [],
   "npcs": [
     {
       "id": "ysra-venn",
@@ -520,29 +216,19 @@
     "venn-lied": true,
     "undertaker-knows-names": true,
     "token-unopened": false,
-    "bell-heard": true,
-    "visual-codex-required": true
+    "bell-heard": false,
+    "visual-codex-required": true,
+    "character-creation-pending": true
   },
   "logs": [
     {
-      "id": "log-1",
-      "turn": 1,
-      "kind": "narration",
-      "title": "The Black Tithe",
-      "body": "Rain combs the slate roofs of Gallowspire. Beneath Saint Orra's hospital, Undertaker Pell is waiting beside three bodies whose families can no longer say whom they buried. Somewhere below the city, very faintly, metal answers metal.",
-      "location": "Gallowspire",
-      "image": "/art/gloam-coast.svg",
-      "createdAt": "2026-09-20T03:26:00.000Z"
-    },
-    {
-      "id": "log-opening-bell",
-      "turn": 1,
-      "kind": "narration",
-      "title": "The Bell Beneath Saint Orra",
-      "body": "At the stair to Saint Orra's undercroft, a deep bell sounded from below. Rook's blackglass token heated against his chest, and a voice whispered in Low Veyric: 'Kel va mor' — keep your name.",
-      "location": "Gallowspire — Saint Orra's Hospital Stair",
-      "image": "asset:saint-orra-undercroft",
-      "createdAt": "2026-09-20T07:01:00.000Z"
+      "id": "log-character-creation",
+      "turn": 0,
+      "kind": "system",
+      "title": "Before the Bell",
+      "body": "The player character has not yet been created. No protagonist identity, stats, inventory, memories, relationships, or personal history are canon until character creation is completed.",
+      "location": "Unassigned",
+      "createdAt": "2026-09-21T00:32:00.000Z"
     }
   ],
   "mapImage": "/art/map/mournreach.svg"
