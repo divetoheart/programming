@@ -1,30 +1,20 @@
 {
   "schemaVersion": 2,
   "canonCommit": "48d60e7eb0f321cfc240099c38702963ad58da41",
-  "turn": 1,
-  "currentActId": "act-1-black-tithe",
-  "activeBeatId": "BT-01",
+  "turn": 0,
+  "currentActId": "character-creation",
+  "activeBeatId": "CC-01",
   "beatStatus": "active",
   "scene": {
-    "region": "The Gloam Coast",
-    "locationId": "gallowspire",
-    "subLocationId": "saint-orra-hospital-stair",
+    "region": "Unassigned",
+    "locationId": "unassigned",
+    "subLocationId": "character-creation",
     "presentNpcIds": [],
-    "immediatelyRelevantNpcIds": [
-      "undertaker-pell"
-    ],
-    "immediatelyRelevantItemIds": [
-      "blackglass-token"
-    ],
-    "lastSeenNpcIds": [
-      "ysra-venn"
-    ],
-    "settingAssetId": "gallowspire",
-    "contextualAssetIds": [
-      "blackglass-memory-token",
-      "orren-pell"
-    ],
-    "lastEventId": "log-opening-bell",
+    "immediatelyRelevantNpcIds": [],
+    "immediatelyRelevantItemIds": [],
+    "lastSeenNpcIds": [],
+    "settingAssetId": null,
+    "contextualAssetIds": [],
     "control": "player"
   },
   "hydration": {
@@ -32,14 +22,12 @@
       "campaign.json",
       "runtime-index.json"
     ],
-    "npcSheets": [
-      "undertaker-pell"
-    ],
+    "npcSheets": [],
     "loadStorySpine": false,
     "loadWorldBible": false,
-    "loadAssetManifest": true,
+    "loadAssetManifest": false,
     "reasons": [
-      "Current scene is still BT-01; Pell is directly below and the token has reacted."
+      "Character creation must complete before campaign play begins."
     ]
   },
   "offscreen": {
@@ -62,7 +50,9 @@
   ],
   "rules": [
     "Do not surface undiscovered NPC names/roles solely because sheets exist.",
+    "Do not begin campaign Act I until character creation is complete.",
+    "The player's chosen/generated character sheet becomes the permanent protagonist.",
     "Update this index after every turn before finishing the response."
   ],
-  "openingEventCommitted": true
+  "openingEventCommitted": false
 }
