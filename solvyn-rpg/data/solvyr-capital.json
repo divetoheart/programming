@@ -1,0 +1,25 @@
+{
+  "id": "solvyr-capital",
+  "name": "Solvyr",
+  "realm": "Solvyn",
+  "experience": "Arrival at Solvyr Castle",
+  "spawn": { "x": 0, "y": 0, "z": 128, "yaw": 0 },
+  "landmarks": [
+    { "id": "south-gate", "name": "South Gate", "z": 65 },
+    { "id": "crown-street", "name": "Crown Street", "z": 18 },
+    { "id": "castle-gate", "name": "Solvyr Castle Gate", "z": -45 },
+    { "id": "inner-court", "name": "Inner Court", "z": -72 },
+    { "id": "great-hall", "name": "Great Hall", "z": -119 },
+    { "id": "royal-dais", "name": "Royal Dais", "z": -137 }
+  ],
+  "zones": [
+    { "id": "south-gate", "name": "SOLVYR · SOUTH GATE", "minZ": 57, "maxZ": 72 },
+    { "id": "crown-street", "name": "SOLVYR · CROWN STREET", "minZ": -20, "maxZ": 56 },
+    { "id": "castle-court", "name": "SOLVYR CASTLE · INNER COURT", "minZ": -96, "maxZ": -48 },
+    { "id": "great-hall", "name": "SOLVYR CASTLE · GREAT HALL", "minZ": -145, "maxZ": -99 }
+  ],
+  "artDirection": {
+    "keywords": ["weathered royal stone", "dark slate", "old gold", "cool mountain haze", "warm torchlight"],
+    "rule": "Simple geometry must read as deliberate architecture, never placeholder cubes."
+  }
+}
