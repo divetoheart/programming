@@ -1,12 +1,29 @@
 # Changelog
 
-## 0.1.0 — Solvyr Castle arrival slice
+## 0.2.0 — Experience Pass
 
-- Established standalone Solvyn RPG project under the programming repository.
-- Added browser-native Three.js/Vite runtime.
-- Added first-person movement, sprint, jump, pointer-lock camera, and collision.
-- Built King's Road, Solvyr South Gate, Crown Street, Solvyr Castle, inner court, Great Hall, and royal dais.
-- Added castle guard interaction and animated portcullis.
-- Added versioned persistent player position, discovery, and gate state.
-- Added stylized atmosphere, fog, restrained lighting/shadows, torchlight, banners, market dressing, and instanced vegetation.
-- Added durable project-state documentation for future sessions.
+Rebuilt the Solvyr arrival around authored player experience rather than feature breadth.
+
+### Added
+- opening city reveal and chapter/location moments
+- new Solvyn visual identity and three-point crown motif
+- denser South Gate, Crown Street, Castle Ascent, Inner Court and Great Hall
+- animated banners, smoke, torches and birds
+- lightweight NPC walking/awareness
+- market cart traffic and a small animated cat
+- multiple incidental NPC/environment interactions
+- procedural ambient wind, city murmur, hall tone, footsteps, bells and portcullis sound
+- smoother movement acceleration and sprint camera response
+- adaptive render resolution
+- persistent moments/interactions in save state
+- distant mountain silhouette
+
+### Changed
+- save version reset to v2 so the redesigned experience starts from the King's Road
+- objective flow now matches the authored arrival sequence
+- castle gate and Great Hall composition substantially rebuilt
+- world state documentation now treats experience quality as the gating milestone
+
+## 0.1.0 — Foundation
+
+Initial playable path from the King's Road to the royal dais with movement, collision, zones, a castle guard interaction, portcullis persistence and a procedural environment.

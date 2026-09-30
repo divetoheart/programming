@@ -3,23 +3,18 @@
   "name": "Solvyr",
   "realm": "Solvyn",
   "experience": "Arrival at Solvyr Castle",
-  "spawn": { "x": 0, "y": 0, "z": 128, "yaw": 0 },
-  "landmarks": [
-    { "id": "south-gate", "name": "South Gate", "z": 65 },
-    { "id": "crown-street", "name": "Crown Street", "z": 18 },
-    { "id": "castle-gate", "name": "Solvyr Castle Gate", "z": -45 },
-    { "id": "inner-court", "name": "Inner Court", "z": -72 },
-    { "id": "great-hall", "name": "Great Hall", "z": -119 },
-    { "id": "royal-dais", "name": "Royal Dais", "z": -137 }
-  ],
+  "spawn": { "x": 0, "y": 0, "z": 140, "yaw": 0 },
   "zones": [
-    { "id": "south-gate", "name": "SOLVYR · SOUTH GATE", "minZ": 57, "maxZ": 72 },
-    { "id": "crown-street", "name": "SOLVYR · CROWN STREET", "minZ": -20, "maxZ": 56 },
-    { "id": "castle-court", "name": "SOLVYR CASTLE · INNER COURT", "minZ": -96, "maxZ": -48 },
-    { "id": "great-hall", "name": "SOLVYR CASTLE · GREAT HALL", "minZ": -145, "maxZ": -99 }
+    { "id": "kings-road", "name": "THE KING'S ROAD", "minZ": 95, "maxZ": 160 },
+    { "id": "south-gate", "name": "SOLVYR · SOUTH GATE", "minZ": 57, "maxZ": 94 },
+    { "id": "crown-street", "name": "SOLVYR · CROWN STREET", "minZ": -28, "maxZ": 56 },
+    { "id": "castle-ascent", "name": "SOLVYR · CASTLE ASCENT", "minZ": -48, "maxZ": -29 },
+    { "id": "castle-court", "name": "SOLVYR CASTLE · INNER COURT", "minZ": -99, "maxZ": -49 },
+    { "id": "great-hall", "name": "SOLVYR CASTLE · GREAT HALL", "minZ": -151, "maxZ": -100 }
   ],
   "artDirection": {
-    "keywords": ["weathered royal stone", "dark slate", "old gold", "cool mountain haze", "warm torchlight"],
-    "rule": "Simple geometry must read as deliberate architecture, never placeholder cubes."
+    "palette": ["weathered limestone", "blue-black slate", "oxblood cloth", "old gold", "cedar timber", "warm amber fire"],
+    "motif": "three-point crown",
+    "rule": "Every simple shape should contribute silhouette, rhythm, story, or interaction."
   }
 }

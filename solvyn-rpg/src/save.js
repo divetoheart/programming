@@ -1,10 +1,15 @@
-const KEY = "solvyn.save.v1";
-const VERSION = 1;
+const KEY = "solvyn.save.v2";
+const VERSION = 2;
 
 const defaults = {
   version: VERSION,
-  player: { x: 0, y: 0, z: 128, yaw: 0, pitch: 0 },
-  world: { castleGateOpen: false, discovered: [] }
+  player: { x: 0, y: 0, z: 140, yaw: 0, pitch: -0.02 },
+  world: {
+    castleGateOpen: false,
+    discovered: [],
+    momentsSeen: [],
+    interactionsUsed: []
+  }
 };
 
 export function loadSave() {
@@ -18,7 +23,9 @@ export function loadSave() {
       player: { ...defaults.player, ...(parsed.player || {}) },
       world: {
         castleGateOpen: Boolean(parsed.world?.castleGateOpen),
-        discovered: Array.isArray(parsed.world?.discovered) ? parsed.world.discovered : []
+        discovered: Array.isArray(parsed.world?.discovered) ? parsed.world.discovered : [],
+        momentsSeen: Array.isArray(parsed.world?.momentsSeen) ? parsed.world.momentsSeen : [],
+        interactionsUsed: Array.isArray(parsed.world?.interactionsUsed) ? parsed.world.interactionsUsed : []
       }
     };
   } catch {
