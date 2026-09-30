@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import capital from "../data/solvyr-capital.json";
+import { installDetailPass } from "./detail-pass.js";
 
 const C = {
   limestone: 0x817d72,
@@ -92,6 +93,7 @@ export class SolvyrWorld {
     this.buildCastleAscent();
     this.buildCastle();
     this.buildLife();
+    this.detailPass = installDetailPass(this);
   }
 
   groundHeight() {
@@ -998,6 +1000,8 @@ export class SolvyrWorld {
       b.mesh.rotation.y = -a;
       b.mesh.rotation.z = Math.sin(this.clock*5 + i)*.08;
     });
+
+    this.detailPass?.update(dt, playerPosition);
 
     this.moment("first-reveal", playerPosition.z < 134, {
       kicker: "THE CROWN CITY",

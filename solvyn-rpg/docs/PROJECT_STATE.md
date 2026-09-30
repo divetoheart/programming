@@ -39,7 +39,7 @@ Current save state persists:
 - authored moments already seen
 - incidental interactions used
 
-Save version is `v2`. The experience intentionally starts fresh from the King's Road after this visual/experience overhaul.
+Save version is `v3`. The experience intentionally starts fresh from the King's Road after this visual/experience overhaul.
 
 ## Living-world systems
 
@@ -104,3 +104,19 @@ Specifically inspect:
 - any collision traps
 
 Only after this slice feels convincing should the project add combat, inventory, quests, equipment, larger world streaming, or a deeper NPC simulation.
+
+
+## Visual fidelity pass — v3
+
+The world now uses a lightweight authored surface/detail layer rather than flat-color primitives alone:
+
+- procedural 256px stone, plaster, timber, slate, cloth, grass and cobblestone textures
+- matching low-cost bump maps for masonry, plaster and road surfaces
+- textured façade overlays with repeated UV scale instead of stretched color fields
+- architectural trim, arched stonework, doors, shutters, sills and eaves
+- instanced crates, barrels, sacks, benches, curbs, roadside stones and grass tufts
+- laundry lines, ivy growth and Great Hall dust motes
+- denser market/court dressing while keeping repeated props instanced
+- higher baseline render scale and a 1536² sun shadow map, with adaptive resolution still protecting the M1 target
+
+The visual target is now “stylized authored environment”: geometry stays economical, but surfaces and silhouettes should no longer read as a gray-box prototype.

@@ -27,7 +27,7 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
   powerPreference: "high-performance"
 });
-let renderScale = Math.min(devicePixelRatio, 1.35);
+let renderScale = Math.min(devicePixelRatio, 1.55);
 renderer.setPixelRatio(renderScale);
 renderer.setSize(innerWidth, innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -78,7 +78,7 @@ scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xffe2b8, 2.75);
 sun.position.set(42, 68, 28);
 sun.castShadow = true;
-sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.mapSize.set(1536, 1536);
 sun.shadow.camera.left = -62;
 sun.shadow.camera.right = 62;
 sun.shadow.camera.top = 76;
@@ -164,10 +164,10 @@ function adaptResolution(dt) {
   fpsFrames++;
   if (fpsWindow < 2.2) return;
   const fps = fpsFrames / fpsWindow;
-  const maxScale = Math.min(devicePixelRatio, 1.45);
+  const maxScale = Math.min(devicePixelRatio, 1.7);
   let next = renderScale;
-  if (fps < 45 && renderScale > .92) next = Math.max(.9, renderScale - .1);
-  else if (fps > 58 && renderScale < maxScale) next = Math.min(maxScale, renderScale + .05);
+  if (fps < 43 && renderScale > 1.02) next = Math.max(1.0, renderScale - .1);
+  else if (fps > 57 && renderScale < maxScale) next = Math.min(maxScale, renderScale + .05);
   if (Math.abs(next - renderScale) > .01) {
     renderScale = next;
     resizeRenderer();

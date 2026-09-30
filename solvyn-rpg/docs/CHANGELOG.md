@@ -27,3 +27,13 @@ Rebuilt the Solvyr arrival around authored player experience rather than feature
 ## 0.1.0 — Foundation
 
 Initial playable path from the King's Road to the royal dais with movement, collision, zones, a castle guard interaction, portcullis persistence and a procedural environment.
+
+
+## 0.3.0 — Surface & density pass
+
+- Added procedural material textures and bump detail for stone, plaster, timber, slate, cloth, grass and cobbles.
+- Added facade skins and stonework overlays with repeated detail scale.
+- Added arches, shutters, doors, eaves, curbs, crates, barrels, sacks, benches, grass tufts, stones, laundry and ivy.
+- Added Great Hall dust motes.
+- Raised baseline resolution and shadow fidelity while retaining adaptive scaling for the M1/8GB performance floor.
+- Bumped save version to v3 so the revised arrival is experienced from the beginning.
