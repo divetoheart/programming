@@ -131,6 +131,119 @@ function reliefTexture(seed, blocky = false, size = 256) {
   return t;
 }
 
+
+function cobbleTexture(seed, bump = false, size = 384) {
+  const random=rng(seed);
+  const canvas=document.createElement("canvas");
+  canvas.width=canvas.height=size;
+  const ctx=canvas.getContext("2d");
+  ctx.fillStyle=bump?"#3d3d3d":"#5b574f";
+  ctx.fillRect(0,0,size,size);
+
+  let y=-18,row=0;
+  while(y<size+30){
+    const h=22+random()*15;
+    let x=(row%2?-24:-5)-random()*22;
+    while(x<size+40){
+      const w=28+random()*30;
+      const j=(random()-.5)*5;
+      ctx.beginPath();
+      ctx.moveTo(x+2,y+5+j);
+      ctx.lineTo(x+w-3,y+2+(random()-.5)*5);
+      ctx.lineTo(x+w-1,y+h-4+(random()-.5)*4);
+      ctx.lineTo(x+4,y+h-1+(random()-.5)*4);
+      ctx.closePath();
+      if(bump){
+        const v=166+Math.floor(random()*42);
+        ctx.fillStyle="rgb("+v+","+v+","+v+")";
+        ctx.strokeStyle="#555";
+      }else{
+        const v=104+Math.floor(random()*30);
+        ctx.fillStyle="rgb("+(v+8)+","+(v+3)+","+(v-4)+")";
+        ctx.strokeStyle="rgba(42,39,35,.62)";
+      }
+      ctx.lineWidth=bump?3:2;
+      ctx.fill();ctx.stroke();
+      if(!bump){
+        ctx.strokeStyle="rgba(245,229,194,.10)";
+        ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(x+6,y+8);ctx.lineTo(x+w-8,y+5);ctx.stroke();
+      }
+      x+=w+3+random()*4;
+    }
+    y+=h+3;
+    row++;
+  }
+  if(!bump){
+    for(let i=0;i<700;i++){
+      ctx.fillStyle=random()>.5?"rgba(255,241,211,.045)":"rgba(26,24,22,.05)";
+      ctx.fillRect(random()*size,random()*size,1+random()*2,1+random()*2);
+    }
+  }
+  const t=new THREE.CanvasTexture(canvas);
+  t.wrapS=t.wrapT=THREE.RepeatWrapping;
+  if(!bump)t.colorSpace=THREE.SRGBColorSpace;
+  t.anisotropy=6;t.needsUpdate=true;
+  return t;
+}
+
+function addArchBlocks(world,z,centerY,rx,ry,depth,material) {
+  const specs=[];
+  const count=17;
+  for(let i=0;i<count;i++){
+    const a=Math.PI*i/(count-1);
+    specs.push({
+      x:Math.cos(a)*rx,
+      y:centerY+Math.sin(a)*ry,
+      z,
+      sx:.72,sy:.44,sz:depth,
+      rz:a-Math.PI/2
+    });
+  }
+  instanced(world,world.unitBox,material,specs,true);
+}
+
+function addStorybookSkyline(world) {
+  // Uneven roofs behind the South Gate make Solvyr feel larger than the playable street.
+  const quarter=[
+    [-27,49,6.4,7.2,10.8,0],
+    [-19,43,5.7,6.3,15.6,1],
+    [-11,47,5.3,5.8,9.8,2],
+    [12,45,5.5,6.2,11.8,1],
+    [20,40,6.2,6.6,13.1,0],
+    [29,47,6.7,7.4,9.4,2]
+  ];
+  quarter.forEach(([x,z,sx,sz,h,tone],i)=>{
+    const body=tone===0?world.mat.plaster:tone===1?world.mat.stone:world.mat.plasterWarm;
+    world.addBox(x,h/2,z,sx,h,sz,body,false,true);
+    world.addGableRoof(x,h-.05,z,sx,sz,2.4+(i%2)*.5);
+    if(i===1){
+      world.addBox(x,h+1.0,z,3.8,2.4,3.8,world.mat.stoneDark,false,true);
+      world.addRoof(x,h+3.1,z,3.1,3.8,world.mat.slate);
+      world.addWindow(x,h+1.1,z+1.94,.8,1.25,0xffc06a,0);
+    }
+  });
+  // Chimney rhythm and smoke already suggest a city beyond the slice.
+  [[-30,46,11],[-7,44,10],[16,43,12],[27,45,10]].forEach(([x,z,y],i)=>{
+    world.addBox(x,y,z,.7,2.4,.7,world.mat.stoneDark,false,true);
+    if(i%2===0) world.addSmoke(x,y+1.4,z);
+  });
+
+  // Hand-laid voussoirs: a small amount of geometry with a huge silhouette payoff.
+  addArchBlocks(world,67.22,4.45,5.15,3.9,.62,world.mat.stoneLight);
+  addArchBlocks(world,-45.72,5.2,4.8,4.25,.68,world.mat.stoneLight);
+
+  // A little foreground framing keeps portrait mode from feeling like a tunnel.
+  const posts=[];
+  for(const side of [-1,1]){
+    [118,101,84].forEach((z,i)=>{
+      posts.push({x:side*(11.0+i*.9),y:1.05,z,sx:.18,sy:2.1,sz:.18});
+      posts.push({x:side*(11.0+i*.9),y:2.15,z,sx:1.25,sy:.13,sz:.13,rz:side*.05});
+    });
+  }
+  instanced(world,world.unitBox,world.mat.timber,posts,false);
+}
+
 function repeat(texture, x, y) {
   const t = texture.clone();
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
@@ -342,8 +455,8 @@ export function installArtDirection(world) {
     slate:paintedTexture({seed:41,base:0x2b3a40,light:0x42535a,dark:0x192529,direction:"horizontal"}),
     cloth:paintedTexture({seed:51,base:0x702832,light:0x93434a,dark:0x451921,direction:"vertical"}),
     goldcloth:paintedTexture({seed:52,base:0xa07d42,light:0xc2a35d,dark:0x73562f,direction:"vertical"}),
-    cobble:paintedTexture({seed:61,base:0x6f6a60,light:0x8f887a,dark:0x4d4c48,blocks:true}),
-    cobbleRelief:reliefTexture(62,true),
+    cobble:cobbleTexture(61,false),
+    cobbleRelief:cobbleTexture(61,true),
     grass:paintedTexture({seed:71,base:0x53694f,light:0x6f845f,dark:0x34473a,direction:"mixed"})
   };
 
@@ -377,6 +490,7 @@ export function installArtDirection(world) {
   addGroundLife(world);
   addCityDensity(world);
   addIvy(world);
+  addStorybookSkyline(world);
   const dust=addHallDust(world);
 
   return {

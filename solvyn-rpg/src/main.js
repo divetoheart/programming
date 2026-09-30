@@ -89,7 +89,7 @@ const artFragment="uniform sampler2D tDiffuse;uniform vec2 resolution;uniform fl
 "float l=lum(c);float q=floor(l*10.+.5)/10.;c*=mix(1.,q/max(l,.04),.10*strength);"+
 "c*=1.-smoothstep(.13,.48,edge)*.16*strength;c=pow(max(c,vec3(0.)),vec3(.92));c+=vec3(.012,.010,.006);"+
 "float grain=(hash(floor(gl_FragCoord.xy*.72))-.5)*.018;c+=grain;"+
-"c=mix(c,c*vec3(1.028,1.0,.955),.22);float vig=smoothstep(.84,.27,length(vUv-.5));"+
+"c=mix(c,c*vec3(1.028,1.0,.955),.22);float vig=1.-smoothstep(.27,.84,length(vUv-.5));"+
 "c*=mix(.965,1.018,vig);gl_FragColor=vec4(c,1.);}";
 
 const artShader={
