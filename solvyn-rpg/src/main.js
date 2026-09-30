@@ -26,7 +26,7 @@ const scene=new THREE.Scene();
 scene.background=new THREE.Color(0xa8b5ae);
 scene.fog=new THREE.FogExp2(0xa9b3a9,.0073);
 
-const camera=new THREE.PerspectiveCamera(66,innerWidth/innerHeight,.08,460);
+const camera=new THREE.PerspectiveCamera(66,innerWidth/innerHeight,.08,650);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance",alpha:false});
 let renderScale=Math.min(devicePixelRatio,isTouch?1.72:1.55);
 renderer.setPixelRatio(renderScale);
@@ -41,12 +41,15 @@ root.appendChild(renderer.domElement);
 
 const skyVertex="varying vec3 vWorld;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vWorld=wp.xyz;gl_Position=projectionMatrix*viewMatrix*wp;}";
 const skyFragment="uniform vec3 topColor;uniform vec3 highColor;uniform vec3 horizonColor;uniform vec3 sunWash;varying vec3 vWorld;"+
-"void main(){float h=normalize(vWorld).y;vec3 c=mix(horizonColor,highColor,smoothstep(.01,.42,h));"+
-"c=mix(c,topColor,smoothstep(.35,.88,h));float warmth=1.-smoothstep(-.08,.16,h);"+
-"c=mix(c,sunWash,warmth*.18);gl_FragColor=vec4(c,1.);}";
+"void main(){vec3 dir=normalize(vWorld);float h=dir.y;vec3 c=mix(horizonColor,highColor,smoothstep(.01,.42,h));"+
+"c=mix(c,topColor,smoothstep(.35,.88,h));float warmth=1.-smoothstep(-.08,.16,h);c=mix(c,sunWash,warmth*.18);"+
+"float wash=(sin(dir.x*17.+dir.z*7.)+sin(dir.z*21.-dir.x*5.)+sin((dir.x+dir.z)*11.))*.333;"+
+"float cloud=smoothstep(.34,.82,wash)*smoothstep(.05,.48,h)*(1.-smoothstep(.62,.90,h));"+
+"c=mix(c,vec3(.78,.82,.76),cloud*.16);float sun=pow(max(dot(dir,normalize(vec3(-.46,.30,.84))),0.),72.);"+
+"c+=sun*vec3(.36,.23,.10);gl_FragColor=vec4(c,1.);}";
 
 const sky=new THREE.Mesh(
-  new THREE.SphereGeometry(360,24,12),
+  new THREE.SphereGeometry(280,28,14),
   new THREE.ShaderMaterial({
     side:THREE.BackSide,depthWrite:false,
     uniforms:{
