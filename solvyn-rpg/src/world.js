@@ -345,10 +345,14 @@ export class SolvyrWorld {
     this.addBox(-30, 5, 64, 44, 10, 4, this.mat.stoneDark, false);
     this.addBox(30, 5, 64, 44, 10, 4, this.mat.stoneDark, false);
 
-    // Framing stones at spawn create a deliberate first view.
-    this.addBox(-10.8, 2.1, 136, 1.8, 4.2, 5, this.mat.stoneDark, true);
-    this.addBox(10.8, 2.1, 136, 1.8, 4.2, 5, this.mat.stoneDark, true);
-    this.addBox(0, 4.7, 136, 23, 1.2, 4.4, this.mat.timber, false);
+    // Open-air waystones frame the reveal without putting a ceiling over portrait cameras.
+    for (const side of [-1, 1]) {
+      const x = side * 11.2;
+      const stone = this.addBox(x, 1.8, 136.5, 1.45, 3.6, 1.25, this.mat.stoneDark, false);
+      stone.rotation.z = side * .045;
+      this.addBox(x - side * .34, 3.52, 136.5, .36, .28, 1.42, this.mat.gold, false, false);
+      this.addBox(x + side * .26, 2.65, 136.0, .12, 1.0, .12, this.mat.timber, false, false);
+    }
 
     for (const x of [-8.4, 8.4]) {
       for (let z = 124; z >= 82; z -= 10.5) this.addLantern(x, z, 2.15);
