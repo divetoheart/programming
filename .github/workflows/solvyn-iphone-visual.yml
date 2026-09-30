@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "solvyn-rpg/**"
       - ".github/workflows/solvyn-iphone-visual.yml"
 
 jobs:

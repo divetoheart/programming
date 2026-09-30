@@ -23,8 +23,8 @@ const chapterSubtitle=document.querySelector("#chapter-subtitle");
 const isTouch=("ontouchstart" in window)||matchMedia("(pointer: coarse)").matches;
 
 const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x8fa3a0);
-scene.fog=new THREE.FogExp2(0x9ba8a1,.0076);
+scene.background=new THREE.Color(0xa8b5ae);
+scene.fog=new THREE.FogExp2(0xa9b3a9,.0073);
 
 const camera=new THREE.PerspectiveCamera(66,innerWidth/innerHeight,.08,460);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance",alpha:false});
@@ -33,7 +33,7 @@ renderer.setPixelRatio(renderScale);
 renderer.setSize(innerWidth,innerHeight);
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=1.03;
+renderer.toneMappingExposure=1.18;
 renderer.shadowMap.enabled=true;
 renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.domElement.setAttribute("aria-label","Solvyr game view");
@@ -42,8 +42,8 @@ root.appendChild(renderer.domElement);
 const skyVertex="varying vec3 vWorld;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vWorld=wp.xyz;gl_Position=projectionMatrix*viewMatrix*wp;}";
 const skyFragment="uniform vec3 topColor;uniform vec3 highColor;uniform vec3 horizonColor;uniform vec3 sunWash;varying vec3 vWorld;"+
 "void main(){float h=normalize(vWorld).y;vec3 c=mix(horizonColor,highColor,smoothstep(.01,.42,h));"+
-"c=mix(c,topColor,smoothstep(.35,.88,h));float warmth=smoothstep(.16,-.08,h);"+
-"c=mix(c,sunWash,warmth*.20);gl_FragColor=vec4(c,1.);}";
+"c=mix(c,topColor,smoothstep(.35,.88,h));float warmth=1.-smoothstep(-.08,.16,h);"+
+"c=mix(c,sunWash,warmth*.18);gl_FragColor=vec4(c,1.);}";
 
 const sky=new THREE.Mesh(
   new THREE.SphereGeometry(360,24,12),
@@ -61,9 +61,9 @@ const sky=new THREE.Mesh(
 );
 scene.add(sky);
 
-const hemi=new THREE.HemisphereLight(0xd7dfd4,0x405246,1.75);
+const hemi=new THREE.HemisphereLight(0xe3e9df,0x536650,2.12);
 scene.add(hemi);
-const sun=new THREE.DirectionalLight(0xffdfb0,2.8);
+const sun=new THREE.DirectionalLight(0xffdfad,3.18);
 sun.position.set(42,68,28);
 sun.castShadow=true;
 sun.shadow.mapSize.set(isTouch?1536:2048,isTouch?1536:2048);
@@ -87,10 +87,10 @@ const artFragment="uniform sampler2D tDiffuse;uniform vec2 resolution;uniform fl
 "float edge=abs(lum(n)-lum(s))+abs(lum(e)-lum(w));"+
 "vec3 avg=(n+s+e+w+c*4.)/8.;c=mix(c,avg,smoothstep(.035,.22,edge)*.34);"+
 "float l=lum(c);float q=floor(l*10.+.5)/10.;c*=mix(1.,q/max(l,.04),.10*strength);"+
-"c*=1.-smoothstep(.13,.48,edge)*.20*strength;"+
-"float grain=(hash(floor(gl_FragCoord.xy*.72))-.5)*.022;c+=grain;"+
+"c*=1.-smoothstep(.13,.48,edge)*.16*strength;c=pow(max(c,vec3(0.)),vec3(.92));c+=vec3(.012,.010,.006);"+
+"float grain=(hash(floor(gl_FragCoord.xy*.72))-.5)*.018;c+=grain;"+
 "c=mix(c,c*vec3(1.028,1.0,.955),.22);float vig=smoothstep(.84,.27,length(vUv-.5));"+
-"c*=mix(.93,1.025,vig);gl_FragColor=vec4(c,1.);}";
+"c*=mix(.965,1.018,vig);gl_FragColor=vec4(c,1.);}";
 
 const artShader={
   uniforms:{

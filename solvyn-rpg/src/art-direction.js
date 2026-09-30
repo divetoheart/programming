@@ -140,7 +140,8 @@ function repeat(texture, x, y) {
   return t;
 }
 
-function applyPaint(material, map, bump, rx, ry, bumpScale = .025) {
+function applyPaint(material, map, bump, rx, ry, bumpScale = .025, tintColor = 0xffffff) {
+  material.color.setHex(tintColor);
   material.map = repeat(map, rx, ry);
   if (bump) {
     material.bumpMap = repeat(bump, rx, ry);
@@ -168,13 +169,13 @@ function buildRollingTerrain(world, grassMap) {
     p.setY(i, -.11 + shoulderRise + distantRise);
 
     const shade = .78 + .18*Math.sin(x*.13 + z*.025) + .08*Math.cos(z*.08);
-    colors.push(.30*shade, .43*shade, .29*shade);
+    colors.push(.82*shade, .94*shade, .80*shade);
   }
   geo.setAttribute("color", new THREE.Float32BufferAttribute(colors,3));
   geo.computeVertexNormals();
 
   const mat = new THREE.MeshStandardMaterial({
-    color:0xb5c6aa,
+    color:0xffffff,
     map:repeat(grassMap,18,36),
     vertexColors:true,
     roughness:1,
@@ -346,18 +347,18 @@ export function installArtDirection(world) {
     grass:paintedTexture({seed:71,base:0x53694f,light:0x6f845f,dark:0x34473a,direction:"mixed"})
   };
 
-  applyPaint(world.mat.stone,tex.stone,tex.stoneRelief,4.5,4.5,.045);
-  applyPaint(world.mat.stoneLight,tex.stone,tex.stoneRelief,4.5,4.5,.038);
-  applyPaint(world.mat.stoneDark,tex.stone,tex.stoneRelief,4.5,4.5,.032);
-  applyPaint(world.mat.plaster,tex.plaster,tex.plasterRelief,2.6,3.4,.023);
-  applyPaint(world.mat.plasterWarm,tex.plaster,tex.plasterRelief,2.6,3.4,.023);
-  applyPaint(world.mat.timber,tex.wood,null,3.2,5.5,0);
-  applyPaint(world.mat.slate,tex.slate,null,4.2,5.2,0);
-  applyPaint(world.mat.cloth,tex.cloth,null,2.5,5,0);
-  applyPaint(world.mat.clothGold,tex.goldcloth,null,2.5,5,0);
-  applyPaint(world.mat.road,tex.cobble,tex.cobbleRelief,3.5,58,.055);
-  applyPaint(world.mat.grass,tex.grass,null,16,30,0);
-  applyPaint(world.mat.grassDark,tex.grass,null,14,26,0);
+  applyPaint(world.mat.stone,tex.stone,tex.stoneRelief,4.5,4.5,.045,0xf1eee4);
+  applyPaint(world.mat.stoneLight,tex.stone,tex.stoneRelief,4.5,4.5,.038,0xfff8e9);
+  applyPaint(world.mat.stoneDark,tex.stone,tex.stoneRelief,4.5,4.5,.032,0x89928f);
+  applyPaint(world.mat.plaster,tex.plaster,tex.plasterRelief,2.6,3.4,.023,0xfff8e9);
+  applyPaint(world.mat.plasterWarm,tex.plaster,tex.plasterRelief,2.6,3.4,.023,0xe8d8bf);
+  applyPaint(world.mat.timber,tex.wood,null,3.2,5.5,0,0xe9cfb4);
+  applyPaint(world.mat.slate,tex.slate,null,4.2,5.2,0,0xb8c3c2);
+  applyPaint(world.mat.cloth,tex.cloth,null,2.5,5,0,0xe8d7d2);
+  applyPaint(world.mat.clothGold,tex.goldcloth,null,2.5,5,0,0xf3e0b3);
+  applyPaint(world.mat.road,tex.cobble,tex.cobbleRelief,3.5,58,.055,0xe2ded3);
+  applyPaint(world.mat.grass,tex.grass,null,16,30,0,0xc8d8ba);
+  applyPaint(world.mat.grassDark,tex.grass,null,14,26,0,0x91aa87);
 
   [
     [world.mat.guardBlue,0x405766,83],
