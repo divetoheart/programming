@@ -1,0 +1,77 @@
+name: Solvyn iPhone Visual QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/solvyn-iphone-visual.yml"
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: solvyn-rpg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - name: Start Vite
+        run: |
+          npm run dev -- --port 4173 > /tmp/solvyn-vite.log 2>&1 &
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:4173 >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/solvyn-vite.log
+          exit 1
+      - name: Capture iPhone play view
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless:true, args:['--use-angle=swiftshader','--enable-webgl'] });
+          const context = await browser.newContext({
+            viewport:{ width:393, height:852 },
+            deviceScaleFactor:3,
+            isMobile:true,
+            hasTouch:true,
+            userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'
+          });
+          const page = await context.newPage();
+          const errors=[];
+          page.on('pageerror', e => errors.push('pageerror: '+e.message));
+          page.on('console', m => { if(m.type()==='error') errors.push('console: '+m.text()); });
+          await page.goto('http://127.0.0.1:4173', { waitUntil:'networkidle' });
+          await page.screenshot({ path:'iphone-start.png' });
+          await page.touchscreen.tap(196,430);
+          await page.waitForTimeout(900);
+
+          const client = await context.newCDPSession(page);
+          await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:96,y:675,id:1,radiusX:8,radiusY:8,force:1}]});
+          await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:96,y:596,id:1,radiusX:8,radiusY:8,force:1}]});
+          await page.waitForTimeout(1300);
+          await page.screenshot({ path:'iphone-game.png' });
+          await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+
+          const facts=await page.evaluate(()=>({
+            canvas:[document.querySelector('canvas')?.clientWidth,document.querySelector('canvas')?.clientHeight],
+            start:getComputedStyle(document.querySelector('#start')).display,
+            objective:document.querySelector('#objective')?.textContent,
+            location:document.querySelector('#location')?.textContent
+          }));
+          console.log(JSON.stringify({facts,errors}));
+          if(errors.length) process.exitCode=1;
+          await browser.close();
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: solvyn-iphone-visual
+          path: |
+            solvyn-rpg/iphone-start.png
+            solvyn-rpg/iphone-game.png
+          retention-days: 3
