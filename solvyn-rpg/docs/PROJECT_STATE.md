@@ -39,7 +39,7 @@ Current save state persists:
 - authored moments already seen
 - incidental interactions used
 
-Save version is `v3`. The experience intentionally starts fresh from the King's Road after this visual/experience overhaul.
+Save version is `v4`. The experience intentionally starts fresh from the King's Road after this visual/experience overhaul.
 
 ## Living-world systems
 
@@ -120,3 +120,29 @@ The world now uses a lightweight authored surface/detail layer rather than flat-
 - higher baseline render scale and a 1536² sun shadow map, with adaptive resolution still protecting the M1 target
 
 The visual target is now “stylized authored environment”: geometry stays economical, but surfaces and silhouettes should no longer read as a gray-box prototype.
+
+
+## Art direction reset — v4
+
+This is no longer targeting “low-poly realism.” The visual identity is **painted storybook medievalism**: a world that feels illustrated but remains fully 3D and playable.
+
+Technical shortcuts deliberately used as art direction:
+- shared rounded/beveled box geometry so even simple architecture catches light softly
+- true gabled roofs on city houses instead of generic cone roofs
+- clustered dodecahedral tree crowns in three values instead of single-cone trees
+- rolling vertex-colored terrain instead of rectangular hill blocks
+- procedural gouache-style surface maps with visible brushwork and pigment granulation
+- subtle surface relief rather than high-resolution normal-map packs
+- dense instanced props and ground life for parallax and lived-in scale
+- lightweight post-process combining edge softening, restrained ink darkening, tonal grouping and paper grain
+- touch-first portrait camera tuning for iPhone with adaptive render resolution
+
+### Mobile gesture contract
+- left-thumb drag: move
+- push the left drag farther: sprint
+- right-thumb drag: look
+- quick right-side tap: interact
+- upward right-side flick: jump
+- no virtual joystick or action buttons are rendered
+
+The active target remains an iPhone-class browser and the 2020 M1 MacBook Air / 8 GB performance floor.

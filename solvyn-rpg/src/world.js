@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import capital from "../data/solvyr-capital.json";
-import { installDetailPass } from "./detail-pass.js";
+import { installArtDirection } from "./art-direction.js";
 
 const C = {
   limestone: 0x817d72,
@@ -43,11 +44,13 @@ export class SolvyrWorld {
     this.events = [];
     this.clock = 0;
 
-    this.unitBox = new THREE.BoxGeometry(1, 1, 1);
-    this.unitCylinder8 = new THREE.CylinderGeometry(.5, .5, 1, 8);
-    this.unitSphere = new THREE.SphereGeometry(.5, 10, 8);
-    this.unitCone8 = new THREE.ConeGeometry(.5, 1, 8);
-    this.unitWheel = new THREE.CylinderGeometry(.5, .5, .2, 10);
+    this.unitBox = new RoundedBoxGeometry(1, 1, 1, 2, .035);
+    this.unitCylinder8 = new THREE.CylinderGeometry(.5, .5, 1, 12);
+    this.unitSphere = new THREE.SphereGeometry(.5, 14, 10);
+    this.unitCone8 = new THREE.ConeGeometry(.5, 1, 10);
+    this.unitWheel = new THREE.CylinderGeometry(.5, .5, .2, 12);
+    this.unitGable = this.createGableGeometry();
+    this.unitTorso = new THREE.CapsuleGeometry(.34, .58, 4, 8);
 
     this.mat = {
       stone: mat(C.limestone),
@@ -93,7 +96,7 @@ export class SolvyrWorld {
     this.buildCastleAscent();
     this.buildCastle();
     this.buildLife();
-    this.detailPass = installDetailPass(this);
+    this.artDirection = installArtDirection(this);
   }
 
   groundHeight() {
@@ -136,6 +139,32 @@ export class SolvyrWorld {
     roof.rotation.y = Math.PI / 8;
     roof.castShadow = true;
     parent.add(roof);
+    return roof;
+  }
+
+  createGableGeometry() {
+    const p = [
+      -.5,0,-.5,  .5,0,-.5,  0,1,-.5,
+      .5,0,.5,  -.5,0,.5,   0,1,.5,
+      -.5,0,-.5, 0,1,-.5, 0,1,.5, -.5,0,.5,
+      0,1,-.5, .5,0,-.5, .5,0,.5, 0,1,.5,
+      -.5,0,.5, .5,0,.5, .5,0,-.5, -.5,0,-.5
+    ];
+    const idx = [0,1,2, 3,4,5, 6,7,8, 6,8,9, 10,11,12, 10,12,13, 14,15,16, 14,16,17];
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(p,3));
+    g.setIndex(idx);
+    g.computeVertexNormals();
+    return g;
+  }
+
+  addGableRoof(x, baseY, z, sx, sz, height = 2.35, material = this.mat.slate) {
+    const roof = new THREE.Mesh(this.unitGable, material);
+    roof.position.set(x, baseY, z);
+    roof.scale.set(sx + .9, height, sz + .9);
+    roof.castShadow = true;
+    roof.receiveShadow = true;
+    this.scene.add(roof);
     return roof;
   }
 
@@ -263,59 +292,52 @@ export class SolvyrWorld {
   }
 
   buildHillsAndVegetation() {
-    const hillMat = this.mat.grassDark;
-    const hills = [
-      [-43, 3.4, 126, 45, 7, 40],
-      [44, 4.1, 119, 48, 8, 46],
-      [-50, 3.1, 82, 52, 6, 34],
-      [49, 3.5, 76, 50, 7, 34]
-    ];
-    hills.forEach(h => this.addBox(...h, hillMat, false, false));
-
-    // Distant mountain wall: exaggerated silhouette, almost free at runtime.
-    const mountainMat = mat(0x65706e, 1);
-    const mountainGeo = new THREE.ConeGeometry(1, 1, 5);
+    const mountainMat = mat(0x657475, 1);
+    const mountainGeo = new THREE.IcosahedronGeometry(1, 1);
     [
-      [-78, -220, 58, 54], [-36, -214, 46, 66], [8, -232, 62, 78],
-      [58, -218, 52, 61], [100, -235, 66, 48]
-    ].forEach(([x,z,w,h], i) => {
-      const m = new THREE.Mesh(mountainGeo, mountainMat);
-      m.position.set(x, h * .42 - 4, z);
-      m.scale.set(w, h, w * .68);
-      m.rotation.y = i * .31;
-      m.receiveShadow = false;
-      m.castShadow = false;
+      [-82,-220,43,31,33],[-48,-226,35,43,35],[-10,-238,48,51,42],
+      [31,-229,40,42,36],[68,-221,42,35,34],[102,-238,49,29,40]
+    ].forEach(([x,z,sx,sy,sz],i)=>{
+      const m=new THREE.Mesh(mountainGeo,mountainMat);
+      m.position.set(x,sy*.45-4,z);
+      m.scale.set(sx,sy,sz);
+      m.rotation.set(.05*i,.17*i,.03*(i%2));
+      m.castShadow=false;m.receiveShadow=false;
       this.scene.add(m);
     });
 
-    const count = 100;
-    const trunkGeo = new THREE.CylinderGeometry(.18, .24, 2.1, 6);
-    const crownGeo = new THREE.ConeGeometry(1.2, 3.2, 7);
-    const trunks = new THREE.InstancedMesh(trunkGeo, this.mat.trunk, count);
-    const crowns = new THREE.InstancedMesh(crownGeo, this.mat.leaf, count);
-    const dummy = new THREE.Object3D();
-    let i = 0;
-    for (const side of [-1, 1]) {
-      for (let z = 145; z > 62 && i < count; z -= 3.4) {
-        const variance = ((i * 37) % 13) * .72;
-        const x = side * (13 + variance);
-        const scale = .75 + ((i * 11) % 7) * .055;
-        dummy.position.set(x, 1.05 * scale, z + ((i % 4) - 1.5) * .9);
-        dummy.rotation.y = (i * .61) % Math.PI;
-        dummy.scale.setScalar(scale);
-        dummy.updateMatrix();
-        trunks.setMatrixAt(i, dummy.matrix);
-        dummy.position.y = 3.05 * scale;
-        dummy.updateMatrix();
-        crowns.setMatrixAt(i, dummy.matrix);
-        i++;
+    const count=92;
+    const trunkGeo=new THREE.CylinderGeometry(.16,.25,2.2,7);
+    const crownGeo=new THREE.DodecahedronGeometry(1,0);
+    const trunks=new THREE.InstancedMesh(trunkGeo,this.mat.trunk,count);
+    const crownsA=new THREE.InstancedMesh(crownGeo,this.mat.leaf,count);
+    const crownsB=new THREE.InstancedMesh(crownGeo,this.mat.leaf2,count);
+    const crownsC=new THREE.InstancedMesh(crownGeo,this.mat.grassDark,count);
+    const d=new THREE.Object3D();
+    let n=0;
+    for(const side of [-1,1]){
+      for(let z=148;z>62&&n<count;z-=3.7){
+        const v=((n*37)%17)*.61;
+        const x=side*(13+v);
+        const s=.72+((n*11)%7)*.055;
+        d.position.set(x,1.0*s,z+((n%5)-2)*.72);
+        d.rotation.set(0,(n*.71)%Math.PI,0);
+        d.scale.set(.9*s,s,.9*s);d.updateMatrix();trunks.setMatrixAt(n,d.matrix);
+
+        const crownY=2.65*s;
+        [
+          [crownsA,-.42,.05,0,1.05,.9,1],
+          [crownsB,.48,.18,.05,.9,.76,.9],
+          [crownsC,.04,.72,-.08,.74,.68,.78]
+        ].forEach(([mesh,ox,oy,oz,sx,sy,sz])=>{
+          d.position.set(x+ox*s,crownY+oy*s,z+oz*s);
+          d.rotation.set((n%3)*.08,(n*.47)%Math.PI,(n%2)*.05);
+          d.scale.set(sx*s,sy*s,sz*s);d.updateMatrix();mesh.setMatrixAt(n,d.matrix);
+        });
+        n++;
       }
     }
-    trunks.count = i;
-    crowns.count = i;
-    trunks.castShadow = false;
-    crowns.castShadow = false;
-    this.scene.add(trunks, crowns);
+    [trunks,crownsA,crownsB,crownsC].forEach(m=>{m.count=n;m.castShadow=false;m.receiveShadow=true;this.scene.add(m);});
   }
 
   buildRoadApproach() {
@@ -393,21 +415,33 @@ export class SolvyrWorld {
   }
 
   house(x, z, sx, sz, height, tone = 0, face = "road") {
-    const bodyMat = tone % 3 === 0 ? this.mat.plaster : tone % 3 === 1 ? this.mat.plasterWarm : this.mat.stoneLight;
-    this.addBox(x, height / 2, z, sx, height, sz, bodyMat, true);
-    this.addRoof(x, height + 1.25, z, Math.max(sx, sz) * .64, 2.5);
+    const bodyMat=tone%3===0?this.mat.plaster:tone%3===1?this.mat.plasterWarm:this.mat.stoneLight;
+    this.addBox(x,height/2,z,sx,height,sz,bodyMat,true);
+    this.addBox(x,.28,z,sx+.35,.55,sz+.35,this.mat.stoneDark,false,true);
+    this.addGableRoof(x,height-.02,z,sx,sz,2.25+(tone%2)*.3);
 
-    const roadSide = x < 0 ? 1 : -1;
-    const frontX = x + roadSide * (sx / 2 + .05);
-    for (let yy = 2.2; yy < height - .5; yy += 2.1) {
-      this.addWindow(frontX, yy, z - sz * .2, .09, .64, 0xffbd65, roadSide > 0 ? Math.PI / 2 : -Math.PI / 2);
-      if (height > 6) this.addWindow(frontX, yy, z + sz * .2, .09, .64, 0xffbd65, roadSide > 0 ? Math.PI / 2 : -Math.PI / 2);
+    const roadSide=x<0?1:-1;
+    const frontX=x+roadSide*(sx/2+.08);
+    const doorZ=z+sz*.25;
+    this.addBox(frontX,1.12,doorZ,.19,2.18,1.28,this.mat.timber,false,true);
+    this.addBox(frontX+roadSide*.03,1.16,doorZ,.10,1.82,.94,this.mat.darkLeather,false,false);
+
+    for(let yy=2.3;yy<height-.6;yy+=2.15){
+      for(const dz of [-sz*.22,sz*.22]){
+        this.addBox(frontX,yy,z+dz,.18,1.14,1.10,this.mat.timber,false,true);
+        this.addWindow(frontX+roadSide*.035,yy,z+dz,.08,.58,0xffbd65,roadSide>0?Math.PI/2:-Math.PI/2);
+        this.addBox(frontX+roadSide*.02,yy-.68,z+dz,.20,.14,1.28,this.mat.stoneLight,false,false);
+      }
     }
 
-    // Timber rhythm makes each façade legible at walking speed.
-    for (const dz of [-sz * .32, 0, sz * .32]) {
-      const b = this.addBox(frontX, height * .53, z + dz, .11, height * .78, .11, this.mat.timber, false, false);
-      b.rotation.z = (dz === 0 ? 0 : roadSide * dz > 0 ? .11 : -.11);
+    for(const dz of [-sz*.34,0,sz*.34]){
+      const b=this.addBox(frontX,height*.54,z+dz,.12,height*.74,.12,this.mat.timber,false,true);
+      b.rotation.z=dz===0?0:(dz>0?.075:-.075);
+    }
+    this.addBox(frontX,height-.08,z,.22,.24,sz*.94,this.mat.timber,false,true);
+
+    if(tone%2===0){
+      this.addBox(x-roadSide*sx*.18,height+1.55,z+sz*.24,.68,2.2,.68,this.mat.stoneDark,false,true);
     }
   }
 
@@ -645,65 +679,58 @@ export class SolvyrWorld {
   }
 
   createHumanoid({ id, name, x, z, color = this.mat.commonBlue, role = "citizen", range = 2.6, line = null, path = null, speed = .55, face = 0 }) {
-    const group = new THREE.Group();
-    group.position.set(x, 0, z);
-    group.rotation.y = face;
+    const group=new THREE.Group();
+    group.position.set(x,0,z);
+    group.rotation.y=face;
 
-    const torso = new THREE.Mesh(this.unitCylinder8, color);
-    torso.position.y = 1.15;
-    torso.scale.set(.72, 1.15, .72);
+    const torso=new THREE.Mesh(this.unitTorso,color);
+    torso.position.y=1.18;
+    torso.scale.set(1.05,1.18,.82);
     group.add(torso);
 
-    const belt = this.addBox(0, .9, 0, .82, .13, .82, this.mat.darkLeather, false, false, group);
-    const head = new THREE.Mesh(this.unitSphere, this.mat.skin);
-    head.position.y = 1.95;
-    head.scale.set(.55, .62, .55);
-    group.add(head);
+    const skirt=new THREE.Mesh(new THREE.ConeGeometry(.46,.72,9,1,true),role==="guard"?this.mat.guardBlue:color);
+    skirt.position.y=.78;
+    skirt.rotation.y=Math.PI/9;
+    group.add(skirt);
 
-    const hair = new THREE.Mesh(this.unitSphere, role === "guard" ? this.mat.iron : this.mat.timber);
-    hair.position.set(0, 2.15, -.02);
-    hair.scale.set(.58, .32, .58);
-    group.add(hair);
+    this.addBox(0,.92,0,.78,.11,.72,this.mat.darkLeather,false,false,group);
 
-    const armL = this.addBox(-.43, 1.18, 0, .18, .92, .18, role === "guard" ? this.mat.guardBlue : color, false, false, group);
-    const armR = this.addBox(.43, 1.18, 0, .18, .92, .18, role === "guard" ? this.mat.guardBlue : color, false, false, group);
-    const legL = this.addBox(-.18, .43, 0, .22, .82, .24, this.mat.darkLeather, false, false, group);
-    const legR = this.addBox(.18, .43, 0, .22, .82, .24, this.mat.darkLeather, false, false, group);
+    const head=new THREE.Mesh(this.unitSphere,this.mat.skin);
+    head.position.y=2.03;head.scale.set(.52,.60,.48);group.add(head);
+    const nose=new THREE.Mesh(new THREE.TetrahedronGeometry(.10),this.mat.skin);
+    nose.position.set(0,2.02,-.48);nose.rotation.x=.35;group.add(nose);
 
-    if (role === "guard") {
-      const spear = new THREE.Mesh(new THREE.CylinderGeometry(.035, .035, 3.2, 6), this.mat.timber);
-      spear.position.set(.7, 1.45, 0);
-      group.add(spear);
-      const tip = new THREE.Mesh(new THREE.ConeGeometry(.09, .35, 5), this.mat.iron);
-      tip.position.set(.7, 3.18, 0);
-      group.add(tip);
+    const hair=new THREE.Mesh(new THREE.SphereGeometry(.5,10,7,0,Math.PI*2,0,Math.PI*.58),role==="guard"?this.mat.iron:this.mat.timber);
+    hair.position.set(0,2.19,0);hair.scale.set(.56,.42,.54);group.add(hair);
+
+    const armGeo=new THREE.CylinderGeometry(.09,.12,.88,7);
+    const legGeo=new THREE.CylinderGeometry(.10,.12,.78,7);
+    const armL=new THREE.Mesh(armGeo,role==="guard"?this.mat.guardBlue:color);
+    const armR=new THREE.Mesh(armGeo,role==="guard"?this.mat.guardBlue:color);
+    armL.position.set(-.43,1.18,0);armR.position.set(.43,1.18,0);
+    group.add(armL,armR);
+    const legL=new THREE.Mesh(legGeo,this.mat.darkLeather),legR=new THREE.Mesh(legGeo,this.mat.darkLeather);
+    legL.position.set(-.18,.42,0);legR.position.set(.18,.42,0);group.add(legL,legR);
+
+    if(role==="guard"){
+      const shoulderGeo=new THREE.SphereGeometry(.16,8,5);
+      const shoulderL=new THREE.Mesh(shoulderGeo,this.mat.gold),shoulderR=new THREE.Mesh(shoulderGeo,this.mat.gold);
+      shoulderL.position.set(-.42,1.56,0);shoulderR.position.set(.42,1.56,0);group.add(shoulderL,shoulderR);
+      const spear=new THREE.Mesh(new THREE.CylinderGeometry(.032,.032,3.2,7),this.mat.timber);
+      spear.position.set(.68,1.48,0);group.add(spear);
+      const tip=new THREE.Mesh(new THREE.ConeGeometry(.085,.36,6),this.mat.iron);
+      tip.position.set(.68,3.25,0);group.add(tip);
     }
 
     this.scene.add(group);
-    const npc = {
-      id, name, group, torso, head, armL, armR, legL, legR,
-      origin: new THREE.Vector3(x, 0, z),
-      path,
-      pathT: Math.random(),
-      speed,
-      phase: Math.random() * Math.PI * 2,
-      role
-    };
+    const npc={id,name,group,torso,head,armL,armR,legL,legR,origin:new THREE.Vector3(x,0,z),path,pathT:Math.random(),speed,phase:Math.random()*Math.PI*2,role};
     this.npcs.push(npc);
 
-    if (line) {
-      const interaction = {
-        id,
-        position: group.position,
-        range,
-        label: `E · ${name}`,
-        use: () => {
-          this.interactionsUsed.add(id);
-          this.state.interactionsUsed = [...this.interactionsUsed];
-          return { type: "dialogue", text: line };
-        }
-      };
-      this.interactions.push(interaction);
+    if(line){
+      this.interactions.push({
+        id,position:group.position,range,label:name,
+        use:()=>{this.interactionsUsed.add(id);this.state.interactionsUsed=[...this.interactionsUsed];return{type:"dialogue",text:line};}
+      });
     }
     return npc;
   }
@@ -1001,7 +1028,7 @@ export class SolvyrWorld {
       b.mesh.rotation.z = Math.sin(this.clock*5 + i)*.08;
     });
 
-    this.detailPass?.update(dt, playerPosition);
+    this.artDirection?.update(dt, playerPosition);
 
     this.moment("first-reveal", playerPosition.z < 134, {
       kicker: "THE CROWN CITY",

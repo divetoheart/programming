@@ -37,3 +37,14 @@ Initial playable path from the King's Road to the royal dais with movement, coll
 - Added Great Hall dust motes.
 - Raised baseline resolution and shadow fidelity while retaining adaptive scaling for the M1/8GB performance floor.
 - Bumped save version to v3 so the revised arrival is experienced from the beginning.
+
+
+## 0.4.0 — Painted-world reset + iPhone controls
+
+- Reframed the art style as painted storybook medievalism rather than low-poly realism.
+- Added shared rounded geometry, gabled roofs, clustered foliage, rolling terrain and more sculpted NPC silhouettes.
+- Replaced the prior detail treatment with painterly procedural materials and a lightweight illustration post-process.
+- Added iPhone-safe full-screen layout, portrait FOV tuning and dynamic-resolution rendering.
+- Added gesture-only mobile play: drag-to-move, drag-to-look, push-to-sprint, tap-to-interact and flick-to-jump.
+- Removed reliance on virtual UI controls.
+- Bumped save version to v4 so the redesigned arrival begins from the intended opening composition.

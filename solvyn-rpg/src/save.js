@@ -1,5 +1,5 @@
-const KEY = "solvyn.save.v3";
-const VERSION = 3;
+const KEY = "solvyn.save.v4";
+const VERSION = 4;
 
 const defaults = {
   version: VERSION,
