@@ -19,8 +19,48 @@ const chapterSubtitle=document.querySelector("#chapter-subtitle");
 
 const isTouch=("ontouchstart" in window)||matchMedia("(pointer: coarse)").matches;
 
+function makePaintedSky(){
+  const c=document.createElement("canvas");
+  c.width=512;c.height=768;
+  const x=c.getContext("2d");
+  const g=x.createLinearGradient(0,0,0,c.height);
+  g.addColorStop(0,"#607d87");
+  g.addColorStop(.42,"#8fa39f");
+  g.addColorStop(.72,"#bdbaa3");
+  g.addColorStop(1,"#d4b98f");
+  x.fillStyle=g;x.fillRect(0,0,c.width,c.height);
+
+  const sun=x.createRadialGradient(365,390,3,365,390,145);
+  sun.addColorStop(0,"rgba(255,223,164,.42)");
+  sun.addColorStop(.28,"rgba(242,203,143,.16)");
+  sun.addColorStop(1,"rgba(242,203,143,0)");
+  x.fillStyle=sun;x.fillRect(0,0,c.width,c.height);
+
+  x.lineCap="round";
+  const clouds=[
+    [72,190,105,.075],[196,228,82,.055],[350,175,122,.07],
+    [432,285,92,.045],[130,330,76,.035]
+  ];
+  for(const [cx,cy,w,a] of clouds){
+    x.strokeStyle="rgba(226,226,206,"+a+")";
+    x.lineWidth=24;
+    x.beginPath();x.moveTo(cx-w*.5,cy);x.bezierCurveTo(cx-w*.15,cy-16,cx+w*.15,cy+10,cx+w*.5,cy);x.stroke();
+    x.strokeStyle="rgba(91,112,108,"+(a*.34)+")";
+    x.lineWidth=9;x.beginPath();x.moveTo(cx-w*.42,cy+11);x.lineTo(cx+w*.38,cy+7);x.stroke();
+  }
+  for(let i=0;i<900;i++){
+    const a=.008+Math.random()*.018;
+    x.fillStyle=Math.random()>.5?"rgba(255,248,225,"+a+")":"rgba(35,48,49,"+a+")";
+    x.fillRect(Math.random()*c.width,Math.random()*c.height,1,1);
+  }
+  const t=new THREE.CanvasTexture(c);
+  t.colorSpace=THREE.SRGBColorSpace;
+  t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;
+  return t;
+}
+
 const scene=new THREE.Scene();
-scene.background=new THREE.Color(0xa8b5ae);
+scene.background=makePaintedSky();
 scene.fog=new THREE.FogExp2(0xa9b3a9,.0073);
 
 const camera=new THREE.PerspectiveCamera(66,innerWidth/innerHeight,.08,650);
@@ -35,31 +75,6 @@ renderer.shadowMap.enabled=true;
 renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.domElement.setAttribute("aria-label","Solvyr game view");
 root.appendChild(renderer.domElement);
-
-const skyVertex="varying vec3 vWorld;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vWorld=wp.xyz;gl_Position=projectionMatrix*viewMatrix*wp;}";
-const skyFragment="uniform vec3 topColor;uniform vec3 highColor;uniform vec3 horizonColor;uniform vec3 sunWash;varying vec3 vWorld;"+
-"void main(){vec3 dir=normalize(vWorld);float h=dir.y;vec3 c=mix(horizonColor,highColor,smoothstep(.01,.42,h));"+
-"c=mix(c,topColor,smoothstep(.35,.88,h));float warmth=1.-smoothstep(-.08,.16,h);c=mix(c,sunWash,warmth*.18);"+
-"float wash=(sin(dir.x*17.+dir.z*7.)+sin(dir.z*21.-dir.x*5.)+sin((dir.x+dir.z)*11.))*.333;"+
-"float cloud=smoothstep(.34,.82,wash)*smoothstep(.05,.48,h)*(1.-smoothstep(.62,.90,h));"+
-"c=mix(c,vec3(.78,.82,.76),cloud*.16);float sun=pow(max(dot(dir,normalize(vec3(-.46,.30,.84))),0.),72.);"+
-"c+=sun*vec3(.36,.23,.10);gl_FragColor=vec4(c,1.);}";
-
-const sky=new THREE.Mesh(
-  new THREE.SphereGeometry(280,28,14),
-  new THREE.ShaderMaterial({
-    side:THREE.BackSide,depthWrite:false,
-    uniforms:{
-      topColor:{value:new THREE.Color(0x607b83)},
-      highColor:{value:new THREE.Color(0x8ea29d)},
-      horizonColor:{value:new THREE.Color(0xc1b89e)},
-      sunWash:{value:new THREE.Color(0xe3bc82)}
-    },
-    vertexShader:skyVertex,
-    fragmentShader:skyFragment
-  })
-);
-scene.add(sky);
 
 const hemi=new THREE.HemisphereLight(0xe3e9df,0x536650,2.12);
 scene.add(hemi);
