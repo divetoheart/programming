@@ -1,7 +1,4 @@
 import * as THREE from "three";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import "./style.css";
 import { PlayerController } from "./player.js";
 import { SolvyrWorld } from "./world.js";
@@ -78,40 +75,6 @@ const world=new SolvyrWorld(scene,save.world);
 const player=new PlayerController(camera,world,save.player,renderer.domElement);
 const ambience=new Ambience();
 
-const artVertex="varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}";
-const artFragment="uniform sampler2D tDiffuse;uniform vec2 resolution;uniform float strength;varying vec2 vUv;"+
-"float lum(vec3 c){return dot(c,vec3(.299,.587,.114));}"+
-"float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}"+
-"void main(){vec3 c=texture2D(tDiffuse,vUv).rgb;"+
-"vec3 n=texture2D(tDiffuse,vUv+vec2(0.,resolution.y)).rgb;"+
-"vec3 s=texture2D(tDiffuse,vUv-vec2(0.,resolution.y)).rgb;"+
-"vec3 e=texture2D(tDiffuse,vUv+vec2(resolution.x,0.)).rgb;"+
-"vec3 w=texture2D(tDiffuse,vUv-vec2(resolution.x,0.)).rgb;"+
-"float edge=abs(lum(n)-lum(s))+abs(lum(e)-lum(w));"+
-"vec3 avg=(n+s+e+w+c*4.)/8.;c=mix(c,avg,smoothstep(.035,.22,edge)*.34);"+
-"float l=lum(c);float q=floor(l*10.+.5)/10.;c*=mix(1.,q/max(l,.04),.10*strength);"+
-"c*=1.-smoothstep(.13,.48,edge)*.16*strength;c=pow(max(c,vec3(0.)),vec3(.92));c+=vec3(.012,.010,.006);"+
-"float grain=(hash(floor(gl_FragCoord.xy*.72))-.5)*.018;c+=grain;"+
-"c=mix(c,c*vec3(1.028,1.0,.955),.22);float vig=1.-smoothstep(.27,.84,length(vUv-.5));"+
-"c*=mix(.965,1.018,vig);gl_FragColor=vec4(c,1.);}";
-
-const artShader={
-  uniforms:{
-    tDiffuse:{value:null},
-    resolution:{value:new THREE.Vector2(1/innerWidth,1/innerHeight)},
-    strength:{value:isTouch?.82:.74}
-  },
-  vertexShader:artVertex,
-  fragmentShader:artFragment
-};
-
-const composer=new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene,camera));
-const artPass=new ShaderPass(artShader);
-composer.addPass(artPass);
-composer.setPixelRatio(renderScale);
-composer.setSize(innerWidth,innerHeight);
-
 let currentInteraction=null,toastTimer=0,chapterTimer=0,saveTimer=0,fireTimer=0,currentZoneId="",lastObjective="";
 
 function showToast(text,seconds=3.7){
@@ -168,9 +131,6 @@ function resizeRenderer(){
   updateCameraForScreen();
   renderer.setPixelRatio(renderScale);
   renderer.setSize(innerWidth,innerHeight);
-  composer.setPixelRatio(renderScale);
-  composer.setSize(innerWidth,innerHeight);
-  artPass.uniforms.resolution.value.set(1/(innerWidth*renderScale),1/(innerHeight*renderScale));
 }
 addEventListener("resize",resizeRenderer);
 addEventListener("orientationchange",()=>setTimeout(resizeRenderer,80));
@@ -225,7 +185,7 @@ function frame(){
   saveTimer+=dt;if(saveTimer>=2.5){saveTimer=0;save.player=player.snapshot();writeSave(save);}
 
   adaptResolution(dt);
-  composer.render();
+  renderer.render(scene,camera);
 }
 
 showToast(isTouch
