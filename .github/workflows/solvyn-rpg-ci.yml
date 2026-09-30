@@ -1,0 +1,29 @@
+name: Solvyn RPG CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "solvyn-rpg/**"
+      - ".github/workflows/solvyn-rpg-ci.yml"
+  pull_request:
+    paths:
+      - "solvyn-rpg/**"
+      - ".github/workflows/solvyn-rpg-ci.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: solvyn-rpg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: solvyn-rpg/package-lock.json
+      - run: npm install --package-lock-only
+      - run: npm ci
+      - run: npm run build
