@@ -244,6 +244,25 @@ function fetchModels(){
   },undefined,()=>{});
  }
 }
+function loadSurfaceMaterials(){
+ const tl=new THREE.TextureLoader();
+ tl.setCrossOrigin('anonymous');
+ const packs=[
+  ['forrest_ground_01',[ground.material],14],
+  ['rock_01',[M.stone,M.stoneDark,M.stoneLight],1.9],
+  ['medieval_wood',[M.timber,M.beams],2],
+  ['cobblestone_floor_001',[M.earth],2],
+  ['forest_leaves_02',[M.oak,M.oak2,M.grass],1.6]
+ ];
+ for(const [slug,mats,repeats] of packs){
+  const url='https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/'+slug+'/'+slug+'_diff_1k.jpg';
+  tl.load(url,t=>{
+   t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(repeats,repeats);
+   t.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());
+   for(const m of mats){m.map=t;m.needsUpdate=true}
+  },undefined,()=>{});
+ }
+}
 function createSky(){const sky=new THREE.Mesh(new THREE.SphereGeometry(520,24,12),new THREE.MeshBasicMaterial({color:0x8ba5a1,side:THREE.BackSide,fog:false}));sky.position.y=-12;scene.add(sky)}
 function resize(){viewW=app.clientWidth;viewH=app.clientHeight;if(!renderer)return;renderer.setSize(viewW,viewH,false);camera.aspect=viewW/viewH;camera.updateProjectionMatrix()}
 function init(){
@@ -260,7 +279,7 @@ function init(){
  for(const k of ['left','right','top','bottom'])mainLight.shadow.camera[k]=k==='left'||k==='bottom'?-36:36;
  mainLight.shadow.normalBias=.025;scene.add(mainLight);
  worldGroup=new THREE.Group();scene.add(worldGroup);
- paintGround();terrainFeatures();createFoliage();customBuildings();
+ paintGround();terrainFeatures();createFoliage();customBuildings();loadSurfaceMaterials();
  HC.locations.forEach(landmark);placePlayer();gameEnemies();createSky();fetchModels();
  raycaster=new THREE.Raycaster();
  resize();addEventListener('resize',resize);
