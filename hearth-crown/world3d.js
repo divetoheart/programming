@@ -131,10 +131,10 @@ function makeDragon(){
  g.scale.setScalar(1.55);return g
 }
 function paintGround(){
- const N=112,step=1;const verts=[],colorsA=[],inds=[],c=new THREE.Color();
+ const N=112,step=1;const verts=[],colorsA=[],uvs=[],inds=[],c=new THREE.Color();
  for(let z=0;z<=N;z++)for(let x=0;x<=N;x++){
   const wx=x-8,wz=z-8,ht=norm(wx,wz);
-  verts.push(wx,ht,wz);
+  verts.push(wx,ht,wz);uvs.push(x/N,z/N);
   const typ=HC.terrain(wx,wz);
   c.setHex(colors[typ]||colors.grass);
   let r=.82+HC.hash(x,z,7)*.26;
@@ -142,18 +142,18 @@ function paintGround(){
   colorsA.push(c.r,c.g,c.b);
  }
  for(let z=0;z<N;z++)for(let x=0;x<N;x++){let a=z*(N+1)+x,b=a+1,d=a+N+1,e=d+1;inds.push(a,d,b,b,d,e)}
- terrainGeo=new THREE.BufferGeometry();terrainGeo.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));terrainGeo.setAttribute('color',new THREE.Float32BufferAttribute(colorsA,3));terrainGeo.setIndex(inds);terrainGeo.computeVertexNormals();
+ terrainGeo=new THREE.BufferGeometry();terrainGeo.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));terrainGeo.setAttribute('color',new THREE.Float32BufferAttribute(colorsA,3));terrainGeo.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));terrainGeo.setIndex(inds);terrainGeo.computeVertexNormals();
  ground=new THREE.Mesh(terrainGeo,new THREE.MeshStandardMaterial({vertexColors:true,roughness:1,metalness:0,flatShading:false,side:THREE.DoubleSide}));
  ground.receiveShadow=true;scene.add(ground);
  const edge=new THREE.Mesh(new THREE.PlaneGeometry(1200,1200),mat(0x4b5d4e));edge.rotation.x=-Math.PI/2;edge.position.y=-2.8;edge.receiveShadow=true;scene.add(edge);
 }
 function pathLine(x1,z1,x2,z2,width,m= M.earth,step=0.5){
- const positions=[],ind=[],n=Math.ceil(Math.hypot(x2-x1,z2-z1)/step);const nx=(z2-z1)/Math.hypot(x2-x1,z2-z1),nz=-(x2-x1)/Math.hypot(x2-x1,z2-z1);
+ const positions=[],ind=[],uv=[],n=Math.ceil(Math.hypot(x2-x1,z2-z1)/step);const nx=(z2-z1)/Math.hypot(x2-x1,z2-z1),nz=-(x2-x1)/Math.hypot(x2-x1,z2-z1);
  for(let i=0;i<=n;i++){const t=i/n,x=x1+(x2-x1)*t,z=z1+(z2-z1)*t;
-  for(const side of [-1,1])positions.push(x+nx*width*.5*side,norm(x,z)+.085,z+nz*width*.5*side);
+  for(const side of [-1,1]){positions.push(x+nx*width*.5*side,norm(x,z)+.085,z+nz*width*.5*side);uv.push(side===-1?0:1,t*4)}
   if(i<n){const j=i*2;ind.push(j,j+2,j+1,j+1,j+2,j+3)}
  }
- const geom=new THREE.BufferGeometry();geom.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geom.setIndex(ind);geom.computeVertexNormals();
+ const geom=new THREE.BufferGeometry();geom.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geom.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geom.setIndex(ind);geom.computeVertexNormals();
  const mesh=new THREE.Mesh(geom,m);mesh.receiveShadow=true;worldGroup.add(mesh)
 }
 function terrainFeatures(){
@@ -248,7 +248,7 @@ function loadSurfaceMaterials(){
  const tl=new THREE.TextureLoader();
  tl.setCrossOrigin('anonymous');
  const packs=[
-  ['forrest_ground_01',[ground.material],14],
+  ['forrest_ground_01',[ground.material],12],
   ['rock_01',[M.stone,M.stoneDark,M.stoneLight],1.9],
   ['medieval_wood',[M.timber,M.beams],2],
   ['cobblestone_floor_001',[M.earth],2],
