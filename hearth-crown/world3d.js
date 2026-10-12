@@ -12,7 +12,7 @@ canvas.id='world3d';
 canvas.setAttribute('aria-label','Three dimensional fantasy landscape');
 app.insertBefore(canvas,document.getElementById('grain'));
 const css=document.createElement('style');
-css.textContent='#world3d{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;display:block}#world{position:absolute;inset:0}#grain,#vignette{pointer-events:none}#world3d{touch-action:none}';
+css.textContent='#world3d{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;display:block}#world{position:absolute;inset:0}#hud{z-index:3}#grain,#vignette{pointer-events:none;z-index:2}#world3d{touch-action:none}';
 document.head.appendChild(css);
 
 let renderer,scene,camera,ground,raycaster,playerRoot,dragon,dragonWingL,dragonWingR;
@@ -228,7 +228,7 @@ const FREE_MODELS=[
  ['nature-kit/tree-pinedefaultb.glb',45.9,51.8,3.9],
  ['castle-kit/tower-square-mid-door.glb',53.8,29.2,5.0],
  ['castle-kit/tower-square-top-roof.glb',53.8,29.2,5.8],
- ['nature-kit/rock-large.glb',40.1,51.4,1.2],
+ ['nature-kit/rock-largee.glb',40.1,51.4,1.2],
  ['graveyard-kit/gravestone-round.glb',34.7,38.8,1.3]
 ];
 function fetchModels(){
