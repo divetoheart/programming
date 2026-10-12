@@ -20,7 +20,7 @@
 @media(max-width:630px){#topStats{top:calc(var(--safeTop) + 153px);right:16px}#quest{max-width:240px}#locationBanner{top:31%}}
 #toastArea{z-index:18}
 
-</style><title>Hearth & Crown · The Borderlands — Safari Edition</title>
+</style><title>Hearth & Crown · The Borderlands — 3D Edition</title>
 </head>
 <body>
 <div id="app">
@@ -212,7 +212,7 @@ function succession(){const p=S.player;if(p.heirs.length){const heir=p.heirs.shi
 // Illustrated world renderer. The painterly renderer works offline; optional CC0 Poly Haven textures load over HTTPS when available.
 function resize(){const b=$('app').getBoundingClientRect();vw=b.width;vh=b.height;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(vw*dpr);canvas.height=Math.round(vh*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);cache.clear()}
 addEventListener('resize',resize);addEventListener('orientationchange',()=>setTimeout(resize,180));resize();
-function sx(x){return(x-cam.x)*T+vw*.5}function sy(y){return(y-cam.y)*T+vh*.49}function scrToWorld(x,y){return{x:(x-vw*.5)/T+cam.x,y:(y-vh*.49)/T+cam.y}}
+function sx(x){return(x-cam.x)*T+vw*.5}function sy(y){return(y-cam.y)*T+vh*.49}function scrToWorld(x,y){if(window.HC_ENGINE?.ready&&window.HC_ENGINE.pick)return window.HC_ENGINE.pick(x,y);return{x:(x-vw*.5)/T+cam.x,y:(y-vh*.49)/T+cam.y}}
 function ellipse(g,x,y,rx,ry,c){g.beginPath();g.ellipse(x,y,rx,ry,0,0,Math.PI*2);g.fillStyle=c;g.fill()}
 function poly(g,pts,color){g.beginPath();g.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)g.lineTo(pts[i][0],pts[i][1]);g.closePath();g.fillStyle=color;g.fill()}
 function line(g,pts,color,w=1){g.beginPath();g.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)g.lineTo(pts[i][0],pts[i][1]);g.strokeStyle=color;g.lineWidth=w;g.stroke()}
@@ -272,7 +272,7 @@ function drawLandmark(g,l,x,y){if(l.type==='village'){drawHouse(g,x-24,y+7,'hut'
  if(dist(S.player.x,S.player.y,l.x,l.y)<10){g.font='600 11px Cinzel,serif';g.textAlign='center';g.lineWidth=3;g.strokeStyle='#0d221ad9';g.strokeText(l.name,x,y-(l.type==='keep'?103:l.type==='village'?67:46));g.fillStyle='#fff0cb';g.fillText(l.name,x,y-(l.type==='keep'?103:l.type==='village'?67:46));g.textAlign='left'}}
 function drawWarrior(g,x,y,options={}){const enemy=!!options.enemy,bob=Math.sin(clock*6+(options.seed||0))*.7;g.save();g.translate(x,y+bob);const s=options.scale||1;g.scale(s,s);shadow(g,0,5,12); // cape, boots, body
  poly(g,[[-8,-18],[-13,5],[0,10],[13,5],[8,-18]],enemy?'#632e2f':'#364d4f');ellipse(g,0,-9,8,11,enemy?'#563b37':'#8c7957');g.fillStyle=enemy?'#2d2528':'#c9ad7f';g.fillRect(-4,-22,8,7);ellipse(g,0,-25,7,7,enemy?'#cfa17c':'#e0bb93');poly(g,[[-7,-28],[0,-35],[7,-28],[5,-24],[-5,-24]],enemy?'#35363a':'#584d41');line(g,[[9,-12],[17,-8],[19,-23]],enemy?'#a4b2b0':'#ded5b2',2);poly(g,[[-14,-10],[-9,-16],[-7,-2],[-14,1]],enemy?'#91745d':'#c5b892');g.restore()}
-function render(){ctx.clearRect(0,0,vw,vh);ctx.fillStyle='#7f9c72';ctx.fillRect(0,0,vw,vh);ground();const left=cam.x-vw/(2*T)-2,right=cam.x+vw/(2*T)+2,top=cam.y-vh*.49/T-3,bottom=cam.y+vh*.55/T+3;
+function render(){if(window.HC_ENGINE?.ready&&window.HC_ENGINE.draw){window.HC_ENGINE.draw();return}ctx.clearRect(0,0,vw,vh);ctx.fillStyle='#7f9c72';ctx.fillRect(0,0,vw,vh);ground();const left=cam.x-vw/(2*T)-2,right=cam.x+vw/(2*T)+2,top=cam.y-vh*.49/T-3,bottom=cam.y+vh*.55/T+3;
  const objects=[];for(let y=Math.max(0,Math.floor(top));y<=Math.min(95,Math.ceil(bottom));y++)for(let x=Math.max(0,Math.floor(left));x<=Math.min(95,Math.ceil(right));x++){const v=vegetation(x,y);if(v&&!S.removed.includes(`${x},${y}`))objects.push({...v,id:`${x},${y}`,kind:'node'})}
  for(const n of fixedNodes)if(!S.removed.includes(`fixed${n.x},${n.y}`)&&n.x>=left&&n.x<=right&&n.y>=top&&n.y<=bottom)objects.push({...n,id:`fixed${n.x},${n.y}`,kind:'node'});
  for(const l of locations)if(l.x>=left-2&&l.x<=right+2&&l.y>=top-3&&l.y<=bottom+2)objects.push({...l,kind:'landmark'});
@@ -309,10 +309,13 @@ function tick(ms){const dt=Math.min(.05,(ms-last)/1000||.016);last=ms;clock+=dt;
  saveClock+=dt;if(saveClock>9){saveClock=0;save()}if(messageTimer>0){messageTimer-=dt;if(messageTimer<=0)$('message').classList.add('hidden');}for(const p of particles){p.x+=p.vx*dt*1.3;p.y+=p.vy*dt*1.3;p.vy+=dt*.4;p.life-=dt}for(const f of floats)f.t-=dt*.85;if(clock>180&&Math.floor(clock/180)>Math.floor((clock-dt)/180)){advanceDays(1)}
  }else{cam.x=43+Math.sin(clock*.055)*1.2;cam.y=48+Math.cos(clock*.045)*1.2}
  render();requestAnimationFrame(tick)}
+window.HC_ENGINE={state:()=>S,locations,fixedNodes,terrain,vegetation,isWater,isMountain,riverX,noise,hash,livingEnemies,stick:()=>stick,ready:false};
 loadMaterials();requestAnimationFrame(tick);document.addEventListener('visibilitychange',()=>{if(document.hidden)save();last=performance.now()});addEventListener('pagehide',save);
 
 })();
 
 </script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="module" src="./world3d.js"></script>
 </body>
 </html>
